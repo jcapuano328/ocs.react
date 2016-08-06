@@ -4,6 +4,7 @@ var React = require('react');
 import { View, Text, Navigator, Alert, ToastAndroid } from 'react-native';
 var DrawerLayout = require('./widgets/drawerLayout');
 var NavMenu = require('./widgets/navMenu');
+var NavMenuItem = require('./widgets/navMenuItem');
 var BattleNavMenuItem = require('./widgets/battleNavMenuItem');
 var TitleBar = require('./widgets/titleBar');
 import { MenuContext } from 'react-native-menu';
@@ -88,11 +89,12 @@ var MainView = React.createClass({
                     onDrawerSlide={(e) => this.setState({drawerSlideOutput: JSON.stringify(e.nativeEvent)})}
                     onDrawerStateChanged={(e) => this.setState({drawerStateChangedOutput: JSON.stringify(e)})}
                     drawerWidth={300}
-                    renderNavigationView={() => <NavMenu items={Battles.battles.map((b,i) => {
+                    renderNavigationView={() => <NavMenu items={[(<NavMenuItem key={0} image={'info'} name={'About'} onPress={this.navMenuHandler}/>)]
+                        .concat(Battles.battles.map((b,i) => {
                             return (
-                                <BattleNavMenuItem key={i} id={b.id} name={b.name} desc={b.desc} image={b.image} onPress={this.navMenuHandler} />
+                                <BattleNavMenuItem key={i+1} id={b.id} name={b.name} desc={b.desc} image={b.image} onPress={this.navMenuHandler} />
                             );
-                        })} /> }>
+                        }))} /> }>
                     <MenuContext style={{flex: 1}}>
                         <Navigator
                             ref="navigator"

@@ -2,6 +2,7 @@ module.exports = {
 	"logo": require('./logo.jpg'),
 	"splash": require('./splash.png'),
 	"menu": require('./hamburger.png'),
+	"info": require('./info.png'),
 	"back": require('./ic_action_previous_item.png'),
 
 	"refreshButton": require('./ic_action_refresh.png'),
