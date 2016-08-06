@@ -1,7 +1,7 @@
 'use strict'
 
 var React = require('react');
-import { View, Text, StyleSheet } from 'react--native';
+import { View, Text, StyleSheet } from 'react-native';
 var SpinButton = require('./spinButton');
 
 var styles = StyleSheet.create({

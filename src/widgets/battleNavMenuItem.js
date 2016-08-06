@@ -6,7 +6,7 @@ var icons = require('../res/icons');
 
 var BattleNavMenuItem = React.createClass({
     onPress() {
-        this.props.onPress && this.props.onPress(this.props.id);
+        this.props.onPress && this.props.onPress('battle', this.props.id);
     },
     render() {
         return (

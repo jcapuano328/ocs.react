@@ -11,6 +11,12 @@ var renderTitle = (props) => {
     }
     return props.title || '';
 }
+var renderSubTitle = (props) => {
+    if (typeof props.subtitle == 'function') {
+        return props.subtitle();
+    }
+    return props.subtitle || '';
+}
 
 var TitleBar = (props) => {
     props = props || {};
@@ -27,7 +33,7 @@ var TitleBar = (props) => {
         Title(route, navigator, index, navState) {
             route = route || {};
             return (
-                <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
+                <View style={{flex: 1, flexDirection:'row', justifyContent: 'center', alignItems: 'center'}}>
                     <Text style={{
                           color: 'white',
                           fontSize: 28,
@@ -38,6 +44,18 @@ var TitleBar = (props) => {
                         }}>
                       {renderTitle(route)}
                     </Text>
+                    {route.subtitle
+                        ? <Text style={{
+                              color: 'white',
+                              fontSize: 14,
+                              marginLeft: 10,
+                              marginVertical: 10,
+                              //color: 'blue'
+                            }}>
+                            {renderSubTitle(route)}
+                          </Text>
+                        : null
+                    }
                 </View>
             );
         },
@@ -48,7 +66,7 @@ var TitleBar = (props) => {
             }
             return (
                 <View style={{flex: 1, flexDirection: 'row', marginVertical: 10}}>
-                    <IconButton border={true} image={'refresh'} height={iconHeight} width={iconWidth} onPress={route.onRefresh} />
+                    <IconButton image={'refresh'} height={iconHeight} width={iconWidth} onPress={route.onRefresh} />
                 </View>
             );
         }

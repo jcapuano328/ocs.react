@@ -1,5 +1,104 @@
 [
 	{
+		"id": 14,
+		"name": "Sicily 2",
+		"desc": "Triumph & Folly: The Campaign to Capture Sicily; 1943",
+		"image": "sicily",
+		"startDate": "1943-07-10T12:00:00Z",
+		"turns": "16",
+		"turnTable": [3,7,10,14,17,21,24,28,31],
+		"weather": {
+			"dice": {
+				"number": 2,
+				"sides": 6,
+				"op": "A"
+			},
+			"effects": [
+				{
+					"turnStart": 1,
+					"turnEnd": 30,
+					"effects": [
+						{
+							"low": 2,
+							"high": 12,
+							"effect": "Clear"
+						}
+					]
+				}
+			]
+		},
+		"players": [
+			{
+				"player": "player2",
+				"name": "Axis",
+				"supply": [
+					{
+						"turnStart": 1,
+						"turnEnd": 16,
+						"effects": [
+							{
+								"low": 2,
+								"high": 12,
+								"effect": "6"
+							}
+						]
+					}
+				],
+				"reinforcements": [
+					{
+						"low": 2,
+						"high": 8,
+						"effect": "None"
+					},
+					{
+						"low": 9,
+						"high": 9,
+						"effect": "1 Pax"
+					},
+					{
+						"low": 10,
+						"high": 12,
+						"effect": "1 Air + 1 Pax or Eq"
+					}
+				]
+			},
+			{
+				"player": "player1",
+				"name": "Allied",
+				"supply": [
+					{
+						"turnStart": 1,
+						"turnEnd": 16,
+						"effects": [
+							{
+								"low": 2,
+								"high": 12,
+								"effect": "8"
+							}
+						]
+					}
+				],
+				"reinforcements": [
+					{
+						"low": 2,
+						"high": 6,
+						"effect": "None"
+					},
+					{
+						"low": 7,
+						"high": 7,
+						"effect": "1 Air"
+					},
+					{
+						"low": 8,
+						"high": 12,
+						"effect": "1 Air + 1 Pax or Eq"
+					}
+				]
+			}
+		]
+	},
+	{
 	    "id": 8,
 	    "name": "Guderian's Blitzkrieg",
 	    "desc": "The Campaign in Central Russia, Oct 1 1943 to May 30 1943",
@@ -2087,7 +2186,7 @@
 	        }
 	    ]
 	},
-    
+
 	{
     	"id": 13,
 	    "name": "Reluctant Enemies",
@@ -2163,7 +2262,7 @@
 					}
 	            ]
 			},
-            
+
         	{
 	            "player": "player2",
 	        	"name": "Vichy",
@@ -2191,7 +2290,7 @@
 		            }
 			    ],
 			    "reinforcements": []
-			}                
+			}
 		]
 	},
 	{

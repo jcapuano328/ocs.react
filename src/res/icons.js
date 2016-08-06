@@ -5,10 +5,12 @@ module.exports = {
 	"info": require('./info.png'),
 	"back": require('./ic_action_previous_item.png'),
 
-	"refreshButton": require('./ic_action_refresh.png'),
+	"refresh": require('./ic_action_refresh.png'),
 	"prevButton":	require('./ic_action_previous_item.png'),
 	"nextButton": require('./ic_action_next_item.png'),
 
+	"axis": require('./axis.jpg'),
+	"allied": require('./allies.jpg'),
 	"burma": require('./burma.jpg'),
 	"dak": require('./dak.jpg'),
 	"enemyatthegates": require('./enemyatthegates.jpg'),
