@@ -2,15 +2,12 @@
 
 var React = require('react');
 import { View, Text, Image, TouchableOpacity } from 'react-native';
-var Subscribable = require('Subscribable');
-var SpinSelect = require('./spinSelect');
-var icons = require('../res/icons');
-var Current = require('../services/current');
-var log = require('../services/log');
+var SpinSelect = require('./widgets/spinSelect');
+var icons = require('./res/icons');
+var Current = require('./services/current');
+var log = require('./services/log');
 
 var TurnView = React.createClass({
-    mixins: [Subscribable.Mixin],
-
     getInitialState() {
         let state = {
             turn: Current.turn(),
@@ -19,8 +16,8 @@ var TurnView = React.createClass({
         };
         return state;
     },
-    componentDidMount: function() {
-        this.addListenerOn(this.props.events, 'reset', this.onReset);
+    componentDidMount() {
+        this.props.events.addListener('reset', this.onReset);
     },
     shouldComponentUpdate(nextProps, nextState) {
         return true;

@@ -55,9 +55,12 @@ module.exports = {
 	reset(data) {
 		return Store.reset(data)
 		.then((current) => {
-			_current = current;
+			_current = current;			
 			return _current;
 		});
+	},
+	battle() {
+		return Battles.get(_current.battle);
 	},
 	turn() {
 		let battle = Battles.get(_current.battle);
@@ -79,6 +82,9 @@ module.exports = {
 		let str = dt.format("MMM DD, YYYY");
 		log.debug('turn: ' + str);
 		return str;
+	},
+	turnNum() {
+		return _current.turn;
 	},
 	prevTurn(dosave) {
 		log.debug('prev turn: ' + _current.turn);
@@ -174,5 +180,11 @@ module.exports = {
 	},
 	player() {
 		return _current.player;
+	},
+	weather(wx) {
+		if (typeof wx != 'undefined') {
+			_current.weather = wx;
+		}
+		return _current.weather;
 	}
 };

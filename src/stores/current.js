@@ -50,6 +50,7 @@ module.exports = {
     	});
 	},
 	reset(data) {
+		console.log(data);
         let current = {};
     	current.battle = data.id;
     	current.turn = 1;

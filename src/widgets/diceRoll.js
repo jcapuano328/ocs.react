@@ -44,9 +44,10 @@ var DiceRoll = React.createClass({
     },
     render() {
         //style={{flex: 1,padding: 5, alignItems: 'center'}}
+        //, alignItems: 'center'
         return (
-          <View style={{flex: 1, flexDirection: 'row', alignItems: 'center'}}>
-            <View style={{flex: 1, flexDirection: 'row', justifyContent: 'flex-end', marginTop: 5}}>
+          <View style={{flex: 1, flexDirection: 'row'}}>
+            <View style={{flex: 1, flexDirection: 'row', justifyContent: 'flex-end', marginTop: 12}}>
                 {this.state.dice.map((die, i) => {
                     if (i<this.props.values.length) {
                         die.value(this.props.values[i]);

@@ -70,6 +70,7 @@ var MainView = React.createClass({
             this.state.routes.battle.data = Battles.get(id);
             Current.reset(this.state.routes.battle.data)
             .then(() => {
+                this.eventEmitter.emit('reset');
                 this.refs.navigator.resetTo(this.state.routes.battle);
             });
         }
