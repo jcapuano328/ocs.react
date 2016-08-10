@@ -55,7 +55,7 @@ module.exports = {
 	reset(data) {
 		return Store.reset(data)
 		.then((current) => {
-			_current = current;			
+			_current = current;
 			return _current;
 		});
 	},
@@ -186,5 +186,11 @@ module.exports = {
 			_current.weather = wx;
 		}
 		return _current.weather;
+	},
+	initiative(init) {
+		if (typeof init != 'undefined') {
+			_current.player = init;
+		}
+		return _current.player;
 	}
 };

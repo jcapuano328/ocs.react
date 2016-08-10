@@ -11,6 +11,7 @@ module.exports = {
 
 	"axis": require('./axis.jpg'),
 	"allied": require('./allies.jpg'),
+	"tie": require('./tie.png'),
 	"burma": require('./burma.jpg'),
 	"dak": require('./dak.jpg'),
 	"enemyatthegates": require('./enemyatthegates.jpg'),

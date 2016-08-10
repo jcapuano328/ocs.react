@@ -18,6 +18,7 @@ var TurnView = React.createClass({
     },
     componentDidMount() {
         this.props.events.addListener('reset', this.onReset);
+        this.props.events.addListener('initiativechange', this.onReset);
     },
     shouldComponentUpdate(nextProps, nextState) {
         return true;

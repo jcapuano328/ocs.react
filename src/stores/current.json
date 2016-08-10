@@ -1,0 +1,15 @@
+{
+    battle: string,
+    turn: int,
+    phase: int,
+    weather: string,
+    player: string,
+    player1: {
+        supply: string,
+        reinforcements: string
+    },
+    player2:{
+        supply: string,
+        reinforcements: string
+    }    
+}

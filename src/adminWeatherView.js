@@ -3,13 +3,12 @@
 var React = require('react');
 import { View, Text } from 'react-native';
 var DiceRoll = require('./widgets/diceRoll');
-var Current = require('./services/current');
 var Weather = require('./services/weather');
 
 var AdminWeatherView = React.createClass({
     getInitialState() {
         return {
-            weather: Current.weather(),
+            weather: Weather.current(),
             die1: 1,
             die2: 1,
             die3: 1,
@@ -20,22 +19,30 @@ var AdminWeatherView = React.createClass({
         this.props.events.addListener('reset', this.onReset);
     },
     onReset() {
-        this.setState({weather: Current.weather()});
+        this.setState({weather: Weather.current()});
     },
     onDiceRoll(d) {
-        console.log(d);
-        let state = {die1: d[0].value};
+        let dice = {die1: d[0].value};
         if (d.length > 1) {
-            state.die2 = d[1].value;
+            dice.die2 = d[1].value;
         }
         if (d.length > 2) {
-            state.die3 = d[2].value;
+            dice.die3 = d[2].value;
         }
         if (d.length > 3) {
-            state.die4 = d[3].value;
+            dice.die4 = d[3].value;
         }
-        state.weather = Weather.find(Current.turnNum(), state.die1, state.die2, state.die3, state.die4);
-        this.setState(state);
+        this.resolve(dice.die1, dice.die2, dice.die3, dice.die4);
+    },
+    onDieChanged(d,v) {
+        this.state['die'+d] = v;
+        this.resolve(this.state.die1, this.state.die2, this.state.die3, this.state.die4);
+    },
+    resolve(die1, die2, die3, die4) {
+        Weather.find(die1, die2, die3, die4)
+        .then((wx) => {
+            this.setState({die1: die1, die2: die2, die3: die3, die4: die4, weather: wx});
+        });
     },
     render() {
         let wxdice = Weather.dice();
@@ -56,7 +63,8 @@ var AdminWeatherView = React.createClass({
                 <Text style={{flex: 1, fontSize: 20, marginLeft: 5, marginVertical: 25}}>Weather</Text>
                 <Text style={{flex: 2, fontSize: 28, fontWeight: 'bold', marginVertical: 20}}>{this.state.weather}</Text>
                 <View style={{flex: 1, marginRight: 5}}>
-                    <DiceRoll dice={dice} values={[this.state.die1,this.state.die2,this.state.die3,this.state.die4]} onRoll={this.onDiceRoll} />
+                    <DiceRoll dice={dice} values={[this.state.die1,this.state.die2,this.state.die3,this.state.die4]}
+                        onRoll={this.onDiceRoll} onDie={this.onDieChanged}/>
                 </View>
             </View>
         );

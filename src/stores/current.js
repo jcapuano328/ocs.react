@@ -14,7 +14,7 @@ module.exports = {
     		if (data) {
     			log.debug('Current retrieved');
     			let current = JSON.parse(data);
-    			log.debug(current);
+    			//log.debug(current);
     			return current;
     		}
     		log.debug('No Current battle');
@@ -28,7 +28,7 @@ module.exports = {
 	save(current) {
         // write the file
     	log.debug('Save Current to ' + PATH);
-    	log.debug(current);
+    	//log.debug(current);
     	return RNFS.writeFile(PATH, JSON.stringify(current))
     	.then((success) => {
     		log.debug('Current saved');
@@ -50,7 +50,6 @@ module.exports = {
     	});
 	},
 	reset(data) {
-		console.log(data);
         let current = {};
     	current.battle = data.id;
     	current.turn = 1;
