@@ -1,18 +1,6 @@
 'use strict'
 var Current = require('./current');
-
-let player = (code) => {
-	let player = Current.battle().players.find((p) => {
-		return p.player == code;
-	}) || {name: 'tie'};
-	return {player: player.player, name: player.name};
-}
-let playerByName = (name) => {
-	let player = Current.battle().players.find((p) => {
-		return p.name == name;
-	}) || {name: 'tie'};
-	return {player: player.player, name: player.name};
-}
+var Player = require('./player');
 
 module.exports = {
 	current(init) {
@@ -28,7 +16,7 @@ module.exports = {
 		} else {
 			init = '';
 		}
-		init = player(init);
+		init = Player.get(init);
 		Current.initiative(init.name);
 		return Current.save()
 		.then(() => {
@@ -36,13 +24,13 @@ module.exports = {
 		});
     },
 	next() {
-		let init = playerByName(this.current());
+		let init = Player.getbyName(this.current());
 		if (init.player == 'player1') {
 			init.player = 'player2';
 		} else {
 			init.player = 'player1';
 		}
-		init = player(init.player);
+		init = Player.get(init.player);
 		Current.initiative(init.name);
 		return Current.save()
 		.then(() => {

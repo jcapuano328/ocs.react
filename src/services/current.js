@@ -192,5 +192,15 @@ module.exports = {
 			_current.player = init;
 		}
 		return _current.player;
+	},
+	supply(sup) {
+		if (typeof sup != 'undefined') {
+			_current.player1.supply = sup.player1;
+			_current.player2.supply = sup.player2;
+		}
+		return {
+			player1: _current.player1.supply,
+			player2: _current.player2.supply
+		};
 	}
 };

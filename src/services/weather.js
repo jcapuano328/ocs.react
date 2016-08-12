@@ -1,9 +1,6 @@
 'use strict'
 var Current = require('./current');
-
-let inRange = (d, lo, hi) => {
-	return (d < lo || (d >= lo && d <= hi));
-}
+var inRange = require('./inrange');
 
 let getWx = (turn, dice, table) => {
 	let range = table.find((e) => {
