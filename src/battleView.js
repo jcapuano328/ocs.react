@@ -12,7 +12,7 @@ var AdminView = require('./adminView');
 var AirView = require('./airView');
 //var SeaView = require('./seaView');
 //var SupplyView = require('./supplyView');
-//var GeneralView = require('./generalView');
+var GeneralView = require('./generalView');
 var Current = require('./services/current');
 
 var BattleView = React.createClass({
@@ -55,7 +55,7 @@ var BattleView = React.createClass({
          <AirView tabLabel="Air" events={this.props.events} />
          <Text tabLabel="Sea" events={this.props.events} />
          <Text tabLabel="Supply" events={this.props.events} />
-         <Text tabLabel="General" events={this.props.events} />
+         <GeneralView tabLabel="General" events={this.props.events} />
 
         </ScrollableTabView>
       </View>

@@ -40,6 +40,7 @@ module.exports = {
 		});
 	},
 	save() {
+		console.log(_current);
 		return Store.save(_current);
 	},
 	remove() {
@@ -200,7 +201,7 @@ module.exports = {
 		};
 	},
 	reinforcements(reinf) {
-		if (typeof sup != 'undefined') {
+		if (typeof reinf != 'undefined') {
 			_current.player1.reinforcements = reinf.player1 || _current.player1.reinforcements;
 			_current.player2.reinforcements = reinf.player2 || _current.player2.reinforcements;
 		}
