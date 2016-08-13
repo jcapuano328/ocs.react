@@ -59,12 +59,14 @@ var AdminWeatherView = React.createClass({
             dice.push({num: 1, low: 1, high: wxdice.sides, color: 'green'});
         }
         return (
-            <View style={{flex: 1,backgroundColor: 'rgba(0,0,0,0.01)', flexDirection: 'row'}}>
-                <Text style={{flex: 1, fontSize: 20, marginLeft: 5, marginVertical: 25}}>Weather</Text>
-                <Text style={{flex: 2, fontSize: 28, fontWeight: 'bold', marginVertical: 20}}>{this.state.weather}</Text>
-                <View style={{flex: 1, marginRight: 5}}>
-                    <DiceRoll dice={dice} values={[this.state.die1,this.state.die2,this.state.die3,this.state.die4]}
-                        onRoll={this.onDiceRoll} onDie={this.onDieChanged}/>
+            <View>
+                <View style={{flex: 1,flexDirection: 'row'}}>
+                    <Text style={{flex: 1, fontSize: 20, marginLeft: 5, marginVertical: 25}}>Weather</Text>
+                    <Text style={{flex: 2, fontSize: 28, fontWeight: 'bold', marginVertical: 20}}>{this.state.weather}</Text>
+                    <View style={{flex: 1, marginRight: 5}}>
+                        <DiceRoll dice={dice} values={[this.state.die1,this.state.die2,this.state.die3,this.state.die4]}
+                            onRoll={this.onDiceRoll} onDie={this.onDieChanged}/>
+                    </View>
                 </View>
             </View>
         );

@@ -16,17 +16,14 @@ module.exports = {
 	current(supply) {
 		return Current.supply(supply);
 	},
-    find(d1, d2, d3, d4) {
+    find(player, d1, d2) {
 		let turn = Current.turnNum();
-		let supply = {
-			player1: get(turn, Player.player1(), d1 + d2).effect,
-			player2: get(turn, Player.player2(), d3 + d4).effect
-		};
-		console.log(supply);
+		let supply = {};
+		supply[player] = get(turn, (player == 'player1' ? Player.player1() : Player.player2()), d1 + d2).effect;
 		Current.supply(supply);
 		return Current.save()
 		.then(() => {
-			return supply;
+			return supply[player];
 		});
     }
 };

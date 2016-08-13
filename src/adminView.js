@@ -5,18 +5,16 @@ import { View, Text } from 'react-native';
 var AdminWeatherView = require('./adminWeatherView');
 var AdminInitiativeView = require('./adminInitiativeView');
 var AdminSupplyView = require('./adminSupplyView');
+var AdminReinforcementsView = require('./adminReinforcementsView');
 
 var AdminView = React.createClass({
-    getInitialState() {
-        return {
-        };
-    },
     render() {
         return (
-            <View style={{flex: 1,backgroundColor: 'rgba(0,0,0,0.01)'}}>
+            <View>
                 <AdminWeatherView events={this.props.events} />
                 <AdminInitiativeView events={this.props.events} />
                 <AdminSupplyView events={this.props.events} />
+                <AdminReinforcementsView events={this.props.events} />
             </View>
         );
     }

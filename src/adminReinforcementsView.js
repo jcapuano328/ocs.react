@@ -5,9 +5,9 @@ import { View, Text, Image } from 'react-native';
 var Icons = require('./res/icons');
 var DiceRoll = require('./widgets/diceRoll');
 var Player = require('./services/player');
-var Supply = require('./services/supply');
+var Reinforcements = require('./services/reinforcements');
 
-var AdminSupplyView = React.createClass({
+var AdminReinforcementsView = React.createClass({
     player1dice: [
         {num: 1, low: 1, high: 6, color: 'red'},
         {num: 1, low: 1, high: 6, color: 'white'}
@@ -17,10 +17,10 @@ var AdminSupplyView = React.createClass({
         {num: 1, low: 1, high: 6, color: 'blackw'}
     ],
     getInitialState() {
-        let supply = Supply.current();
+        let reinforcements = Reinforcements.current();
         return {
-            player1: supply.player1,
-            player2: supply.player2,
+            player1: reinforcements.player1,
+            player2: reinforcements.player2,
             die1: 1,
             die2: 1,
             die3: 1,
@@ -31,8 +31,8 @@ var AdminSupplyView = React.createClass({
         this.props.events.addListener('reset', this.onReset);
     },
     onReset() {
-        let supply = Supply.current();
-        this.setState({player1: supply.player1,player2: supply.player2});
+        let reinforcements = Reinforcements.current();
+        this.setState({player1: reinforcements.player1,player2: reinforcements.player2});
     },
     onDiceRollPlayer1(d) {
         this.resolvePlayer1(d[0].value, d[1].value);
@@ -42,15 +42,16 @@ var AdminSupplyView = React.createClass({
         this.resolvePlayer1(this.state.die1, this.state.die2);
     },
     resolvePlayer1(die1, die2) {
-        Supply.find('player1', die1, die2)
-        .then((supply) => {
-            this.setState({die1: die1, die2: die2, player1: supply});
+        Reinforcements.find('player1', die1, die2)
+        .then((reinforcements) => {
+            this.setState({die1: die1, die2: die2, player1: reinforcements});
         })
         .catch((err) => {
             this.setState({die1: die1, die2: die2, player1: ''});
             log.error(err);
         });
     },
+
     onDiceRollPlayer2(d) {
         this.resolvePlayer2(d[0].value, d[1].value);
     },
@@ -59,20 +60,21 @@ var AdminSupplyView = React.createClass({
         this.resolvePlayer2(this.state.die3, this.state.die4);
     },
     resolvePlayer2(die1, die2) {
-        Supply.find('player2', die1, die2)
-        .then((supply) => {
-            this.setState({die3: die1, die4: die2, player2: supply.player2});
+        Reinforcements.find('player2', die1, die2)
+        .then((reinforcements) => {
+            this.setState({die3: die1, die4: die2, player2: reinforcements});
         })
         .catch((err) => {
-            this.setState({die3: die1, die4: die2, player1: '', player2: ''});
+            this.setState({die3: die1, die4: die2, player2: ''});
             log.error(err);
         });
     },
+
     render() {
         return (
             <View>
                 <View style={{flex: 1,justifyContent: 'flex-start'}}>
-                    <Text style={{flex: 0.65, fontSize: 20, marginLeft: 5, marginVertical: 25}}>Supply</Text>
+                    <Text style={{flex: 0.65, fontSize: 20, marginLeft: 5, marginVertical: 25}}>Reinforcements</Text>
                     <View style={{flex: 2, flexDirection: 'row', alignItems: 'center'}}>
                         <Image
                             style={{flex: .5, width: 52, height: 52, resizeMode: 'contain'}}
@@ -99,4 +101,4 @@ var AdminSupplyView = React.createClass({
     }
 });
 
-module.exports = AdminSupplyView;
+module.exports = AdminReinforcementsView;

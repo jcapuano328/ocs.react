@@ -4,9 +4,6 @@ var Battles = require('./battles.js');
 var Phases = require('./phases.js');
 var log = require('./log.js');
 var moment = require('moment');
-var RNFS = require('react-native-fs');
-var FILE = 'ocs.app.current';
-var PATH = RNFS.DocumentDirectoryPath + '/' + FILE;
 
 var _current = null;
 
@@ -22,16 +19,15 @@ let turnIndex = (d) => {
 }
 
 let getPlayers = () => {
-	let battle = Battles.get(_current.battle);
-	let player1 = battle.players.find((p) => {
-		return p.player == 'player1';
-	});
-	let player2 = battle.players.find((p) => {
-		return p.player == 'player2';
-	});
+	let find = (code) => {
+		return Battles.get(_current.battle).players.find((p) => {
+			return p.player == code;
+		});
+	}
+
 	return {
-		player1: player1,
-		player2: player2
+		player1: find('player1'),
+		player2: find('player2')
 	};
 }
 
@@ -195,12 +191,22 @@ module.exports = {
 	},
 	supply(sup) {
 		if (typeof sup != 'undefined') {
-			_current.player1.supply = sup.player1;
-			_current.player2.supply = sup.player2;
+			_current.player1.supply = sup.player1 || _current.player1.supply;
+			_current.player2.supply = sup.player2 || _current.player2.supply;
 		}
 		return {
 			player1: _current.player1.supply,
 			player2: _current.player2.supply
+		};
+	},
+	reinforcements(reinf) {
+		if (typeof sup != 'undefined') {
+			_current.player1.reinforcements = reinf.player1 || _current.player1.reinforcements;
+			_current.player2.reinforcements = reinf.player2 || _current.player2.reinforcements;
+		}
+		return {
+			player1: _current.player1.reinforcements,
+			player2: _current.player2.reinforcements
 		};
 	}
 };

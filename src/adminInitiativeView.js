@@ -52,13 +52,15 @@ var AdminInitiativeView = React.createClass({
     },
     render() {
         return (
-            <View style={{flex: 1,backgroundColor: 'rgba(0,0,0,0.01)', flexDirection: 'row'}}>
-                <Text style={{flex: 1, fontSize: 20, marginLeft: 5, marginVertical: 25}}>Initiative</Text>
-                <View style={{flex: 2, marginRight: 5}}>
-                <IconButton image={this.state.initiative.toLowerCase()} width={80} height={80} onPress={this.onNextPlayer}/>
-                </View>
-                <View style={{flex: 1, marginRight: 5}}>
-                    <DiceRoll dice={this.dice} values={[this.state.die1,this.state.die2]} onRoll={this.onDiceRoll} onDie={this.onDieChanged}/>
+            <View>
+                <View style={{flex: 1,flexDirection: 'row'}}>
+                    <Text style={{flex: 1, fontSize: 20, marginLeft: 5, marginVertical: 25}}>Initiative</Text>
+                    <View style={{flex: 2, marginRight: 5}}>
+                    <IconButton image={this.state.initiative.toLowerCase()} width={80} height={80} onPress={this.onNextPlayer}/>
+                    </View>
+                    <View style={{flex: 1, marginRight: 5}}>
+                        <DiceRoll dice={this.dice} values={[this.state.die1,this.state.die2]} onRoll={this.onDiceRoll} onDie={this.onDieChanged}/>
+                    </View>
                 </View>
             </View>
         );
