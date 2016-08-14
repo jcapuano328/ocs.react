@@ -8,6 +8,8 @@ module.exports = {
 	"refresh": require('./ic_action_refresh.png'),
 	"prevButton":	require('./ic_action_previous_item.png'),
 	"nextButton": require('./ic_action_next_item.png'),
+	"checked": require('./checked_checkbox.png'),
+	"unchecked": require('./unchecked_checkbox.png'),
 
 	"axis": require('./axis.jpg'),
 	"allied": require('./allies.jpg'),

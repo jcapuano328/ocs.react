@@ -64,13 +64,13 @@ var SpinNumeric = React.createClass({
         return (
             <View style={{flex: 1,flexDirection: 'row',paddingTop: 5,paddingBottom: 5}}>
                 {this.props.label
-                    ? <Text style={{flex: 10,width:100,marginTop: 10}}>{this.props.label}</Text>
+                    ? <Text style={{flex: 10,marginTop: 10}}>{this.props.label}</Text>
                     : null
                 }
                 <SpinButton style={{flex: 10, width: 50}} direction={'prev'} onPress={this.onPrev} />
                 <View style={{flex: 60,height: 50,alignItems: 'center',padding: 5}}>
                     <TextInput
-                        style={{flex: 1, width: 225, fontSize: 18,borderWidth: 1,borderRadius: 4,
+                        style={{flex: 60, width: 50, fontSize: 18,borderWidth: 1,borderRadius: 4,
                                 borderColor: '#E6E5ED',
                                 //backgroundColor: '#F8F8F9',
                                 //backgroundColor: 'red',
