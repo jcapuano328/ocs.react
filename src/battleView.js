@@ -8,7 +8,7 @@ var icons = require('./res/icons');
 var TurnView = require('./turnView');
 var AdminView = require('./adminView');
 var GroundView = require('./groundView');
-//var BarrageView = require('./barrageView');
+var BarrageView = require('./barrageView');
 var AirView = require('./airView');
 //var SeaView = require('./seaView');
 //var SupplyView = require('./supplyView');
@@ -19,7 +19,7 @@ var BattleView = React.createClass({
   getInitialState() {
     return {
       battle: this.props.battle,
-      initialPage: 1
+      initialPage: 2
     };
   },
   shouldComponentUpdate(nextProps, nextState) {
@@ -51,7 +51,7 @@ var BattleView = React.createClass({
          >
          <AdminView tabLabel="Admin" events={this.props.events} />
          <GroundView tabLabel="Ground" events={this.props.events} />
-         <Text tabLabel="Barrage" events={this.props.events} />
+         <BarrageView tabLabel="Barrage" events={this.props.events} />
          <AirView tabLabel="Air" events={this.props.events} />
          <Text tabLabel="Sea" events={this.props.events} />
          <Text tabLabel="Supply" events={this.props.events} />
