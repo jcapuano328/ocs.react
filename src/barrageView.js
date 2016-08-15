@@ -133,7 +133,7 @@ let BarrageView = React.createClass({
                         <View style={{flex: 2, marginRight: 15}}>
                         <DiceRoll dice={this.dice} values={[this.state.die1,this.state.die2,this.state.die3]}
                             onRoll={this.onDiceRoll}
-                            onDieChanged={this.onDieChanged} />
+                            onDie={this.onDieChanged} />
                         </View>
                     </View>
                 </View>

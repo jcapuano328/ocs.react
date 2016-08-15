@@ -181,7 +181,7 @@ let GroundView = React.createClass({
                     <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
                         <DiceRoll dice={this.dice} values={[this.state.die1,this.state.die2,this.state.die3,this.state.die4,this.state.die5]}
                             onRoll={this.onDiceRoll}
-                            onDieChanged={this.onDieChanged} />
+                            onDie={this.onDieChanged} />
                     </View>
                 </View>
             </View>
