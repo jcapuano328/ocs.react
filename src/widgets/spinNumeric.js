@@ -62,7 +62,7 @@ var SpinNumeric = React.createClass({
     },
     render() {
         return (
-            <View style={{flex: 1,flexDirection: 'row',paddingTop: 5,paddingBottom: 5}}>
+            <View style={{flex: 1,flexDirection: 'row',paddingTop: 5,paddingBottom: 5, alignItems: 'center'}}>
                 {this.props.label
                     ? <Text style={{flex: 10,marginTop: 10}}>{this.props.label}</Text>
                     : null

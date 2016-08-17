@@ -6,18 +6,20 @@ var Icons = require('../res/icons');
 
 var Checkbox = React.createClass({
     onSelected() {
-        return () => {            
+        return () => {
             this.props.onSelected && this.props.onSelected(!this.props.selected);
         }
     },
     render() {
         return (
-            <TouchableOpacity style={{flex: 1, flexDirection: 'row', alignItems: 'center'}} onPress={this.onSelected()}>
-                {this.props.labelpos == 'left' ? this.renderLabel(this.props.label) : null}
-                <Image
-                    style={{marginTop: 5, marginLeft: 5, marginRight: 5, width: 22, height: 22, resizeMode: 'contain'}}
-                    source={Icons[this.props.selected ? 'checked' : 'unchecked']} />
-                {this.props.labelpos != 'left' ? this.renderLabel(this.props.label) : null}
+            <TouchableOpacity onPress={this.onSelected()}>
+                <View style={{flex: 1, flexDirection: 'row', alignItems: 'center'}} >
+                    {this.props.labelpos == 'left' ? this.renderLabel(this.props.label) : null}
+                    <Image
+                        style={{marginTop: 5, marginLeft: 5, marginRight: 5, width: 22, height: 22, resizeMode: 'contain'}}
+                        source={Icons[this.props.selected ? 'checked' : 'unchecked']} />
+                    {this.props.labelpos != 'left' ? this.renderLabel(this.props.label) : null}
+                </View>
             </TouchableOpacity>
         );
     },
