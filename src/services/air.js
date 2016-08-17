@@ -3,6 +3,11 @@
 var bases = ['None', 'Air Strip', 'Level 1', 'Level 2', 'Level 3'];
 var zones = ['No Patrol', 'Escort', 'No Escort'];
 
+var transportTypes = ['Glider', 'Paradrop'];
+var transportStatuses = ['Enemy', 'Friendly'];
+var transportTerrains = ['Clear', 'Closed'];
+
+
 let flakValue = (code) => {
 	let flak = 0;
 	switch (code) {
@@ -33,6 +38,10 @@ let flakValue = (code) => {
 module.exports = {
 	bases: bases,
 	zones: zones,
+	transportTypes: transportTypes,
+	transportStatuses: transportStatuses,
+	transportTerrains: transportTerrains,
+
 	combat(attack,defend,die1,die2,die3) {
 		let dice = (die1 + die2) + attack - defend;
 		let results = 'NE';
@@ -60,7 +69,7 @@ module.exports = {
 		let results = 'NE';
 
 		if (dice >= 11) {
-            results = 'Loss';			
+            results = 'Loss';
             if (die3 == 1) {
                 results += ' : #1';
             }
@@ -116,5 +125,62 @@ module.exports = {
         }
 
 		return results;
+	},
+
+	transport(type,status,terrain,handicap,die1,die2) {
+		let dice = die1 + die2;
+		if (handicap) {dice--;}
+		let fail = false;
+		switch(status) {
+			case 'Friendly':
+				switch (terrain) {
+					case 'Clear':
+						switch (type) {
+							case 'Glider':
+								fail = dice <= 3;
+								break;
+							case 'Paradrop':
+								fail = dice <= 4;
+								break;
+						}
+						break;
+					case 'Closed':
+						switch (type) {
+							case 'Glider':
+								fail = dice <= 4;
+								break;
+							case 'Paradrop':
+								fail = dice <= 5;
+								break;
+						}
+						break;
+				}
+				break;
+			case 'Enemy':
+				switch (terrain) {
+					case 'Clear':
+						switch (type) {
+							case 'Glider':
+								fail = dice <= 4;
+								break;
+							case 'Paradrop':
+								fail = dice <= 5;
+								break;
+						}
+						break;
+					case 'Closed':
+						switch (type) {
+							case 'Glider':
+								fail = dice <= 5;
+								break;
+							case 'Paradrop':
+								fail = dice <= 6;
+								break;
+						}
+						break;
+				}
+				break;
+		}		
+		return fail ? 'Failure' : 'Success';
 	}
 };

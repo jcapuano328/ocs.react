@@ -8,57 +8,48 @@ var Checkbox = require('./widgets/checkbox');
 var DiceRoll = require('./widgets/diceRoll');
 var Air = require('./services/air');
 
-let AirFlakView = React.createClass({
+let AirTransportView = React.createClass({
     dice: [
         {num: 1, low: 1, high: 6, color: 'red'},
-        {num: 1, low: 1, high: 6, color: 'white'},
-        {num: 1, low: 1, high: 6, color: 'yellow'}
+        {num: 1, low: 1, high: 6, color: 'white'}
     ],
     getInitialState() {
         return {
-            size: '1',
-            base: 'None',
-            port: '0',
-            patrol: 'No Patrol',
-            hq: false,
-            trainbusting: false,
-
+            type: Air.transportTypes[0],
+            status: Air.transportStatuses[0],
+            terrain: Air.transportTerrains[0],
+            soviet: false,
+            allied: false,
             results: '',
             die1: 1,
-            die2: 1,
-            die3: 1
+            die2: 1
         };
     },
-    onChangeSize(v) {
-        this.state.size = v;
+    onChangeType(v) {
+        this.state.type = v;
         this.resolve();
     },
-    onChangeBase(v) {
-        this.state.base = v;
+    onChangeStatus(v) {
+        this.state.status = v;
         this.resolve();
     },
-    onChangeShip(v) {
-        this.state.port = v;
+    onChangeTerrain(v) {
+        this.state.terrain = v;
         this.resolve();
     },
-    onChangePatrol(v) {
-        this.state.patrol = v;
+    onChangeSoviet(v) {
+        this.state.soviet = v;
         this.resolve();
     },
-    onChangeHQ(v) {
-        this.state.hq = v;
-        this.resolve();
-    },
-    onChangeTrainbusting(v) {
-        this.state.trainbusting = v;
+    onChangeAllied(v) {
+        this.state.allied = v;
         this.resolve();
     },
 
     onDiceRoll(d) {
-        //this.setState({die1: d[0].value,die2: d[1].value, die3: d[2].value});
+        //this.setState({die1: d[0].value,die2: d[1].value});
         this.state.die1 = d[0].value;
         this.state.die2 = d[1].value;
-        this.state.die3 = d[2].value;
         this.resolve();
     },
     onDieChanged(d,v) {
@@ -69,8 +60,8 @@ let AirFlakView = React.createClass({
         this.resolve();
     },
     resolve() {
-        let results = Air.flak(+this.state.size,this.state.base,this.state.patrol,+this.state.port,this.state.hq,this.state.trainbusting,
-                                this.state.die1,this.state.die2,this.state.die3);
+        let results = Air.transport(this.state.type,this.state.status,this.state.terrain,(this.state.soviet||this.state.allied),
+                                    this.state.die1,this.state.die2);
         this.state.results = results;
         this.setState(this.state);
         //this.setState({results: results});
@@ -81,36 +72,30 @@ let AirFlakView = React.createClass({
                 <View style={{flex: 1, flexDirection: 'row'}}>
                     <View style={{flex: 0.5}}>
                         <View style={{flex:1, justifyContent: 'center'}}>
-                            <Text style={{marginLeft: 10}}>Mission Size</Text>
+                            <Text style={{marginLeft: 10}}>Type</Text>
                         </View>
                         <View style={{flex:1, justifyContent: 'center'}}>
-                            <Text style={{marginLeft: 10}}>Air Base</Text>
+                            <Text style={{marginLeft: 10}}>Status</Text>
                         </View>
                         <View style={{flex:1, justifyContent: 'center'}}>
-                            <Text style={{marginLeft: 10}}>Ship/Port</Text>
-                        </View>
-                        <View style={{flex:1, justifyContent: 'center'}}>
-                            <Text style={{marginLeft: 10}}>Patrol Zone</Text>
+                            <Text style={{marginLeft: 10}}>Terrain</Text>
                         </View>
                     </View>
                     <View style={{flex: 1}}>
                         <View style={{flex:1, justifyContent: 'center'}}>
-                            <SpinNumeric value={this.state.size} min={1} max={10} onChanged={this.onChangeSize} />
+                            <SelectDropdown values={Air.transportTypes} value={this.state.type} onSelected={this.onChangeType} />
                         </View>
                         <View style={{flex:1, justifyContent: 'center'}}>
-                            <SelectDropdown values={Air.bases} value={this.state.base} onSelected={this.onChangeBase} />
+                            <SelectDropdown values={Air.transportStatuses} value={this.state.status} onSelected={this.onChangeStatus} />
                         </View>
                         <View style={{flex:1, justifyContent: 'center'}}>
-                            <SpinNumeric value={this.state.port} min={0} max={10} onChanged={this.onChangeShip} />
-                        </View>
-                        <View style={{flex: 1, justifyContent: 'center'}}>
-                            <SelectDropdown values={Air.zones} value={this.state.patrol} onSelected={this.onChangePatrol} />
+                            <SelectDropdown values={Air.transportTerrains} value={this.state.terrain} onSelected={this.onChangeTerrain} />
                         </View>
                     </View>
                     <View style={{flex: 1}}>
                         <View style={{flex:1, justifyContent: 'flex-start', marginTop: 20}}>
-                            <Checkbox label={'HQ'} selected={this.state.hq} onSelected={this.onChangeHQ}/>
-                            <Checkbox label={'Trainbusting in PZ'} selected={this.state.trainbusting} onSelected={this.onChangeTrainbusting}/>
+                            <Checkbox label={'Soviet'} selected={this.state.soviet} onSelected={this.onChangeSoviet}/>
+                            <Checkbox label={'Allied pre-Aug 44'} selected={this.state.allied} onSelected={this.onChangeAllied}/>
                         </View>
                     </View>
                 </View>
@@ -119,7 +104,7 @@ let AirFlakView = React.createClass({
                         <Text style={{marginTop: 35, fontSize: 20, fontWeight: 'bold'}}>{this.state.results}</Text>
                     </View>
                     <View style={{flex: 2, marginRight: 15}}>
-                    <DiceRoll dice={this.dice} values={[this.state.die1,this.state.die2,this.state.die3]}
+                    <DiceRoll dice={this.dice} values={[this.state.die1,this.state.die2]}
                         onRoll={this.onDiceRoll}
                         onDie={this.onDieChanged} />
                     </View>
@@ -129,4 +114,4 @@ let AirFlakView = React.createClass({
     }
 });
 
-module.exports = AirFlakView;
+module.exports = AirTransportView;
