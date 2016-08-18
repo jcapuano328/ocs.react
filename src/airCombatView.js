@@ -1,7 +1,7 @@
 'use strict'
 
 var React = require('react');
-import { View, Text, Picker } from 'react-native';
+import { View, Text } from 'react-native';
 var SpinNumeric = require('./widgets/spinNumeric');
 var DiceRoll = require('./widgets/diceRoll');
 var Air = require('./services/air');

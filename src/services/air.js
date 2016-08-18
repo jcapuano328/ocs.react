@@ -2,7 +2,7 @@
 
 var bases = ['None', 'Air Strip', 'Level 1', 'Level 2', 'Level 3'];
 var zones = ['No Patrol', 'Escort', 'No Escort'];
-
+var states = ['Active', 'Inactive'];
 var transportTypes = ['Glider', 'Paradrop'];
 var transportStatuses = ['Enemy', 'Friendly'];
 var transportTerrains = ['Clear', 'Closed'];
@@ -38,6 +38,7 @@ let flakValue = (code) => {
 module.exports = {
 	bases: bases,
 	zones: zones,
+	states: states,
 	transportTypes: transportTypes,
 	transportStatuses: transportStatuses,
 	transportTerrains: transportTerrains,
@@ -126,7 +127,6 @@ module.exports = {
 
 		return results;
 	},
-
 	transport(type,status,terrain,handicap,die1,die2) {
 		let dice = die1 + die2;
 		if (handicap) {dice--;}
@@ -180,7 +180,23 @@ module.exports = {
 						break;
 				}
 				break;
-		}		
+		}
 		return fail ? 'Failure' : 'Success';
+	},
+	capture(state,advance,die1,die2) {
+		let dice = die1 + die2;
+		let reduce = false;
+		if (advance) {dice += 2;}
+		switch (state) {
+			case 'Active':
+				reduce = (dice <= 4);
+				break;
+			case 'Inactive':
+				reduce = (dice <= 6);
+				break;
+			default:
+				break;
+		}
+		return reduce ? 'Reduce' : 'NE';
 	}
 };

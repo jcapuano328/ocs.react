@@ -6,11 +6,12 @@ var ScrollableTabView = require('react-native-scrollable-tab-view');
 var AirCombatView = require('./airCombatView');
 var AirFlakView = require('./airFlakView');
 var AirTransportView = require('./airTransportView');
+var AirBaseCaptureView = require('./airBaseCaptureView');
 
 var AirView = React.createClass({
     getInitialState() {
         return {
-            page: 2
+            page: 3
         };
     },
     componentDidMount() {
@@ -31,7 +32,7 @@ var AirView = React.createClass({
                     <AirCombatView tabLabel="Combat" events={this.props.events} />
                     <AirFlakView tabLabel="Flak" events={this.props.events} />
                     <AirTransportView tabLabel="Transport" events={this.props.events} />
-                    <Text tabLabel="Base Capture" events={this.props.events} />
+                    <AirBaseCaptureView tabLabel="Base Capture" events={this.props.events} />
                 </ScrollableTabView>
             </View>
         );
