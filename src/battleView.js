@@ -11,7 +11,7 @@ var GroundView = require('./groundView');
 var BarrageView = require('./barrageView');
 var AirView = require('./airView');
 var SeaView = require('./seaView');
-//var SupplyView = require('./supplyView');
+var SupplyView = require('./supplyView');
 var GeneralView = require('./generalView');
 var Current = require('./services/current');
 
@@ -19,7 +19,7 @@ var BattleView = React.createClass({
   getInitialState() {
     return {
       battle: this.props.battle,
-      initialPage: 0
+      initialPage: 5
     };
   },
   shouldComponentUpdate(nextProps, nextState) {
@@ -54,7 +54,7 @@ var BattleView = React.createClass({
          <BarrageView tabLabel="Barrage" events={this.props.events} />
          <AirView tabLabel="Air" events={this.props.events} />
          <SeaView tabLabel="Sea" events={this.props.events} />
-         <Text tabLabel="Supply" events={this.props.events} />
+         <SupplyView tabLabel="Supply" events={this.props.events} />
          <GeneralView tabLabel="General" events={this.props.events} />
 
         </ScrollableTabView>
