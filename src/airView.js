@@ -11,7 +11,7 @@ var AirBaseCaptureView = require('./airBaseCaptureView');
 var AirView = React.createClass({
     getInitialState() {
         return {
-            page: 3
+            page: 0
         };
     },
     componentDidMount() {
