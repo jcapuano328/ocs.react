@@ -12,6 +12,23 @@ let get = (turn, player, dice) => {
 	}) || {effect: ''};
 }
 
+let adjust = (factor,unit,sp,token) => {
+	let capturedunit = Math.round(unit * factor);
+	let totalsp = (sp * 4) + token;
+	let totalcapturedsp = Math.round(totalsp * factor);
+	let totalremainingsp = totalsp - totalcapturedsp;
+
+	return {
+		result: (factor * 100) + '%',
+		capturedunit: capturedunit,
+		capturedsp: Math.floor(totalcapturedsp / 4),
+		capturedtoken: totalcapturedsp % 4,
+		remainingunit: unit - capturedunit,
+		remainingsp: Math.floor(totalremainingsp / 4),
+		remainingtoken: totalremainingsp % 4
+	};	
+}
+
 module.exports = {
 	current(supply) {
 		return Current.supply(supply);
@@ -66,5 +83,58 @@ module.exports = {
 			else 				{results = 'All Steps';}
 		}
 		return results;
+	},
+	capture(mode,unit,sp,token,die) {
+		let factor = 0;
+		switch(mode) {
+			case 0:	// dump
+				if (die <= 1) {
+					factor = 0.0;
+				}
+				else if (die <= 3) {
+					factor = 0.25;
+				}
+				else if (die <= 5) {
+					factor = 0.5;
+				}
+				else if (die <= 6) {
+					factor = 0.75;
+				}
+				unit = 0;
+				break;
+			case 1:	// trucks
+				if (die <= 2) {
+					factor = 0.0;
+				}
+				else if (die <= 3) {
+					factor = 0.25;
+				}
+				else if (die <= 5) {
+					factor = 0.5;
+				}
+				else if (die <= 6) {
+					factor = 0.75;
+				}
+				break;
+			case 2:	// wagons
+				if (die <= 2) {
+					factor = 0.0;
+				}
+				else if (die <= 3) {
+					factor = 0.25;
+				}
+				else if (die <= 4) {
+					factor = 0.5;
+				}
+				else if (die <= 5) {
+					factor = 0.75;
+				}
+				else if (die <= 6) {
+					factor = 1.0;
+				}
+				break;
+		}
+
+		return adjust(factor,unit,sp,token);
 	}
 };

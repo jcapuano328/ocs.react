@@ -4,11 +4,12 @@ var React = require('react');
 import { View, Text } from 'react-native';
 var ScrollableTabView = require('react-native-scrollable-tab-view');
 var SupplyAttritionView = require('./supplyAttritionView');
+var SupplyCaptureView = require('./supplyCaptureView');
 
 var SupplyView = React.createClass({
     getInitialState() {
         return {
-            page: 0
+            page: 1
         };
     },
     componentDidMount() {
@@ -27,7 +28,7 @@ var SupplyView = React.createClass({
                     onChangeTab={this.onChangeTab}
                     initialPage={this.state.page}>
                     <SupplyAttritionView tabLabel="Attrition" events={this.props.events} />
-                    <Text tabLabel="Capture" events={this.props.events} />
+                    <SupplyCaptureView tabLabel="Capture" events={this.props.events} />
                     <Text tabLabel="Destruction" events={this.props.events} />
                 </ScrollableTabView>
             </View>
