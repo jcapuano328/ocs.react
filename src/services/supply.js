@@ -26,7 +26,7 @@ let adjust = (factor,unit,sp,token) => {
 		remainingunit: unit - capturedunit,
 		remainingsp: Math.floor(totalremainingsp / 4),
 		remainingtoken: totalremainingsp % 4
-	};	
+	};
 }
 
 module.exports = {
@@ -136,5 +136,13 @@ module.exports = {
 		}
 
 		return adjust(factor,unit,sp,token);
+	},
+	destroy(sp,token,die) {
+		let factor = 1;
+		if 		(die <= 1) {factor = 0.25;}
+		else if (die <= 3) {factor = 0.5;}
+		else if (die <= 5) {factor = 0.75;}
+
+		return adjust(factor,0,sp,token);
 	}
 };
