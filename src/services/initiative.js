@@ -24,7 +24,7 @@ module.exports = {
 		});
     },
 	next() {
-		let init = Player.getbyName(this.current());
+		let init = Player.getByName(this.current());
 		if (init.player == 'player1') {
 			init.player = 'player2';
 		} else {

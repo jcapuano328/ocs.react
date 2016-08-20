@@ -39,7 +39,7 @@ var MainView = React.createClass({
                 log.debug('mainView: no current game');
             }
         })
-        .done();
+        .done();        
     },
     componentWillMount() {
         this.eventEmitter = new EventEmitter();
@@ -134,7 +134,7 @@ var MainView = React.createClass({
                             debugOverlay={false}
                             initialRoute={this.state.initialRoute}
                             renderScene={this.renderScene}
-                            navigationBar={<Navigator.NavigationBar style={{backgroundColor: 'mediumblue'}} routeMapper={TitleBar()} />}
+                            navigationBar={<Navigator.NavigationBar style={{backgroundColor: 'forestgreen'}} routeMapper={TitleBar()} />}
                         />
                     </MenuContext>
                 </DrawerLayout>

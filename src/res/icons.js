@@ -1,5 +1,5 @@
 module.exports = {
-	"logo": require('./logo.jpg'),
+	"logo": require('./logo.png'),
 	"splash": require('./splash.png'),
 	"menu": require('./hamburger.png'),
 	"info": require('./info.png'),
@@ -11,8 +11,8 @@ module.exports = {
 	"checked": require('./checked_checkbox.png'),
 	"unchecked": require('./unchecked_checkbox.png'),
 
-	"axis": require('./axis.jpg'),
-	"allied": require('./allies.jpg'),
+	"axis": require('./axis.png'),
+	"allied": require('./allies.png'),
 	"tie": require('./tie.png'),
 	"burma": require('./burma.jpg'),
 	"dak": require('./dak.jpg'),

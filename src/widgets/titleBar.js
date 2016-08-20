@@ -26,19 +26,18 @@ var TitleBar = (props) => {
             return (
                 <View style={{flex: 1, flexDirection: 'row', justifyContent: 'center', alignItems: 'center'}}>
                     <IconButton image={props.logo || 'menu'} height={iconHeight} width={iconWidth} resizeMode='stretch' onPress={route.onMenu} />
-                    {index > 0 ? <IconButton image={'back'} height={iconHeight} width={iconWidth} resizeMode='stretch' onPress={() => navigator.pop()} /> : null}
                 </View>
             );
         },
         Title(route, navigator, index, navState) {
             route = route || {};
             return (
-                <View style={{flex: 1, flexDirection:'row', justifyContent: 'center', alignItems: 'center'}}>
+                <View style={{flex: 1, flexDirection:'row', justifyContent: 'flex-start', alignItems: 'center'}}>
                     <Text style={{
                           color: 'white',
                           fontSize: 28,
                           fontWeight: 'bold',
-                          marginLeft: 10,
+                          //marginLeft: 10,
                           marginVertical: 10,
                           //color: 'blue'
                         }}>
