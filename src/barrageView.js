@@ -3,6 +3,7 @@
 var React = require('react');
 import { View, Text } from 'react-native';
 var SelectDropdown = require('./widgets/selectDropdown');
+var SelectList = require('./widgets/selectList');
 var Checkbox = require('./widgets/checkbox');
 var DiceRoll = require('./widgets/diceRoll');
 var Barrage = require('./services/barrage');
@@ -95,8 +96,8 @@ let BarrageView = React.createClass({
     render() {
         return (
             <View style={{flex: 1}}>
-                <View style={{flex: 1, flexDirection: 'row'}}>
-                    <View style={{flex: 1}}>
+                <View style={{flex: 2, flexDirection: 'row'}}>
+                    <View style={{flex: 2}}>
                         <View style={{flex:1, justifyContent: 'center'}}>
                             <SelectDropdown label={'Type'} values={Barrage.types} value={this.state.type} onSelected={this.onChangeType} />
                         </View>
@@ -106,23 +107,21 @@ let BarrageView = React.createClass({
                         <View style={{flex:1}}>
                             <SelectDropdown label={'Strength'} values={Barrage.strengths(this.state.type)} value={this.state.strength} onSelected={this.onChangeStrength} />
                         </View>
-                        <View style={{flex:1}}>
-                            <SelectDropdown label={'Terrain'} values={Terrain.inside().map((t) => t.desc)} value={this.state.terrain} onSelected={this.onChangeTerrain} />
+                        <View style={{flex:1, justifyContent: 'center', alignItems: 'flex-start', marginLeft: 20}}>
+                            <Checkbox label={'Spotter'} selected={this.state.spotter} onSelected={this.onChangeSpotter}/>
+                        </View>
+                        <View style={{flex:1, justifyContent: 'center', alignItems: 'flex-start', marginLeft: 20}}>
+                            <Checkbox label={'Hedgehog'} selected={this.state.hedgehog} onSelected={this.onChangeHedgehog}/>
+                        </View>
+                        <View style={{flex:1, justifyContent: 'center', alignItems: 'flex-start', marginLeft: 20}}>
+                            <Checkbox label={'Strat Mode'} selected={this.state.stratmode} onSelected={this.onChangeStratMode}/>
+                        </View>
+                        <View style={{flex:1, justifyContent: 'center', alignItems: 'flex-start', marginLeft: 20}}>
+                            <Checkbox label={'Air Close to Base'} selected={this.state.airclosetobase} onSelected={this.onChangeAirCloseToBase}/>
                         </View>
                     </View>
                     <View style={{flex: 1, alignItems: 'flex-start'}}>
-                        <View style={{flex:1, justifyContent: 'center', alignItems: 'flex-start'}}>
-                            <Checkbox label={'Spotter'} selected={this.state.spotter} onSelected={this.onChangeSpotter}/>
-                        </View>
-                        <View style={{flex:1, justifyContent: 'center', alignItems: 'flex-start'}}>
-                            <Checkbox label={'Hedgehog'} selected={this.state.hedgehog} onSelected={this.onChangeHedgehog}/>
-                        </View>
-                        <View style={{flex:1, justifyContent: 'center', alignItems: 'flex-start'}}>
-                            <Checkbox label={'Strat Mode'} selected={this.state.stratmode} onSelected={this.onChangeStratMode}/>
-                        </View>
-                        <View style={{flex:1, justifyContent: 'center', alignItems: 'flex-start'}}>
-                            <Checkbox label={'Air Close to Base'} selected={this.state.airclosetobase} onSelected={this.onChangeAirCloseToBase}/>
-                        </View>
+                        <SelectList title={'Terrain'} items={Terrain.inside().map((t) => t.desc)} selected={this.state.terrain} onChanged={this.onChangeTerrain}/>
                     </View>
                 </View>
                 <View style={{flex: 1}}>
@@ -131,9 +130,9 @@ let BarrageView = React.createClass({
                             <Text style={{marginTop: 35, fontSize: 20, fontWeight: 'bold'}}>{this.state.results}</Text>
                         </View>
                         <View style={{flex: 2, marginRight: 15}}>
-                        <DiceRoll dice={this.dice} values={[this.state.die1,this.state.die2,this.state.die3]}
-                            onRoll={this.onDiceRoll}
-                            onDie={this.onDieChanged} />
+                            <DiceRoll dice={this.dice} values={[this.state.die1,this.state.die2,this.state.die3]}
+                                onRoll={this.onDiceRoll}
+                                onDie={this.onDieChanged} />
                         </View>
                     </View>
                 </View>
