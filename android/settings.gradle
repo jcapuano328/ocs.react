@@ -1,4 +1,4 @@
-rootProject.name = 'ocs'
+rootProject.name = 'OCS Assistant'
 
 include ':app'
 include ':RNAudioPlayer', ':app'
