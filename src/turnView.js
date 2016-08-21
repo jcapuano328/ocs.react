@@ -5,6 +5,7 @@ import { View, Text, Image, TouchableOpacity } from 'react-native';
 var SpinSelect = require('./widgets/spinSelect');
 var icons = require('./res/icons');
 var Current = require('./services/current');
+var Player = require('./services/player');
 var log = require('./services/log');
 
 var TurnView = React.createClass({
@@ -27,23 +28,20 @@ var TurnView = React.createClass({
         this.setState({turn: Current.turn(), phase: Current.phase(), player: Current.player()});
     },
     onPrevTurn() {
-        //console.log('previous turn');
         Current.prevTurn(true)
         .then((turn) => {
-            this.setState({turn: turn});
+            this.setState({turn: turn, player: Current.player()});
         })
         .done();
     },
     onNextTurn() {
-        //console.log('next turn');
         Current.nextTurn(true)
         .then((turn) => {
-            this.setState({turn: turn});
+            this.setState({turn: turn, player: Current.player()});
         })
         .done();
     },
     onPrevPhase() {
-        //console.log('previous phase');
         Current.prevPhase(true)
         .then((phase) => {
             this.setState({turn: Current.turn(), phase: phase, player: Current.player()});
@@ -51,7 +49,6 @@ var TurnView = React.createClass({
         .done();
     },
     onNextPhase() {
-        //console.log('next phase');
         Current.nextPhase(true)
         .then((phase) => {
             this.setState({turn: Current.turn(), phase: phase, player: Current.player()});
@@ -59,7 +56,6 @@ var TurnView = React.createClass({
         .done();
     },
     onNextPlayer() {
-        //console.log('next player');
         Current.nextPlayer()
         .then((player) => {
             this.setState({player: player, phase: Current.phase()});
@@ -67,8 +63,7 @@ var TurnView = React.createClass({
         .done();
     },
     render() {
-        //console.log(this.props);
-        //console.log(this.state);
+        let player = Player.get(this.state.player);
         return (
           <View style={{flexDirection: 'row', height: 90, marginTop: 60, marginLeft: 10, marginRight: 10}}>
             <View style={{flex: 1}}>
@@ -80,7 +75,7 @@ var TurnView = React.createClass({
             </View>
             <View style={{flex: 1}}>
                 <TouchableOpacity onPress={this.onNextPlayer} >
-                    <Image style={{width: 96,height: 88,resizeMode: 'contain'}} source={icons[this.state.player.toLowerCase()]}/>
+                    <Image style={{width: 96,height: 88,resizeMode: 'contain'}} source={icons[player.icon.toLowerCase()]}/>
                 </TouchableOpacity>
             </View>
           </View>

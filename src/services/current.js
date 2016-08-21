@@ -40,7 +40,6 @@ module.exports = {
 		});
 	},
 	save() {
-		console.log(_current);
 		return Store.save(_current);
 	},
 	remove() {
@@ -121,13 +120,11 @@ module.exports = {
 	phase() {
 		let players = getPlayers();
 		let phase = Phases.get(_current.phase);
-		let player = _current.player == players.player1.name ? players.player1.name : players.player2.name;
-		if (phase.indexOf('1:') > -1) {
-			phase = phase.replace('1:', player == players.player1.name ? players.player1.name : players.player2.name);
-		} else if (phase.indexOf('2:') > -1) {
-			phase = phase.replace('2:', player == players.player1.name ? players.player2.name : players.player1.name);
+		if (phase.indexOf('{a}') > -1) {
+			phase = phase.replace('{a}', _current.player == players.player1.player ? players.player1.name : players.player2.name);
+		} else if (phase.indexOf('{r}') > -1) {
+			phase = phase.replace('{r}', _current.player == players.player1.player ? players.player2.name : players.player1.name);
 		}
-
 		log.debug('phase: ' + phase);
 		return phase;
 	},
@@ -135,12 +132,10 @@ module.exports = {
 		if (--_current.phase < 0) {
 			_current.phase = Phases.count - 1;
 			let players = getPlayers();
-			if (_current.player == players.player1.name) {
+			if (_current.initiative == _current.player) {
 				this.prevTurn(false);
-				_current.player = players.player2.name;
-			} else {
-				_current.player = players.player1.name;
 			}
+			_current.player = _current.player == players.player1.player ? players.player2.player : players.player1.player;
 		}
     	return Store.save(_current)
         .then(() => {
@@ -150,13 +145,11 @@ module.exports = {
 	nextPhase() {
 		if (++_current.phase >= Phases.count) {
 			_current.phase = 0;
-			let players = getPlayers();
-			if (_current.player == players.player2.name) {
+			if (_current.initiative != _current.player) {
 				this.nextTurn(false);
-				_current.player = players.player1.name;
-			} else {
-				_current.player = players.player2.name;
 			}
+			let players = getPlayers();
+			_current.player = _current.player == players.player1.player ? players.player2.player : players.player1.player;
 		}
     	return Store.save(_current)
         .then(() => {
@@ -165,17 +158,20 @@ module.exports = {
 	},
 	nextPlayer() {
 		let players = getPlayers();
-		if (_current.player == players.player1.name) {
-			_current.player = players.player2.name;
+		if (_current.player == players.player1.player) {
+			_current.player = players.player2.player;
 		} else {
-			_current.player = players.player1.name;
+			_current.player = players.player1.player;
 		}
 		return Store.save(_current)
         .then(() => {
-        	return this.player();
+        	return _current.player;
 		});
 	},
-	player() {
+	player(plyr) {
+		if (typeof plyr != 'undefined') {
+			_current.player = plyr;
+		}
 		return _current.player;
 	},
 	weather(wx) {
@@ -186,9 +182,9 @@ module.exports = {
 	},
 	initiative(init) {
 		if (typeof init != 'undefined') {
-			_current.player = init;
+			_current.initiative = init;
 		}
-		return _current.player;
+		return _current.initiative;
 	},
 	supply(sup) {
 		if (typeof sup != 'undefined') {

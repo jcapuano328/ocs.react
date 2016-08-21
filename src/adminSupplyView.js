@@ -61,34 +61,41 @@ var AdminSupplyView = React.createClass({
     resolvePlayer2(die1, die2) {
         Supply.find('player2', die1, die2)
         .then((supply) => {
-            this.setState({die3: die1, die4: die2, player2: supply.player2});
+            this.setState({die3: die1, die4: die2, player2: supply});
         })
         .catch((err) => {
-            this.setState({die3: die1, die4: die2, player1: '', player2: ''});
+            this.setState({die3: die1, die4: die2, player2: ''});
             log.error(err);
         });
     },
     render() {
+        let player1 = Player.player1();
+        let player2 = Player.player2();
+
         return (
             <View>
                 <View style={{flex: 1,justifyContent: 'flex-start'}}>
                     <Text style={{flex: 0.65, fontSize: 20, marginLeft: 5, marginVertical: 25}}>Supply</Text>
                     <View style={{flex: 2, flexDirection: 'row', alignItems: 'center'}}>
                         <Image
-                            style={{flex: .5, width: 52, height: 52, resizeMode: 'contain'}}
-                            source={Icons[Player.player1().name.toLowerCase()]} />
-                        <Text style={{flex: 4, fontSize: 28, fontWeight: 'bold'}}>{this.state.player1}</Text>
-                        <View style={{flex: 1, marginRight: 5}}>
+                            style={{flex: .5, width: 52, height: 52, resizeMode: 'stretch'}}
+                            source={Icons[player1.icon.toLowerCase()]} />
+                        <View style={{flex: 3, alignItems: 'center'}}>
+                            <Text style={{marginLeft: 10, fontSize: 28, fontWeight: 'bold'}}>{this.state.player1}</Text>
+                        </View>
+                        <View style={{flex: 3, marginRight: 5}}>
                             <DiceRoll dice={this.player1dice} values={[this.state.die1,this.state.die2]}
                                 onRoll={this.onDiceRollPlayer1} onDie={this.onDieChangedPlayer1}/>
                         </View>
                     </View>
                     <View style={{flex: 2, flexDirection: 'row', alignItems: 'center'}}>
                         <Image
-                            style={{flex: .5, width: 52, height: 52, resizeMode: 'contain'}}
-                            source={Icons[Player.player2().name.toLowerCase()]} />
-                        <Text style={{flex: 4, fontSize: 28, fontWeight: 'bold'}}>{this.state.player2}</Text>
-                        <View style={{flex: 1, marginRight: 5}}>
+                            style={{flex: .5, width: 52, height: 52, resizeMode: 'stretch'}}
+                            source={Icons[player2.icon.toLowerCase()]} />
+                        <View style={{flex: 3, alignItems: 'center'}}>
+                            <Text style={{marginLeft: 10, fontSize: 28, fontWeight: 'bold'}}>{this.state.player2}</Text>
+                        </View>
+                        <View style={{flex: 3, marginRight: 5}}>
                             <DiceRoll dice={this.player2dice} values={[this.state.die3,this.state.die4]}
                                 onRoll={this.onDiceRollPlayer2} onDie={this.onDieChangedPlayer2}/>
                         </View>

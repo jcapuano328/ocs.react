@@ -5,8 +5,8 @@ var inRange = require('./inrange');
 
 let get = (turn, player, dice) => {
 	let range = player.supply.find((s) => {
-		return inRange(turn, s.turnStart, s.turnEnd)
-	}) || [];
+		return inRange(turn, s.turnStart, s.turnEnd);
+	}) || {effects:[]};
 	return range.effects.find((r) => {
 		return inRange(dice, r.low, r.high);
 	}) || {effect: ''};

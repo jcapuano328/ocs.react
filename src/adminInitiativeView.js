@@ -5,6 +5,7 @@ import { View, Text } from 'react-native';
 var IconButton = require('./widgets/iconButton');
 var DiceRoll = require('./widgets/diceRoll');
 var Initiative = require('./services/initiative');
+var Player = require('./services/player');
 
 var AdminInitiativeView = React.createClass({
     dice: [
@@ -32,7 +33,6 @@ var AdminInitiativeView = React.createClass({
         this.resolve(this.state.die1, this.state.die2);
     },
     onNextPlayer() {
-        //console.log('next player');
         Initiative.next()
         .then((init) => {
             this.setState({initiative: init});
@@ -42,8 +42,10 @@ var AdminInitiativeView = React.createClass({
     resolve(die1, die2) {
         Initiative.find(die1, die2)
         .then((init) => {
-            this.setState({die1: die1, die2: die2, initiative: init});
-            this.props.events.emit('initiativechange');
+            this.setState({die1: die1, die2: die2, initiative: init || 'tie'});
+            if (init) {                
+                this.props.events.emit('initiativechange');
+            }
         })
         .catch((err) => {
             this.setState({die1: die1, die2: die2, initiative: ''});
@@ -51,12 +53,13 @@ var AdminInitiativeView = React.createClass({
         });
     },
     render() {
+        let player = Player.get(this.state.initiative);
         return (
             <View>
                 <View style={{flex: 1,flexDirection: 'row'}}>
                     <Text style={{flex: 1, fontSize: 20, marginLeft: 5, marginVertical: 25}}>Initiative</Text>
                     <View style={{flex: 2, marginRight: 5}}>
-                    <IconButton image={this.state.initiative.toLowerCase()} width={80} height={80} onPress={this.onNextPlayer}/>
+                    <IconButton image={player.icon.toLowerCase()} width={80} height={80} resizeMode={'contain'} onPress={this.onNextPlayer}/>
                     </View>
                     <View style={{flex: 1, marginRight: 5}}>
                         <DiceRoll dice={this.dice} values={[this.state.die1,this.state.die2]} onRoll={this.onDiceRoll} onDie={this.onDieChanged}/>

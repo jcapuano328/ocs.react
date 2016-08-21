@@ -71,26 +71,33 @@ var AdminReinforcementsView = React.createClass({
     },
 
     render() {
+        let player1 = Player.player1();
+        let player2 = Player.player2();
+
         return (
             <View>
                 <View style={{flex: 1,justifyContent: 'flex-start'}}>
                     <Text style={{flex: 0.65, fontSize: 20, marginLeft: 5, marginVertical: 25}}>Reinforcements</Text>
                     <View style={{flex: 2, flexDirection: 'row', alignItems: 'center'}}>
                         <Image
-                            style={{flex: .5, width: 52, height: 52, resizeMode: 'contain'}}
-                            source={Icons[Player.player1().name.toLowerCase()]} />
-                        <Text style={{flex: 4, fontSize: 28, fontWeight: 'bold'}}>{this.state.player1}</Text>
-                        <View style={{flex: 1, marginRight: 5}}>
+                            style={{flex: .5, width: 52, height: 52, resizeMode: 'stretch'}}
+                            source={Icons[player1.icon.toLowerCase()]} />
+                        <View style={{flex: 3, alignItems: 'center'}}>
+                            <Text style={{marginLeft: 10, fontSize: 28, fontWeight: 'bold'}}>{this.state.player1}</Text>
+                        </View>
+                        <View style={{flex: 3, marginRight: 5}}>
                             <DiceRoll dice={this.player1dice} values={[this.state.die1,this.state.die2]}
                                 onRoll={this.onDiceRollPlayer1} onDie={this.onDieChangedPlayer1}/>
                         </View>
                     </View>
                     <View style={{flex: 2, flexDirection: 'row', alignItems: 'center'}}>
                         <Image
-                            style={{flex: .5, width: 52, height: 52, resizeMode: 'contain'}}
-                            source={Icons[Player.player2().name.toLowerCase()]} />
-                        <Text style={{flex: 4, fontSize: 28, fontWeight: 'bold'}}>{this.state.player2}</Text>
-                        <View style={{flex: 1, marginRight: 5}}>
+                            style={{flex: .5, width: 52, height: 52, resizeMode: 'stretch'}}
+                            source={Icons[player2.icon.toLowerCase()]} />
+                        <View style={{flex: 3, alignItems: 'center'}}>
+                            <Text style={{marginLeft: 10, fontSize: 28, fontWeight: 'bold'}}>{this.state.player2}</Text>
+                        </View>
+                        <View style={{flex: 3, marginRight: 5}}>
                             <DiceRoll dice={this.player2dice} values={[this.state.die3,this.state.die4]}
                                 onRoll={this.onDiceRollPlayer2} onDie={this.onDieChangedPlayer2}/>
                         </View>
@@ -100,5 +107,43 @@ var AdminReinforcementsView = React.createClass({
         );
     }
 });
+
+/*
+<View>
+    <View style={{flex: 1,justifyContent: 'flex-start'}}>
+        <Text style={{flex: 0.65, fontSize: 20, marginLeft: 5, marginVertical: 25}}>Reinforcements</Text>
+        <View style={{flex: 2, flexDirection: 'row', alignItems: 'center'}}>
+            <View style={{flex:1.5}}>
+                <Image
+                    style={{flex:1, alignItems: 'center', width: null, height: null}}
+                    resizeMode='stretch'
+                    opacity={0.30}
+                    source={Icons[player1.icon.toLowerCase()]} >
+                    <Text style={{flex: 1, marginTop: 20, fontSize: 28, fontWeight: 'bold'}}>{this.state.player1}</Text>
+                </Image>
+            </View>
+            <View style={{flex: 1, marginRight: 5}}>
+                <DiceRoll dice={this.player1dice} values={[this.state.die1,this.state.die2]}
+                    onRoll={this.onDiceRollPlayer1} onDie={this.onDieChangedPlayer1}/>
+            </View>
+        </View>
+        <View style={{flex: 2, flexDirection: 'row', alignItems: 'center'}}>
+            <View style={{flex:1.5}}>
+                <Image
+                    style={{flex:1, alignItems: 'center', width: null, height: null}}
+                    resizeMode='stretch'
+                    opacity={0.30}
+                    source={Icons[player2.icon.toLowerCase()]} >
+                    <Text style={{flex: 1, marginTop: 20, fontSize: 28, fontWeight: 'bold'}}>{this.state.player2}</Text>
+                </Image>
+            </View>
+            <View style={{flex: 1, marginRight: 5}}>
+                <DiceRoll dice={this.player2dice} values={[this.state.die3,this.state.die4]}
+                    onRoll={this.onDiceRollPlayer2} onDie={this.onDieChangedPlayer2}/>
+            </View>
+        </View>
+    </View>
+</View>
+*/
 
 module.exports = AdminReinforcementsView;

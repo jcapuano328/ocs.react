@@ -3,6 +3,7 @@
     turn: int,
     phase: int,
     weather: string,
+    initiative: string,
     player: string,
     player1: {
         supply: string,
@@ -11,5 +12,5 @@
     player2:{
         supply: string,
         reinforcements: string
-    }    
+    }
 }

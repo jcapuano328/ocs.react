@@ -4,6 +4,7 @@ var React = require('react');
 import { View, Text, Picker } from 'react-native';
 import RadioForm from 'react-native-simple-radio-button';
 var SpinNumeric = require('./widgets/spinNumeric');
+var IconButton = require('./widgets/iconButton');
 var Checkbox = require('./widgets/checkbox');
 var SelectList = require('./widgets/selectList');
 var DiceRoll = require('./widgets/diceRoll');
@@ -19,24 +20,26 @@ let GroundView = React.createClass({
         {num: 1, low: 1, high: 6, color: 'blackw'}
     ],
     getInitialState() {
+        let terrain = Terrain.inside()[0];
         return {
-            attackArmor: '1',
-            attackMech: '1',
-            attackOther: '1',
+            attackArmor: '0',
+            attackMech: '0',
+            attackOther: '0',
             attackAR: '1',
             attackCS: true,
             attackTS: true,
 
-            defendArmor: '1',
-            defendMech: '1',
-            defendOther: '1',
+            defendArmor: '0',
+            defendMech: '0',
+            defendOther: '0',
             defendAR: '1',
             defendHH: '0',
             defendCS: true,
             defendTS: true,
 
-            terrain: 'Open',
+            terrain: terrain.desc,
             between: '',
+            density: terrain.density,
 
             combatMode: 0,
 
@@ -52,82 +55,113 @@ let GroundView = React.createClass({
         };
     },
     onChangeAttackArmor(v) {
-        this.setState({attackArmor: v});
+        this.state.attackArmor = v;
         this.resolve();
     },
     onChangeAttackMech(v) {
-        this.setState({attackMech: v});
+        this.state.attackMech = v;
         this.resolve();
     },
     onChangeAttackOther(v) {
-        this.setState({attackOther: v});
+        this.state.attackOther = v;
         this.resolve();
     },
-    onChangeAttackAR() {
-        this.setState({attackAR: v});
+    onChangeAttackAR(v) {
+        this.state.attackAR = v;
         this.resolve();
     },
     onChangeAttackCS(b) {
-        this.setState({attackCS: b});
+        this.state.attackCS = b;
         this.resolve();
     },
     onChangeAttackTS(b) {
-        this.setState({attackTS: b});
+        this.state.attackTS = b;
         this.resolve();
     },
 
     onChangeDefendArmor(v) {
-        this.setState({defendArmor: v});
+        this.state.defendArmor = v;
         this.resolve();
     },
     onChangeDefendMech(v) {
-        this.setState({defendMech: v});
+        this.state.defendMech = v;
         this.resolve();
     },
     onChangeDefendOther(v) {
-        this.setState({defendOther: v});
+        this.state.defendOther = v;
         this.resolve();
     },
     onChangeDefendAR(v) {
-        this.setState({defendAR: v});
+        this.state.defendAR = v;
         this.resolve();
     },
     onChangeDefendHH(v) {
-        this.setState({defendHH: v});
+        this.state.defendHH = v;
         this.resolve();
     },
     onChangeDefendCS(b) {
-        this.setState({defendCS: b});
+        this.state.defendCS = b;
         this.resolve();
     },
     onChangeDefendTS(b) {
-        this.setState({defendTS: b});
+        this.state.defendTS = b;
         this.resolve();
     },
 
     onChangeMode(v) {
-        this.setState({combatMode: v});
+        this.state.combatMode = v;
         this.resolve();
     },
     onChangeTerrain(t) {
-        this.setState({terrain: t});
+        let terrain = Terrain.find(t);
+        this.state.terrain = terrain.desc;
+        this.state.density = terrain.density;
         this.resolve();
     },
     onChangeTerrainBetween(t) {
-        this.setState({between: t});
+        this.state.between = t;
         this.resolve();
     },
     onChangeOdds(v) {
         this.resolve(v);
     },
+
+    onReset() {
+        let terrain = Terrain.inside()[0];
+        this.setState({
+            attackArmor: '0',
+            attackMech: '0',
+            attackOther: '0',
+            attackAR: '1',
+            attackCS: true,
+            attackTS: true,
+
+            defendArmor: '0',
+            defendMech: '0',
+            defendOther: '0',
+            defendAR: '1',
+            defendHH: '0',
+            defendCS: true,
+            defendTS: true,
+
+            terrain: terrain.desc,
+            between: '',
+            density: terrain.density,
+
+            combatMode: 0
+        });
+    },
+
     onDiceRoll(d) {
-        this.setState({die1: d[0].value,die2: d[1].value, die3: d[2].value, die4: d[3].value, die5: d[4].value});
+        this.state.die1 = d[0].value;
+        this.state.die2 = d[1].value;
+        this.state.die3 = d[2].value;
+        this.state.die4 = d[3].value;
+        this.state.die5 = d[4].value;
         this.resolve();
     },
     onDieChanged(d,v) {
-        let state = {};
-        state['die'+d] = v;
-        this.setState(state);
+        this.state['die'+d] = v;
         this.resolve();
     },
     resolve(odds) {
@@ -140,14 +174,17 @@ let GroundView = React.createClass({
             +this.state.attackAR,+this.state.defendAR,+this.state.defendHH,this.state.terrain,this.state.combatMode,
             this.state.die1,this.state.die2,this.state.die3,this.state.die4,this.state.die5
         );
-        this.setState({odds: result.odds, surprise: result.surprise, results: result.results});
+        this.state.odds = result.odds;
+        this.state.surprise = result.surprise;
+        this.state.results = result.results;
+        this.setState(this.state);
     },
     render() {
         return (
             <View style={{flex: 1}}>
                 <View style={{flex: 3, flexDirection: 'row'}}>
                     <View style={{flex: 3, alignItems: 'center'}}>
-                        <GroundHeader />
+                        <GroundHeader onReset={this.onReset}/>
                         <GroundInput label={'Armor'} attack={this.state.attackArmor} defend={this.state.defendArmor} onChangeAttack={this.onChangeAttackArmor} onChangeDefend={this.onChangeDefendArmor} />
                         <GroundInput label={'Mech'} attack={this.state.attackMech} defend={this.state.defendMech} onChangeAttack={this.onChangeAttackMech} onChangeDefend={this.onChangeDefendMech} />
                         <GroundInput label={'Other'} attack={this.state.attackOther} defend={this.state.defendOther} onChangeAttack={this.onChangeAttackOther} onChangeDefend={this.onChangeDefendOther} />
@@ -169,7 +206,7 @@ let GroundView = React.createClass({
                 <View style={{flex: 1}}>
                     <View style={{flex: 1, flexDirection: 'row', justifyContent: 'center'}}>
                         <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
-                            <OddsView odds={Ground.odds('open')} value={this.state.odds} onChanged={this.onChangeOdds}/>
+                            <OddsView odds={Ground.odds(this.state.density)} value={this.state.odds} onChanged={this.onChangeOdds}/>
                         </View>
                         <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
                             <Text style={{fontSize: 16, fontWeight: 'bold'}}>{this.state.surprise}</Text>
@@ -193,8 +230,8 @@ let GroundHeader = React.createClass({
     render() {
         return (
             <View style={{flex: .75, flexDirection: 'row', alignItems: 'center'}}>
-                <View style={{flex:1, alignItems: 'center'}}>
-                    <Text></Text>
+                <View style={{flex:1, alignItems: 'center', backgroundColor: '#3F51B5', marginLeft: 10, borderRadius:5}}>
+                    <IconButton image={'refresh'} width={16} height={32} resizeMode={'contain'} onPress={this.props.onReset}/>
                 </View>
                 <View style={{flex:2, alignItems: 'center'}}>
                     <Text style={{fontSize: 20, fontWeight: 'bold'}}>{'Attack'}</Text>

@@ -22,18 +22,17 @@ var BattleView = React.createClass({
       initialPage: 0
     };
   },
+  componentDidMount() {
+      this.props.events.addListener('menureset', this.onReset);
+  },
   shouldComponentUpdate(nextProps, nextState) {
     return true;
   },
-  menuHandler() {
-    this.props.onMenu && this.props.onMenu();
-  },
-  refreshHandler() {
-    //console.log('Reset ' + this.props.battle.name);
+  onReset() {
     Current.reset(this.props.battle)
     .then((current) => {
         // update the views?
-        this.eventEmitter.emit('reset');
+        this.props.events.emit('reset');
     })
     .done();
   },

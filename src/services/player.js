@@ -15,13 +15,7 @@ module.exports = {
 		return find('player2');
 	},
 	get(code) {
-		let player = find(code) || {name: 'tie'};
-		return {player: player.player, name: player.name};
-	},
-	getByName(name) {
-		let player = Current.battle().players.find((p) => {
-			return p.name == name;
-		}) || {name: 'tie'};
-		return {player: player.player, name: player.name};
+		let player = find(code) || {player: '', name: '', icon: 'tie'};
+		return {player: player.player, name: player.name, icon: player.icon};
 	}
 };

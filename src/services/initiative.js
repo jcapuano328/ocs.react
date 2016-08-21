@@ -16,25 +16,25 @@ module.exports = {
 		} else {
 			init = '';
 		}
-		init = Player.get(init);
-		Current.initiative(init.name);
+		Current.initiative(init);
+		Current.player(init);
 		return Current.save()
 		.then(() => {
-			return init.name;
+			return init;
 		});
     },
 	next() {
-		let init = Player.getByName(this.current());
+		let init = Player.get(this.current());
 		if (init.player == 'player1') {
 			init.player = 'player2';
 		} else {
 			init.player = 'player1';
 		}
-		init = Player.get(init.player);
-		Current.initiative(init.name);
+		Current.initiative(init.player);
+		Current.player(init.player);
 		return Current.save()
 		.then(() => {
-			return init.name;
+			return init.player;
 		});
 	}
 };

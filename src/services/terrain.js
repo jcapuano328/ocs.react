@@ -37,7 +37,7 @@ module.exports = {
     	return terrain.filter((t) => t.density == 'other');
     },
 	find(name) {
-		return terrain.find((t) => t.desc == name) || {attack:{armor:1,mech:1,other:1},defend:{armor:1,mech:1,other:1}};
+		return terrain.find((t) => t.desc == name) || {desc: name, density: '', attack:{armor:1,mech:1,other:1},defend:{armor:1,mech:1,other:1}};
 	},
     get(idx) {
     	if (idx > -1 && idx < terrain.length) {

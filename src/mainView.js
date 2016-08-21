@@ -30,6 +30,7 @@ var MainView = React.createClass({
     },
     fetchBattle() {
         Current.load()
+        //new Promise((a,r)=> a())
         .then((data) => {
             if (data) {
                 this.state.routes.battle.data = Battles.get(data.battle);
@@ -39,7 +40,7 @@ var MainView = React.createClass({
                 log.debug('mainView: no current game');
             }
         })
-        .done();        
+        .done();
     },
     componentWillMount() {
         this.eventEmitter = new EventEmitter();
@@ -84,6 +85,7 @@ var MainView = React.createClass({
     },
     onReset() {
         log.debug('reset game');
+        this.eventEmitter.emit('menureset');
     },
     renderScene(route, navigator) {
         route = route || {};

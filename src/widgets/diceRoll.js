@@ -15,7 +15,6 @@ var DieButton = React.createClass({
         this.props.onPress && this.props.onPress(this.props.die);
     },
     render() {
-        //console.log(this.props.image);
         let image = Images(this.props.image);
         return (
             <TouchableOpacity style={{marginRight: 5}} onPress={this.onPress} >
@@ -32,12 +31,10 @@ var DiceRoll = React.createClass({
         };
     },
     onRoll(e) {
-      //console.log('dice: roll');
       this.state.dice.roll();
       this.props.onRoll && this.props.onRoll(this.state.dice.dice());
     },
     onDie(e) {
-      //console.log('dice: die');
       let die = this.state.dice.dieEx(e);
       die.increment(true);
       this.props.onDie && this.props.onDie(e, die.value());

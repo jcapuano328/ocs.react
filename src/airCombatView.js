@@ -40,7 +40,6 @@ let AirCombatView = React.createClass({
         this.resolve();
     },
     onDieChanged(d,v) {
-        console.log(d + '/' + v);
         //let state = {};
         //state['die'+d] = v;
         //this.setState(state);

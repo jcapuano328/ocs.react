@@ -32,16 +32,12 @@ var SpinSelect = React.createClass({
     return true;
   },
   onPrev() {
-      //console.log('spin: previous');
       this.props.onPrev && this.props.onPrev();
   },
   onNext() {
-      //console.log('spin: next');
       this.props.onNext && this.props.onNext();
   },
   render() {
-    //console.log(this.props);
-    //console.log('SpinSelect: ' + this.props.value);
     return (
       <View style={styles.container}>
         <SpinButton style={styles.button} direction={'prev'} onPress={this.onPrev} />
