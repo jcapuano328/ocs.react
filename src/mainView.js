@@ -21,7 +21,7 @@ var MainView = React.createClass({
         return {
             drawer: false,
             routes: {
-                landing: {index: 0, name: 'landing', onMenu: this.navMenuHandler},
+                landing: {index: 0, name: 'landing', title: 'Welcome', subtitle: 'Select a battle', onMenu: this.navMenuHandler},
                 battle: {index: 1, name: 'battle', title: 'Battle', onMenu: this.navMenuHandler, onRefresh: this.onReset},
                 about: {index: 7, name: 'about', title: 'About'}
             },

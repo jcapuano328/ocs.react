@@ -6,7 +6,7 @@ var phases = [
 	"{a} Reinforcement",
 	"{a} Breakout",
 	"{a} Mode and Movement",
-	"{a} M &M - Barrage",
+	"{a} M & M - Barrage",
 	"{a} Supply",
 	"{r} Reaction - Movement",
 	"{r} Reaction - Barrage",
