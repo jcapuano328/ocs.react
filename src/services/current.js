@@ -71,7 +71,7 @@ module.exports = {
 			if (turn >= battle.turnTable.length || battle.turnTable[turn] > lastday) {
 				turn = 0;
 				d.add(1, 'months');
-				lastday = moment(d).endOf('month');
+				lastday = moment(d).endOf('month').date();
 			}
 		}
 		let dt = moment({year: d.year(), month: d.month(), day: battle.turnTable[turn]});
