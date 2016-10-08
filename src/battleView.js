@@ -3,7 +3,7 @@
 var React = require('react');
 import { View, Text } from 'react-native';
 var ScrollableTabView = require('react-native-scrollable-tab-view');
-var icons = require('./res/icons');
+var Icons = require('./res/icons');
 
 var TurnView = require('./turnView');
 var AdminView = require('./adminView');
@@ -25,9 +25,6 @@ var BattleView = React.createClass({
   componentDidMount() {
       this.props.events.addListener('menureset', this.onReset);
   },
-  shouldComponentUpdate(nextProps, nextState) {
-    return true;
-  },
   onReset() {
     Current.reset(this.props.battle)
     .then((current) => {
@@ -42,7 +39,7 @@ var BattleView = React.createClass({
     let battle = this.state.battle || {};
     return (
       <View style={{flex: 1,backgroundColor: 'rgba(0,0,0,0.01)'}}>
-        <TurnView logo={icons[battle.image]} events={this.props.events} />
+        <TurnView logo={Icons[battle.image]} events={this.props.events} />
         <ScrollableTabView
           style={{backgroundColor: '#fff'}}
           onChangeTab={this.onChangeTab}

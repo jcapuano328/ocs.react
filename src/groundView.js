@@ -2,22 +2,19 @@
 
 var React = require('react');
 import { View, Text, Picker } from 'react-native';
-import RadioForm from 'react-native-simple-radio-button';
-var SpinNumeric = require('./widgets/spinNumeric');
-var IconButton = require('./widgets/iconButton');
-var Checkbox = require('./widgets/checkbox');
-var SelectList = require('./widgets/selectList');
-var DiceRoll = require('./widgets/diceRoll');
+import {SpinNumeric,IconButton,Checkbox,SelectList,RadioButtonGroup} from 'react-native-app-nub';
+import {DiceRoll} from 'react-native-dice';
+var Icons = require('./res/icons');
 var Ground = require('./services/ground');
 var Terrain = require('./services/terrain');
 
 let GroundView = React.createClass({
     dice: [
-        {num: 1, low: 1, high: 6, color: 'red'},
-        {num: 1, low: 1, high: 6, color: 'white'},
-        {num: 1, low: 1, high: 6, color: 'yellow'},
-        {num: 1, low: 1, high: 6, color: 'blackr'},
-        {num: 1, low: 1, high: 6, color: 'blackw'}
+        {num: 1, low: 1, high: 6, color: 'red',dotcolor:'white'},
+        {num: 1, low: 1, high: 6, color: 'white',dotcolor:'black'},
+        {num: 1, low: 1, high: 6, color: 'yellow',dotcolor:'black'},
+        {num: 1, low: 1, high: 6, color: 'black',dotcolor:'red'},
+        {num: 1, low: 1, high: 6, color: 'black',dotcolor:'white'}
     ],
     getInitialState() {
         let terrain = Terrain.inside()[0];
@@ -231,7 +228,7 @@ let GroundHeader = React.createClass({
         return (
             <View style={{flex: .75, flexDirection: 'row', alignItems: 'center'}}>
                 <View style={{flex:1, alignItems: 'center', backgroundColor: '#3F51B5', marginLeft: 10, borderRadius:5}}>
-                    <IconButton image={'refresh'} width={16} height={32} resizeMode={'contain'} onPress={this.props.onReset}/>
+                    <IconButton image={Icons['refresh']} width={16} height={32} resizeMode={'contain'} onPress={this.props.onReset}/>
                 </View>
                 <View style={{flex:2, alignItems: 'center'}}>
                     <Text style={{fontSize: 20, fontWeight: 'bold'}}>{'Attack'}</Text>
@@ -299,15 +296,8 @@ let GroundType = React.createClass({
     render() {
         return (
             <View style={{flex: 1, justifyContent: 'center'}}>
-                <RadioForm
-                  radio_props={[{label: 'Regular', value: 0 }, {label: 'Overrun', value: 1 }]}
-                  initial={this.props.value}
-                  formHorizontal={true}
-                  labelHorizontal={true}
-                  buttonColor={'#2196f3'}
-                  animation={true}
-                  onPress={this.props.onChanged}
-                />
+                <RadioButtonGroup buttons={[{label: 'Regular', value: 0}, {label: 'Overrun', value: 1}]} state={this.props.value}
+                    onSelected={this.props.onChanged} />
             </View>
         );
     }

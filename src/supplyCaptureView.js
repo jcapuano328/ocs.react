@@ -2,14 +2,13 @@
 
 var React = require('react');
 import { View, Text } from 'react-native';
-import RadioForm from 'react-native-simple-radio-button';
-var SpinNumeric = require('./widgets/spinNumeric');
-var DiceRoll = require('./widgets/diceRoll');
+import {SpinNumeric,RadioButtonGroup} from 'react-native-app-nub';
+import {DiceRoll} from 'react-native-dice';
 var Supply = require('./services/supply');
 
 let SupplyCaptureView = React.createClass({
     dice: [
-        {num: 1, low: 1, high: 6, color: 'blue'}
+        {num: 1, low: 1, high: 6, color: 'blue',dotcolor:'white'}
     ],
     getInitialState() {
         return {
@@ -68,16 +67,9 @@ let SupplyCaptureView = React.createClass({
             <View style={{flex: 1}}>
                 <View style={{flex: 1}}>
                     <View style={{flex:1}}>
-                        <RadioForm
-                          style={{marginLeft: 25, marginTop: 15}}
-                          radio_props={[{label: 'Supply Dump', value: 0 }, {label: 'Trucks', value: 1 },, {label: 'Wagons', value: 2 }]}
-                          initial={this.state.mode}
-                          formHorizontal={true}
-                          labelHorizontal={true}
-                          buttonColor={'#2196f3'}
-                          animation={true}
-                          onPress={this.onChangeMode}
-                        />
+                        <RadioButtonGroup buttons={[{label: 'Supply Dump', value: 0 }, {label: 'Trucks', value: 1 }, {label: 'Wagons', value: 2 }]}
+                            state={this.state.mode}
+                            onSelected={this.onChangeMode} />
                     </View>
                     <View style={{flex: 1, flexDirection: 'row', justifyContent: 'center', alignItems: 'center'}}>
                         <View style={{flex:1}}/>

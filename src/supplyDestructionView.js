@@ -2,14 +2,13 @@
 
 var React = require('react');
 import { View, Text } from 'react-native';
-import RadioForm from 'react-native-simple-radio-button';
-var SpinNumeric = require('./widgets/spinNumeric');
-var DiceRoll = require('./widgets/diceRoll');
+import {SpinNumeric} from 'react-native-app-nub';
+import {DiceRoll} from 'react-native-dice';
 var Supply = require('./services/supply');
 
 let SupplyDestructionView = React.createClass({
     dice: [
-        {num: 1, low: 1, high: 6, color: 'green'}
+        {num: 1, low: 1, high: 6, color: 'green', dotcolor:'white'}
     ],
     getInitialState() {
         return {

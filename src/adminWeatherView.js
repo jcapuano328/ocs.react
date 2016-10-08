@@ -2,7 +2,7 @@
 
 var React = require('react');
 import { View, Text } from 'react-native';
-var DiceRoll = require('./widgets/diceRoll');
+import {DiceRoll} from 'react-native-dice';
 var Weather = require('./services/weather');
 
 var AdminWeatherView = React.createClass({
@@ -47,16 +47,16 @@ var AdminWeatherView = React.createClass({
     render() {
         let wxdice = Weather.dice();
         let dice = [
-            {num: 1, low: 1, high: wxdice.sides, color: 'red'}
+            {num: 1, low: 1, high: wxdice.sides, color: 'red', dotcolor:'white'}
         ];
         if (wxdice.number > 1) {
-            dice.push({num: 1, low: 1, high: wxdice.sides, color: 'white'});
+            dice.push({num: 1, low: 1, high: wxdice.sides, color: 'white', dotcolor:'black'});
         }
         if (wxdice.number > 2) {
-            dice.push({num: 1, low: 1, high: wxdice.sides, color: 'yellow'});
+            dice.push({num: 1, low: 1, high: wxdice.sides, color: 'yellow', dotcolor:'black'});
         }
         if (wxdice.number > 3) {
-            dice.push({num: 1, low: 1, high: wxdice.sides, color: 'green'});
+            dice.push({num: 1, low: 1, high: wxdice.sides, color: 'green', dotcolor:'white'});
         }
         return (
             <View>

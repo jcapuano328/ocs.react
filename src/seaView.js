@@ -2,17 +2,15 @@
 
 var React = require('react');
 import { View, Text } from 'react-native';
-var SpinNumeric = require('./widgets/spinNumeric');
-var SelectList = require('./widgets/selectList');
-var Checkbox = require('./widgets/checkbox');
-var DiceRoll = require('./widgets/diceRoll');
+import {SpinNumeric,SelectList,Checkbox} from 'react-native-app-nub';
+import {DiceRoll} from 'react-native-dice';
 var Sea = require('./services/sea');
 var Terrain = require('./services/terrain');
 
 let SeaView = React.createClass({
     dice: [
-        {num: 1, low: 1, high: 6, color: 'red'},
-        {num: 1, low: 1, high: 6, color: 'white'}
+        {num: 1, low: 1, high: 6, color: 'red', dotcolor:'white'},
+        {num: 1, low: 1, high: 6, color: 'white', dotcolor:'black'}
     ],
     getInitialState() {
         return {

@@ -1,17 +1,14 @@
 'use strict'
-
 var React = require('react');
 import { View, Text } from 'react-native';
-var SelectDropdown = require('./widgets/selectDropdown');
-import RadioForm from 'react-native-simple-radio-button';
-var Checkbox = require('./widgets/checkbox');
-var DiceRoll = require('./widgets/diceRoll');
+import {Checkbox,SelectDropdown,RadioButtonGroup} from 'react-native-app-nub';
+import {DiceRoll} from 'react-native-dice';
 var Air = require('./services/air');
 
 let AirBaseCaptureView = React.createClass({
     dice: [
-        {num: 1, low: 1, high: 6, color: 'red'},
-        {num: 1, low: 1, high: 6, color: 'white'}
+        {num: 1, low: 1, high: 6, color: 'red', dotcolor:'white'},
+        {num: 1, low: 1, high: 6, color: 'white', dotcolor:'black'}
     ],
     getInitialState() {
         return {
@@ -30,7 +27,6 @@ let AirBaseCaptureView = React.createClass({
         this.state.advance = v;
         this.resolve();
     },
-
     onDiceRoll(d) {
         //this.setState({die1: d[0].value,die2: d[1].value});
         this.state.die1 = d[0].value;
@@ -61,15 +57,8 @@ let AirBaseCaptureView = React.createClass({
                     </View>
                     <View style={{flex: 1}}>
                         <View style={{flex:1, justifyContent: 'center', alignItems: 'flex-start'}}>
-                            <RadioForm
-                              radio_props={[{label: 'Active', value: 0 }, {label: 'Inactive', value: 1 }]}
-                              initial={this.state.state}
-                              formHorizontal={true}
-                              labelHorizontal={true}
-                              buttonColor={'#2196f3'}
-                              animation={true}
-                              onPress={this.onChangeState}
-                            />
+                            <RadioButtonGroup buttons={[{label: 'Active', value: 0}, {label: 'Inactive', value: 1}]} state={this.state.state}
+                                onSelected={this.onChangeState} />
                         </View>
                     </View>
                     <View style={{flex: 2}}>

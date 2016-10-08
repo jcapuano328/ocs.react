@@ -2,15 +2,14 @@
 
 var React = require('react');
 import { View, Text } from 'react-native';
-var SelectDropdown = require('./widgets/selectDropdown');
-var Checkbox = require('./widgets/checkbox');
-var DiceRoll = require('./widgets/diceRoll');
+import {SelectDropdown,Checkbox} from 'react-native-app-nub';
+import {DiceRoll} from 'react-native-dice';
 var Air = require('./services/air');
 
 let AirTransportView = React.createClass({
     dice: [
-        {num: 1, low: 1, high: 6, color: 'red'},
-        {num: 1, low: 1, high: 6, color: 'white'}
+        {num: 1, low: 1, high: 6, color: 'red', dotcolor:'white'},
+        {num: 1, low: 1, high: 6, color: 'white', dotcolor:'white'}
     ],
     getInitialState() {
         return {

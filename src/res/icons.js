@@ -1,15 +1,11 @@
+import { Icons } from 'react-native-app-nub';
+
 module.exports = {
 	"logo": require('./logo.png'),
 	"splash": require('./splash.png'),
-	"menu": require('./hamburger.png'),
-	"info": require('./info.png'),
-	"back": require('./ic_action_previous_item.png'),
-
-	"refresh": require('./ic_action_refresh.png'),
-	"prevButton":	require('./ic_action_previous_item.png'),
-	"nextButton": require('./ic_action_next_item.png'),
-	"checked": require('./checked_checkbox.png'),
-	"unchecked": require('./unchecked_checkbox.png'),
+	"menu": Icons['menu-dark'],
+	"info": Icons['info-dark'],
+	"refresh": Icons['refresh-dark'],
 
 	"axis": require('./axis.png'),
 	"axis-east": require('./axis-east.png'),

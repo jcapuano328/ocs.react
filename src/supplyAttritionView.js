@@ -2,9 +2,8 @@
 
 var React = require('react');
 import { View, Text } from 'react-native';
-import RadioForm from 'react-native-simple-radio-button';
-var SpinNumeric = require('./widgets/spinNumeric');
-var DiceRoll = require('./widgets/diceRoll');
+import {SpinNumeric,RadioButtonGroup} from 'react-native-app-nub';
+import {DiceRoll} from 'react-native-dice';
 var Supply = require('./services/supply');
 
 let SupplyAttritionView = React.createClass({
@@ -67,15 +66,8 @@ let SupplyAttritionView = React.createClass({
                             <Text style={{marginLeft: 10}}>Steps</Text>
                         </View>
                         <View style={{flex:1, justifyContent: 'center', alignItems: 'flex-start'}}>
-                            <RadioForm
-                              radio_props={[{label: '< 5', value: 0 }, {label: '5+', value: 1 }]}
-                              initial={this.state.steps}
-                              formHorizontal={true}
-                              labelHorizontal={true}
-                              buttonColor={'#2196f3'}
-                              animation={true}
-                              onPress={this.onChangeSteps}
-                            />
+                            <RadioButtonGroup buttons={[{label: '< 5', value: 0}, {label: '5+', value: 1}]} state={this.state.steps}
+                                onSelected={this.onChangeSteps} />
                         </View>
                         <View style={{flex:2}}/>
                     </View>

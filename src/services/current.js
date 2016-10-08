@@ -1,8 +1,9 @@
 'use strict'
-var Store = require('../stores/current.js');
-var Battles = require('./battles.js');
-var Phases = require('./phases.js');
-var log = require('./log.js');
+import {Store, Log} from 'react-native-app-nub';
+var store = Store('ocs.app.current');
+var Battles = require('./battles');
+var Phases = require('./phases');
+var log = Log;
 var moment = require('moment');
 
 var _current = null;
@@ -33,23 +34,32 @@ let getPlayers = () => {
 
 module.exports = {
 	load() {
-		return Store.load()
+		return store.load()
 		.then((current) => {
 			_current = current;
 			return _current;
 		});
 	},
 	save() {
-		return Store.save(_current);
+		return store.save(_current);
 	},
 	remove() {
-		return Store.remove()
+		return store.remove()
 		.then(() => {
 			_current = null;
 		});
 	},
 	reset(data) {
-		return Store.reset(data)
+		let current = {};
+    	current.battle = data.id;
+    	current.turn = 1;
+    	current.phase = 0;
+		current.weather = '';
+		current.initiative = data.players[0].player;
+		current.player = data.players[0].player;
+		current.player1 = {supply: '', reinforcements: ''};
+		current.player2 = {supply: '', reinforcements: ''};
+		return store.save(current)
 		.then((current) => {
 			_current = current;
 			return _current;
@@ -89,7 +99,7 @@ module.exports = {
 		}
         let turn = this.turn();
 		if (dosave) {
-        	return Store.save(_current)
+        	return store.save(_current)
             .then(() => {
             	return turn;
 			});
@@ -108,7 +118,7 @@ module.exports = {
 		}
         let turn = this.turn();
 		if (dosave) {
-        	return Store.save(_current)
+        	return store.save(_current)
             .then(() => {
             	return turn;
 			});
@@ -137,7 +147,7 @@ module.exports = {
 			}
 			_current.player = _current.player == players.player1.player ? players.player2.player : players.player1.player;
 		}
-    	return Store.save(_current)
+    	return store.save(_current)
         .then(() => {
         	return this.phase();
 		});
@@ -151,7 +161,7 @@ module.exports = {
 			let players = getPlayers();
 			_current.player = _current.player == players.player1.player ? players.player2.player : players.player1.player;
 		}
-    	return Store.save(_current)
+    	return store.save(_current)
         .then(() => {
         	return this.phase();
 		});
@@ -163,7 +173,7 @@ module.exports = {
 		} else {
 			_current.player = players.player1.player;
 		}
-		return Store.save(_current)
+		return store.save(_current)
         .then(() => {
         	return _current.player;
 		});

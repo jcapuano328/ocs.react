@@ -2,15 +2,15 @@
 
 var React = require('react');
 import { View, Text } from 'react-native';
-var SpinNumeric = require('./widgets/spinNumeric');
-var DiceRoll = require('./widgets/diceRoll');
+import {SpinNumeric} from 'react-native-app-nub';
+import {DiceRoll} from 'react-native-dice';
 var Air = require('./services/air');
 
 let AirCombatView = React.createClass({
     dice: [
-        {num: 1, low: 1, high: 6, color: 'red'},
-        {num: 1, low: 1, high: 6, color: 'white'},
-        {num: 1, low: 1, high: 6, color: 'yellow'}
+        {num: 1, low: 1, high: 6, color: 'red', dotcolor:'white'},
+        {num: 1, low: 1, high: 6, color: 'white', dotcolor:'black'},
+        {num: 1, low: 1, high: 6, color: 'yellow', dotcolor:'black'}
     ],
     getInitialState() {
         return {

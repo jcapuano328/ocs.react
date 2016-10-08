@@ -2,15 +2,15 @@
 
 var React = require('react');
 import { View, Text } from 'react-native';
+import {DiceRoll} from 'react-native-dice';
 
-var DiceRoll = require('./widgets/diceRoll');
 var dice1 = [
-    {num: 1, low: 1, high: 6, color: 'red'},
-    {num: 1, low: 1, high: 6, color: 'white'}
+    {num: 1, low: 1, high: 6, color: 'red',dotcolor:'white'},
+    {num: 1, low: 1, high: 6, color: 'white',dotcolor:'black'}
 ];
 
 var dice2 = [
-    {num: 1, low: 1, high: 6, color: 'blue'}
+    {num: 1, low: 1, high: 6, color: 'blue',dotcolor:'white'}
 ];
 
 var GeneralView = React.createClass({

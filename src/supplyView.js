@@ -1,7 +1,7 @@
 'use strict'
 
 var React = require('react');
-import { View, Text } from 'react-native';
+import { View } from 'react-native';
 var ScrollableTabView = require('react-native-scrollable-tab-view');
 var SupplyAttritionView = require('./supplyAttritionView');
 var SupplyCaptureView = require('./supplyCaptureView');

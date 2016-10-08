@@ -2,19 +2,19 @@
 
 var React = require('react');
 import { View, Text, Image } from 'react-native';
-var Icons = require('./res/icons');
-var DiceRoll = require('./widgets/diceRoll');
+import {DiceRoll} from 'react-native-dice';
 var Player = require('./services/player');
 var Reinforcements = require('./services/reinforcements');
+var Icons = require('./res/icons');
 
 var AdminReinforcementsView = React.createClass({
     player1dice: [
-        {num: 1, low: 1, high: 6, color: 'red'},
-        {num: 1, low: 1, high: 6, color: 'white'}
+        {num: 1, low: 1, high: 6, color: 'red', dotcolor:'white'},
+        {num: 1, low: 1, high: 6, color: 'white', dotcolor: 'black'}
     ],
     player2dice: [
-        {num: 1, low: 1, high: 6, color: 'blackr'},
-        {num: 1, low: 1, high: 6, color: 'blackw'}
+        {num: 1, low: 1, high: 6, color: 'black', dotcolor:'red'},
+        {num: 1, low: 1, high: 6, color: 'black', dotcolor:'white'}
     ],
     getInitialState() {
         let reinforcements = Reinforcements.current();

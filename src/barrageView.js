@@ -2,18 +2,16 @@
 
 var React = require('react');
 import { View, Text } from 'react-native';
-var SelectDropdown = require('./widgets/selectDropdown');
-var SelectList = require('./widgets/selectList');
-var Checkbox = require('./widgets/checkbox');
-var DiceRoll = require('./widgets/diceRoll');
+import {SelectDropdown,SelectList,Checkbox} from 'react-native-app-nub';
+import {DiceRoll} from 'react-native-dice';
 var Barrage = require('./services/barrage');
 var Terrain = require('./services/terrain');
 
 let BarrageView = React.createClass({
     dice: [
-        {num: 1, low: 1, high: 6, color: 'red'},
-        {num: 1, low: 1, high: 6, color: 'white'},
-        {num: 1, low: 1, high: 6, color: 'yellow'}
+        {num: 1, low: 1, high: 6, color: 'red',dotcolor:'white'},
+        {num: 1, low: 1, high: 6, color: 'white',dotcolor:'black'},
+        {num: 1, low: 1, high: 6, color: 'yellow',dotcolor:'black'}
     ],
     getInitialState() {
         return {
