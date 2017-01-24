@@ -1,25 +1,19 @@
-'use strict'
-
-var React = require('react');
+import React from 'react';
 import { View, Text } from 'react-native';
+import { connect } from 'react-redux';
 import {DiceRoll} from 'react-native-dice';
-var Weather = require('./services/weather');
+import Weather from '../services/weather';
+import getWeather from '../selectors/weather';
+import {setWeather,save} from '../actions/current';
 
 var AdminWeatherView = React.createClass({
     getInitialState() {
         return {
-            weather: Weather.current(),
             die1: 1,
             die2: 1,
             die3: 1,
             die4: 1
         };
-    },
-    componentDidMount() {
-        this.props.events.addListener('reset', this.onReset);
-    },
-    onReset() {
-        this.setState({weather: Weather.current()});
     },
     onDiceRoll(d) {
         let dice = {die1: d[0].value};
@@ -39,13 +33,12 @@ var AdminWeatherView = React.createClass({
         this.resolve(this.state.die1, this.state.die2, this.state.die3, this.state.die4);
     },
     resolve(die1, die2, die3, die4) {
-        Weather.find(die1, die2, die3, die4)
-        .then((wx) => {
-            this.setState({die1: die1, die2: die2, die3: die3, die4: die4, weather: wx});
-        });
+        this.setState({die1: die1, die2: die2, die3: die3, die4: die4});
+        this.props.setWeather(Weather.find(this.props.turn, this.props.wx, die1, die2, die3, die4));
+        this.props.save().done();
     },
     render() {
-        let wxdice = Weather.dice();
+        let wxdice = this.props.wx.dice;
         let dice = [
             {num: 1, low: 1, high: wxdice.sides, color: 'red', dotcolor:'white'}
         ];
@@ -58,19 +51,28 @@ var AdminWeatherView = React.createClass({
         if (wxdice.number > 3) {
             dice.push({num: 1, low: 1, high: wxdice.sides, color: 'green', dotcolor:'white'});
         }
-        return (
-            <View>
-                <View style={{flex: 1,flexDirection: 'row'}}>
-                    <Text style={{flex: 1, fontSize: 20, marginLeft: 5, marginVertical: 25}}>Weather</Text>
-                    <Text style={{flex: 2, fontSize: 28, fontWeight: 'bold', marginVertical: 20}}>{this.state.weather}</Text>
-                    <View style={{flex: 1, marginRight: 5}}>
-                        <DiceRoll dice={dice} values={[this.state.die1,this.state.die2,this.state.die3,this.state.die4]}
-                            onRoll={this.onDiceRoll} onDie={this.onDieChanged}/>
-                    </View>
+        return (            
+            <View style={{flex: 1,flexDirection: 'row'}}>
+                <Text style={{flex: 1, fontSize: 20, marginLeft: 5, marginVertical: 25}}>Weather</Text>
+                <Text style={{flex: 2, fontSize: 28, fontWeight: 'bold', marginVertical: 20}}>{this.props.weather}</Text>
+                <View style={{flex: 1, marginRight: 5}}>
+                    <DiceRoll dice={dice} values={[this.state.die1,this.state.die2,this.state.die3,this.state.die4]}
+                        onRoll={this.onDiceRoll} onDie={this.onDieChanged}/>
                 </View>
             </View>
         );
     }
 });
 
-module.exports = AdminWeatherView;
+const mapStateToProps = (state) => ({
+    wx: getWeather(state),
+    turn: state.current.turn,
+    weather: state.current.weather
+});
+
+const mapDispatchToProps = ({setWeather,save});
+
+module.exports = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(AdminWeatherView);

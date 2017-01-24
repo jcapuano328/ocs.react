@@ -1,5 +1,3 @@
-'use strict'
-var Current = require('./current');
 var inRange = require('./inrange');
 
 let getWx = (turn, dice, table) => {
@@ -13,34 +11,21 @@ let getWx = (turn, dice, table) => {
 }
 
 module.exports = {
-	current(wx) {
-		return Current.weather(wx);
-	},
-	dice() {
-		let battle = Current.battle();
-		return battle.weather.dice;
-	},
-    find(die1, die2, die3, die4) {
-		let turn = Current.turnNum();
-		let battle = Current.battle();
-		let type = battle.weather.dice.op;
+    find(turn, settings, die1, die2, die3, die4) {				
+		let type = settings.dice.op;
 		let wx = '';
 		switch (type) {
 			case 'B':
-				wx = getWx(turn, 10*die1 + die2, battle.weather.effects);
+				wx = getWx(turn, 10*die1 + die2, settings.effects);
 			case 'C':
-				wx = getWx(turn, die1, battle.weather.effects);
+				wx = getWx(turn, die1, settings.effects);
 			case 'D':
 				wx = die1 + ' / ' + die2;
 			case 'E':
 				wx = (10*die1 + die2) + ' / ' + die3 + ' / ' + die4;
 			default:	// A
-				wx = getWx(turn, die1 + die2, battle.weather.effects);
+				wx = getWx(turn, die1 + die2, settings.effects);
 		}
-		Current.weather(wx);
-		return Current.save()
-		.then(() => {
-			return wx;
-		});
+		return wx;
     }
 };

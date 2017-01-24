@@ -1,5 +1,3 @@
-'use strict'
-
 var bases = ['None', 'Air Strip', 'Level 1', 'Level 2', 'Level 3'];
 var zones = ['No Patrol', 'Escort', 'No Escort'];
 var states = ['Active', 'Inactive'];

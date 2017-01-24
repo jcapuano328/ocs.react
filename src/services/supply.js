@@ -1,16 +1,4 @@
-'use strict'
-var Current = require('./current');
-var Player = require('./player');
 var inRange = require('./inrange');
-
-let get = (turn, player, dice) => {
-	let range = player.supply.find((s) => {
-		return inRange(turn, s.turnStart, s.turnEnd);
-	}) || {effects:[]};
-	return range.effects.find((r) => {
-		return inRange(dice, r.low, r.high);
-	}) || {effect: ''};
-}
 
 let adjust = (factor,unit,sp,token) => {
 	let capturedunit = Math.round(unit * factor);
@@ -30,18 +18,11 @@ let adjust = (factor,unit,sp,token) => {
 }
 
 module.exports = {
-	current(supply) {
-		return Current.supply(supply);
-	},
-    find(player, d1, d2) {
-		let turn = Current.turnNum();
-		let supply = {};
-		supply[player] = get(turn, (player == 'player1' ? Player.player1() : Player.player2()), d1 + d2).effect;
-		Current.supply(supply);
-		return Current.save()
-		.then(() => {
-			return supply[player];
-		});
+    find(turn, player, d1, d2) {
+		let dice = d1 + d2;
+		let range = player.supply.find((s) => inRange(turn, s.turnStart, s.turnEnd)) || {effects:[]};
+		let res = range.effects.find((r) => inRange(dice, r.low, r.high)) || {effect: ''};
+		return res.effect;
     },
 	attrition(ar,steps,die1,die2) {
 		let dice = die1 + die2;

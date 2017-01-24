@@ -1,5 +1,4 @@
-'use strict'
-var Terrain = require('./terrain');
+import Terrain from './terrain';
 
 var types = ['Ground', 'Facility', 'Ship-to-Shore', 'Ship-to-Ship'];
 var sizes = ['1 or less', '1+ to 3', '3+ to 4', '4+ to 5', '5+ to 6', '6+ or more'];

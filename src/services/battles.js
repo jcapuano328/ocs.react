@@ -1,12 +1,8 @@
-'use strict';
+var battles = require('../data/battles.json');
 
-var battles = require('../stores/battles.json');
-
-module.exports = {
+module.exports = {    
   battles: battles,
-  get: function(battleid) {
-    return battles.find((b,i) => {
-      return b.id == battleid;
-    }) || {};
+  get(battleid) {
+    return battles.find((b,i) => b.id == battleid) || {};
   }
 };

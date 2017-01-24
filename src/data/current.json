@@ -1,5 +1,5 @@
 {
-    battle: string,
+    battle: int,
     turn: int,
     phase: int,
     weather: string,
