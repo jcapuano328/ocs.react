@@ -1,5 +1,3 @@
-'use strict'
-
 var terrain = [
 	{desc:'Open', density:'open', attack: {armor:2, mech:2, other:1}, defend: {armor:1, mech:1, other:1}},
 	{desc:'Woods', density:'close', attack: {armor:1, mech:1, other:1}, defend: {armor:1, mech:1, other:1}},

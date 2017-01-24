@@ -4,14 +4,12 @@ import { connect } from 'react-redux';
 import ScrollableTabView from 'react-native-scrollable-tab-view';
 import TurnView from './turnView';
 import AdminView from './adminView';
-/*
-var GroundView = require('./groundView');
-var BarrageView = require('./barrageView');
-var AirView = require('./airView');
-var SeaView = require('./seaView');
-var SupplyView = require('./supplyView');
-var GeneralView = require('./generalView');
-*/
+import GroundView from './groundView';
+import BarrageView from './barrageView';
+import AirView from './airView';
+import SeaView from './seaView';
+import SupplyView from './supplyView';
+import GeneralView from './generalView';
 import Icons from '../res';
 import getGame from '../selectors/game';
 
@@ -33,12 +31,12 @@ var BattleView = React.createClass({
                     initialPage={this.state.initialPage}                    
                 >
                     <AdminView tabLabel="Admin" />
-                    <View tabLabel="Ground" />
-                    <View tabLabel="Barrage" />
-                    <View tabLabel="Air" />
-                    <View tabLabel="Sea" />
-                    <View tabLabel="Supply" />
-                    <View tabLabel="General" />
+                    <GroundView tabLabel="Ground" />
+                    <BarrageView tabLabel="Barrage" />
+                    <AirView tabLabel="Air" />
+                    <SeaView tabLabel="Sea" />
+                    <SupplyView tabLabel="Supply" />
+                    <GeneralView tabLabel="General" />
                 </ScrollableTabView>
             </View>
         );

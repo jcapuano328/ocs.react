@@ -1,4 +1,3 @@
-
 module.exports = {
     find(d1, d2) {
 		let diff = d1 - d2;

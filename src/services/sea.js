@@ -1,5 +1,3 @@
-'use strict'
-
 let getALT = (terrain) => {
 	let table = [];
 	switch (terrain) {
