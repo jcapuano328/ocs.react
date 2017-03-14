@@ -6,54 +6,22 @@ import Phases from '../services/phases';
 import getGame from '../selectors/game';
 import getPlayers from '../selectors/players';
 
-export const load = () => (dispatch) => {
-    return Current.load()
-    .then((data) => {
-        data = data || {};
-        dispatch({type: types.SET_CURRENT, value: data});
-        return Battles.get(data.battle);
-    })
-    .catch((err) => {
-        console.error(err);
-        toast(err.message || err)(dispatch);
-    });
-}
-
-export const save = () => (dispatch,getState) => {
-    const {current} = getState();
-    return Current.save(current)
-    //.then(() => {
-    //    dispatch({type: types.SET_CURRENT, value: current});
-    //})
-    .catch((err) => {
-        console.error(err);
-        toast(err.message || err)(dispatch);
-    });
-}
-
-export const remove = () => (dispatch) => {
-    return Current.remove()
-    .then(() => {
-        dispatch({type: types.SET_CURRENT, value: {}});
-    })
-    .catch((err) => {
-        console.error(err);
-        toast(err.message || err)(dispatch);
-    });
-}
-
 export const reset = (e) => (dispatch,getState) => {
     const {current} = getState();
     const game = getGame(getState());
     e = e || {id: current.battle, players: game.players};    
-    return Current.reset(e)
-    .then((data) => {
-        dispatch({type: types.SET_CURRENT, value: data});
-    })
-    .catch((err) => {
-        console.error(err);
-        toast(err.message || err)(dispatch);
-    });
+    let data = {
+        battle: e.id,
+        turn: 1,
+        phase: 0,
+        weather: '',
+        initiative: e.players[0].player,
+        player: e.players[0].player,
+        player1: {supply: '', reinforcements: ''},
+        player2: {supply: '', reinforcements: ''}
+    };
+    
+    dispatch({type: types.SET_CURRENT, value: data});
 }
 
 export const prevTurn = () => (dispatch) => {    
