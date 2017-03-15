@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, Text, Picker } from 'react-native';
-import {SpinNumeric,IconButton,Checkbox,SelectList,RadioButtonGroup} from 'react-native-nub';
+import {Style,SpinNumeric,IconButton,Checkbox,SelectList,RadioButtonGroup} from 'react-native-nub';
 import {DiceRoll} from 'react-native-dice';
 import Icons from '../res';
 import Ground from '../services/ground';
@@ -177,6 +177,24 @@ let GroundView = React.createClass({
     render() {
         return (
             <View style={{flex: 1}}>
+                <View style={{flex: 1}}>
+                    <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
+                        <DiceRoll dice={this.dice} values={[this.state.die1,this.state.die2,this.state.die3,this.state.die4,this.state.die5]}
+                            onRoll={this.onDiceRoll}
+                            onDie={this.onDieChanged} />
+                    </View>                    
+                    <View style={{flex: 1, flexDirection: 'row', justifyContent: 'center'}}>
+                        <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
+                            <OddsView odds={Ground.odds(this.state.density)} value={this.state.odds} onChanged={this.onChangeOdds}/>
+                        </View>
+                        <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
+                            <Text style={{fontSize: Style.Font.medium(), fontWeight: 'bold'}}>{this.state.surprise}</Text>
+                        </View>
+                        <View style={{flex: 2, alignItems: 'center', justifyContent: 'center'}}>
+                            <Text style={{fontSize: Style.Font.medium(), fontWeight: 'bold'}}>{this.state.results}</Text>
+                        </View>
+                    </View>
+                </View>                
                 <View style={{flex: 3, flexDirection: 'row'}}>
                     <View style={{flex: 3, alignItems: 'center'}}>
                         <GroundHeader onReset={this.onReset}/>
@@ -198,41 +216,46 @@ let GroundView = React.createClass({
                         </View>
                     </View>
                 </View>
-                <View style={{flex: 1}}>
-                    <View style={{flex: 1, flexDirection: 'row', justifyContent: 'center'}}>
-                        <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
-                            <OddsView odds={Ground.odds(this.state.density)} value={this.state.odds} onChanged={this.onChangeOdds}/>
-                        </View>
-                        <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
-                            <Text style={{fontSize: 16, fontWeight: 'bold'}}>{this.state.surprise}</Text>
-                        </View>
-                        <View style={{flex: 2, alignItems: 'center', justifyContent: 'center'}}>
-                            <Text style={{fontSize: 16, fontWeight: 'bold'}}>{this.state.results}</Text>
-                        </View>
-                    </View>
-                    <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
-                        <DiceRoll dice={this.dice} values={[this.state.die1,this.state.die2,this.state.die3,this.state.die4,this.state.die5]}
-                            onRoll={this.onDiceRoll}
-                            onDie={this.onDieChanged} />
-                    </View>
-                </View>
             </View>
         );
     }
 });
 
 let GroundHeader = React.createClass({
+    getInitialState() {
+        return {
+            x: 0,
+            y: 0,
+            width: 0,
+            height: 0,
+            viewHeight: 100
+        };
+    },
+    onLayout(e) {
+        if (this.state.width != e.nativeEvent.layout.width ||
+            this.state.height != e.nativeEvent.layout.height) {
+            this.setState({
+                x: e.nativeEvent.layout.x,
+                y: e.nativeEvent.layout.y,
+                width: e.nativeEvent.layout.width,
+                height: e.nativeEvent.layout.height
+            });
+        }
+    },        
     render() {
+        let width = this.state.width || 16;
+        let height = this.state.height || 32;
+        
         return (
             <View style={{flex: .75, flexDirection: 'row', alignItems: 'center'}}>
-                <View style={{flex:1, alignItems: 'center', backgroundColor: '#3F51B5', marginLeft: 10, borderRadius:5}}>
-                    <IconButton image={Icons['refresh']} width={16} height={32} resizeMode={'contain'} onPress={this.props.onReset}/>
+                <View style={{flex:1, alignItems: 'center', backgroundColor: '#3F51B5', marginLeft: 10, borderRadius:5}} onLayout={this.onLayout}>
+                    <IconButton image={Icons['refresh']} width={width} height={height} resizeMode={'contain'} onPress={this.props.onReset}/>
                 </View>
                 <View style={{flex:2, alignItems: 'center'}}>
-                    <Text style={{fontSize: 20, fontWeight: 'bold'}}>{'Attack'}</Text>
+                    <Text style={{fontSize: Style.Font.medium(), fontWeight: 'bold'}}>{'Attack'}</Text>
                 </View>
                 <View style={{flex:2, alignItems: 'center'}}>
-                    <Text style={{fontSize: 20, fontWeight: 'bold'}}>{'Defend'}</Text>
+                    <Text style={{fontSize: Style.Font.medium(), fontWeight: 'bold'}}>{'Defend'}</Text>
                 </View>
             </View>
         );
@@ -308,7 +331,7 @@ let OddsView = React.createClass({
     render() {
         return (
             <View style={{flex:1, flexDirection: 'row', marginTop: 15}}>
-                <Text style={{flex: 1, fontSize: 16,fontWeight: 'bold', marginLeft: 5, marginTop: 13}}>Odds</Text>
+                <Text style={{flex: 1, fontSize: Style.Font.smallmedium(),fontWeight: 'bold', marginLeft: 5, marginTop: 13}}>Odds</Text>
                 <Picker style={{flex: 2, marginRight: 25}}
                     selectedValue={this.props.value}
                     onValueChange={this.onChanged}

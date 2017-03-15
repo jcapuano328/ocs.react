@@ -1,12 +1,12 @@
 import React from 'react';
 import { View, Text } from 'react-native';
 import { connect } from 'react-redux';
-import {IconButton} from 'react-native-nub';
+import {Style,IconButton} from 'react-native-nub';
 import {DiceRoll} from 'react-native-dice';
 import Icons from '../res';
 import Initiative from '../services/initiative';
 import getInitiativePlayer from '../selectors/initiativePlayer';
-import {setInitiative,nextInitiative,save} from '../actions/current';
+import {setInitiative,nextInitiative} from '../actions/current';
 
 
 var AdminInitiativeView = React.createClass({
@@ -15,11 +15,28 @@ var AdminInitiativeView = React.createClass({
         {num: 1, low: 1, high: 6, diecolor: 'white', dotcolor: 'black'}
     ],
     getInitialState() {
-        return {            
+        return {
             die1: 1,
-            die2: 1
+            die2: 1,
+            
+            x: 0,
+            y: 0,
+            width: 0,
+            height: 0,
+            viewHeight: 100
         };
     },
+    onLayout(e) {
+        if (this.state.width != e.nativeEvent.layout.width ||
+            this.state.height != e.nativeEvent.layout.height) {
+            this.setState({
+                x: e.nativeEvent.layout.x,
+                y: e.nativeEvent.layout.y,
+                width: e.nativeEvent.layout.width,
+                height: e.nativeEvent.layout.height
+            });
+        }
+    },    
     onDiceRoll(d) {
         this.resolve(d[0].value, d[1].value);
     },
@@ -28,21 +45,21 @@ var AdminInitiativeView = React.createClass({
         this.resolve(this.state.die1, this.state.die2);
     },
     onNextPlayer() {
-        this.props.nextInitiative();
-        this.props.save().done();
+        this.props.nextInitiative();        
     },
     resolve(die1, die2) {
         this.setState({die1:die1,die2:die2});
-        this.props.setInitiative(Initiative.find(die1, die2));
-        this.props.save().done();
+        this.props.setInitiative(Initiative.find(die1, die2));    
     },
     render() {
         let player = this.props.player ? this.props.player : {icon: 'tie'};
+        let iconwidth = /*this.state.width || */80;
+        let iconheight = /*this.state.height || */80;        
         return (
             <View style={{flex: 1,flexDirection: 'row'}}>
-                <Text style={{flex: 1, fontSize: 20, marginLeft: 5, marginVertical: 25}}>Initiative</Text>
+                <Text style={{flex: 1, fontSize: Style.Font.medium(), marginLeft: 5, marginVertical: 25}}>Initiative</Text>
                 <View style={{flex: 2, marginRight: 5}}>
-                <IconButton image={Icons[player.icon.toLowerCase()]} width={80} height={80} resizeMode={'contain'} onPress={this.onNextPlayer}/>
+                    <IconButton image={Icons[player.icon.toLowerCase()]} width={iconwidth} height={iconheight} resizeMode={'contain'} onPress={this.onNextPlayer}/>
                 </View>
                 <View style={{flex: 1, marginRight: 5}}>
                     <DiceRoll dice={this.dice} values={[this.state.die1,this.state.die2]} onRoll={this.onDiceRoll} onDie={this.onDieChanged}/>
@@ -56,7 +73,7 @@ const mapStateToProps = (state) => ({
     player: getInitiativePlayer(state)
 });
 
-const mapDispatchToProps = ({setInitiative,nextInitiative,save});
+const mapDispatchToProps = ({setInitiative,nextInitiative});
 
 module.exports = connect(
   mapStateToProps,

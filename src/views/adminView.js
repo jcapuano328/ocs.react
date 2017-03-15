@@ -6,22 +6,22 @@ import AdminSupplyView from './adminSupplyView';
 import AdminReinforcementsView from './adminReinforcementsView';
 
 var AdminView = React.createClass({
-    render() {
+    render() {        
         return (
-            <ScrollView style={{flex:1}}
-                automaticallyAdjustContentInsets={false}
-                scrollEventThrottle={200}>            
-                <AdminWeatherView />
-                <AdminInitiativeView />
-                <AdminSupplyView />
-                <AdminReinforcementsView />                
-            </ScrollView>
-            /*
-            <ScrollView                
-                automaticallyAdjustContentInsets={false}
-                scrollEventThrottle={200}>
-            </ScrollView>
-            */
+            <View style={{flex:1}}>       
+                <View style={{flex:1}}>
+                    <AdminWeatherView />   
+                </View>
+                <View style={{flex:1}}>
+                    <AdminInitiativeView />
+                </View>
+                <View style={{flex:2}}>
+                    <AdminSupplyView />
+                </View>
+                <View style={{flex:2}}>
+                    <AdminReinforcementsView />
+                </View>
+            </View>
         );
     }
 });

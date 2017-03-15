@@ -2,6 +2,7 @@ import React from 'react';
 import { View } from 'react-native';
 import { connect } from 'react-redux';
 import ScrollableTabView from 'react-native-scrollable-tab-view';
+import {Style} from 'react-native-nub';
 import TurnView from './turnView';
 import AdminView from './adminView';
 import GroundView from './groundView';
@@ -19,15 +20,13 @@ var BattleView = React.createClass({
             initialPage: 0
         };
     },
-    onChangeTab() {
-    },
     render() {        
         return (
-            <View style={{flex: 1,backgroundColor: 'rgba(0,0,0,0.01)'}}>
+            <View style={{flex: 1, marginTop: Style.Scaling.scale(44),backgroundColor: 'rgba(0,0,0,0.01)'}}>            
                 <TurnView logo={Icons[this.props.battle.image]} />
                 <ScrollableTabView
                     style={{backgroundColor: '#fff'}}
-                    onChangeTab={this.onChangeTab}
+                    tabBarTextStyle={{fontSize: Style.Font.medium()}}
                     initialPage={this.state.initialPage}                    
                 >
                     <AdminView tabLabel="Admin" />

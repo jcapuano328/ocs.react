@@ -1,7 +1,5 @@
 import types from '../constants/actionTypes';
 import {toast} from './toast';
-import Current from '../services/current';
-import Battles from '../services/battles';
 import Phases from '../services/phases';
 import getGame from '../selectors/game';
 import getPlayers from '../selectors/players';

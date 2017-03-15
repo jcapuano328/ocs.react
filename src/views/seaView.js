@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, Text } from 'react-native';
-import {SpinNumeric,SelectList,Checkbox} from 'react-native-nub';
+import {Style,SpinNumeric,SelectList,Checkbox} from 'react-native-nub';
 import {DiceRoll} from 'react-native-dice';
 import Sea from '../services/sea';
 import Terrain from '../services/terrain';
@@ -70,7 +70,7 @@ let SeaView = React.createClass({
     render() {
         return (
             <View style={{flex: 1}}>
-                <Text style={{fontSize: 24, fontWeight: 'bold'}}>Amphibious Landing</Text>
+                <Text style={{fontSize: Style.Font.large(), fontWeight: 'bold'}}>Amphibious Landing</Text>
                 <View style={{flex: 1.5, flexDirection: 'row'}}>
                     <View style={{flex: 3}}>
                         <View style={{flex:1, flexDirection: 'row', justifyContent: 'center'}}>
@@ -97,7 +97,7 @@ let SeaView = React.createClass({
                 </View>
                 <View style={{flex: 2, flexDirection: 'row', alignItems: 'flex-start'}}>
                     <View style={{flex: 2, alignItems: 'center', justifyContent: 'flex-start'}}>
-                        <Text style={{marginTop: 35, fontSize: 20, fontWeight: 'bold'}}>{this.state.results}</Text>
+                        <Text style={{marginTop: 35, fontSize: Style.Font.medium(), fontWeight: 'bold'}}>{this.state.results}</Text>
                     </View>
                     <View style={{flex: 1, marginRight: 15}}>
                         <DiceRoll dice={this.dice} values={[this.state.die1,this.state.die2]}

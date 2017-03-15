@@ -2,9 +2,10 @@ import React from 'react';
 import { View, Text } from 'react-native';
 import { connect } from 'react-redux';
 import {DiceRoll} from 'react-native-dice';
+import {Style} from 'react-native-nub';
 import Weather from '../services/weather';
 import getWeather from '../selectors/weather';
-import {setWeather,save} from '../actions/current';
+import {setWeather} from '../actions/current';
 
 var AdminWeatherView = React.createClass({
     getInitialState() {
@@ -34,8 +35,7 @@ var AdminWeatherView = React.createClass({
     },
     resolve(die1, die2, die3, die4) {
         this.setState({die1: die1, die2: die2, die3: die3, die4: die4});
-        this.props.setWeather(Weather.find(this.props.turn, this.props.wx, die1, die2, die3, die4));
-        this.props.save().done();
+        this.props.setWeather(Weather.find(this.props.turn, this.props.wx, die1, die2, die3, die4));        
     },
     render() {
         let wxdice = this.props.wx.dice;
@@ -53,9 +53,13 @@ var AdminWeatherView = React.createClass({
         }
         return (            
             <View style={{flex: 1,flexDirection: 'row'}}>
-                <Text style={{flex: 1, fontSize: 20, marginLeft: 5, marginVertical: 25}}>Weather</Text>
-                <Text style={{flex: 2, fontSize: 28, fontWeight: 'bold', marginVertical: 20}}>{this.props.weather}</Text>
-                <View style={{flex: 1, marginRight: 5}}>
+                <View style={{flex: 1, marginLeft: 5, alignItems:'center'}}>
+                    <Text style={{fontSize: Style.Font.medium()}}>Weather</Text>
+                </View>
+                <View style={{flex: 2, justifyContent:'center', alignItems:'center'}}>
+                    <Text style={{fontSize: Style.Font.large(), fontWeight: 'bold'}}>{this.props.weather}</Text>
+                </View>
+                <View style={{flex: 1}}>
                     <DiceRoll dice={dice} values={[this.state.die1,this.state.die2,this.state.die3,this.state.die4]}
                         onRoll={this.onDiceRoll} onDie={this.onDieChanged}/>
                 </View>
@@ -70,7 +74,7 @@ const mapStateToProps = (state) => ({
     weather: state.current.weather
 });
 
-const mapDispatchToProps = ({setWeather,save});
+const mapDispatchToProps = ({setWeather});
 
 module.exports = connect(
   mapStateToProps,

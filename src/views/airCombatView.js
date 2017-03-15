@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, Text } from 'react-native';
-import {SpinNumeric} from 'react-native-nub';
+import {Style,SpinNumeric} from 'react-native-nub';
 import {DiceRoll} from 'react-native-dice';
 import Air from '../services/air';
 
@@ -66,7 +66,7 @@ let AirCombatView = React.createClass({
                 </View>
                 <View style={{flex: 4, flexDirection: 'row', alignItems: 'flex-start'}}>
                     <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
-                        <Text style={{marginTop: 35, fontSize: 20, fontWeight: 'bold'}}>{this.state.results}</Text>
+                        <Text style={{marginTop: 35, fontSize: Style.Font.medium(), fontWeight: 'bold'}}>{this.state.results}</Text>
                     </View>
                     <View style={{flex: 2, marginRight: 15}}>
                     <DiceRoll dice={this.dice} values={[this.state.die1,this.state.die2,this.state.die3]}
