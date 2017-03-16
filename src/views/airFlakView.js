@@ -69,7 +69,17 @@ let AirFlakView = React.createClass({
     render() {
         return (
             <View style={{flex: 1}}>
-                <View style={{flex: 1, flexDirection: 'row'}}>
+                <View style={{flex: 1, flexDirection: 'row', alignItems: 'flex-start'}}>
+                    <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
+                        <Text style={{marginTop: 35, fontSize: Style.Font.medium(), fontWeight: 'bold'}}>{this.state.results}</Text>
+                    </View>
+                    <View style={{flex: 1, marginRight: 5}}>
+                    <DiceRoll dice={this.dice} values={[this.state.die1,this.state.die2,this.state.die3]}
+                        onRoll={this.onDiceRoll}
+                        onDie={this.onDieChanged} />
+                    </View>
+                </View>                
+                <View style={{flex: 4, flexDirection: 'row'}}>
                     <View style={{flex: 0.5}}>
                         <View style={{flex:1, justifyContent: 'center'}}>
                             <Text style={{marginLeft: 10}}>Mission Size</Text>
@@ -98,23 +108,12 @@ let AirFlakView = React.createClass({
                             <SelectDropdown values={Air.zones} value={this.state.patrol} onSelected={this.onChangePatrol} />
                         </View>
                     </View>
-                    <View style={{flex: 1}}>
-                        <View style={{flex:1, justifyContent: 'flex-start', marginTop: 20}}>
-                            <Checkbox label={'HQ'} selected={this.state.hq} onSelected={this.onChangeHQ}/>
-                            <Checkbox label={'Trainbusting in PZ'} selected={this.state.trainbusting} onSelected={this.onChangeTrainbusting}/>
-                        </View>
+                    <View style={{flex:1, justifyContent: 'center', backgroundColor:'pink'}}>                        
+                        <Checkbox label={'HQ'} selected={this.state.hq} onSelected={this.onChangeHQ}/>
+                        <Checkbox label={'Trainbusting in PZ'} selected={this.state.trainbusting} onSelected={this.onChangeTrainbusting}/>
                     </View>
                 </View>
-                <View style={{flex: 1, flexDirection: 'row', alignItems: 'flex-start'}}>
-                    <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
-                        <Text style={{marginTop: 35, fontSize: Style.Font.medium(), fontWeight: 'bold'}}>{this.state.results}</Text>
-                    </View>
-                    <View style={{flex: 2, marginRight: 15}}>
-                    <DiceRoll dice={this.dice} values={[this.state.die1,this.state.die2,this.state.die3]}
-                        onRoll={this.onDiceRoll}
-                        onDie={this.onDieChanged} />
-                    </View>
-                </View>
+                <View style={{flex:3}} />
             </View>
         );
     }

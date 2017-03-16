@@ -178,10 +178,13 @@ let GroundView = React.createClass({
         return (
             <View style={{flex: 1}}>
                 <View style={{flex: 1}}>
-                    <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
-                        <DiceRoll dice={this.dice} values={[this.state.die1,this.state.die2,this.state.die3,this.state.die4,this.state.die5]}
-                            onRoll={this.onDiceRoll}
-                            onDie={this.onDieChanged} />
+                    <View style={{flex: 1, flexDirection:'row', alignItems: 'center', justifyContent: 'center'}}>
+                        <View style={{flex:1}}/>
+                        <View style={{flex:3, marginRight: 5}}>
+                            <DiceRoll dice={this.dice} values={[this.state.die1,this.state.die2,this.state.die3,this.state.die4,this.state.die5]}
+                                onRoll={this.onDiceRoll}
+                                onDie={this.onDieChanged} />
+                        </View>
                     </View>                    
                     <View style={{flex: 1, flexDirection: 'row', justifyContent: 'center'}}>
                         <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
@@ -195,7 +198,7 @@ let GroundView = React.createClass({
                         </View>
                     </View>
                 </View>                
-                <View style={{flex: 3, flexDirection: 'row'}}>
+                <View style={{flex: 4, flexDirection: 'row'}}>
                     <View style={{flex: 3, alignItems: 'center'}}>
                         <GroundHeader onReset={this.onReset}/>
                         <GroundInput label={'Armor'} attack={this.state.attackArmor} defend={this.state.defendArmor} onChangeAttack={this.onChangeAttackArmor} onChangeDefend={this.onChangeDefendArmor} />

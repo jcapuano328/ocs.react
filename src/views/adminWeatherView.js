@@ -51,18 +51,19 @@ var AdminWeatherView = React.createClass({
         if (wxdice.number > 3) {
             dice.push({num: 1, low: 1, high: wxdice.sides, color: 'green', dotcolor:'white'});
         }
+        
         return (            
-            <View style={{flex: 1,flexDirection: 'row'}}>
-                <View style={{flex: 1, marginLeft: 5, alignItems:'center'}}>
-                    <Text style={{fontSize: Style.Font.medium()}}>Weather</Text>
+            <View style={{flex: 1, paddingTop: 4}}>
+                <View style={{flex: 1, flexDirection: 'row'}}>
+                    <View style={{flex: 3, justifyContent:'center', alignItems:'center'}}>
+                        <Text style={{fontSize: Style.Font.medium(), fontWeight: 'bold'}}>{this.props.weather}</Text>
+                    </View>                
+                    <View style={{flex: 2}}>
+                        <DiceRoll dice={dice} values={[this.state.die1,this.state.die2,this.state.die3,this.state.die4]}
+                            onRoll={this.onDiceRoll} onDie={this.onDieChanged}/>
+                    </View>                
                 </View>
-                <View style={{flex: 2, justifyContent:'center', alignItems:'center'}}>
-                    <Text style={{fontSize: Style.Font.large(), fontWeight: 'bold'}}>{this.props.weather}</Text>
-                </View>
-                <View style={{flex: 1}}>
-                    <DiceRoll dice={dice} values={[this.state.die1,this.state.die2,this.state.die3,this.state.die4]}
-                        onRoll={this.onDiceRoll} onDie={this.onDieChanged}/>
-                </View>
+                <View style={{flex: 7}}/>
             </View>
         );
     }

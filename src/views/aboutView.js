@@ -1,14 +1,15 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import moment from 'moment';
 import {About} from 'react-native-nub';
 import {logo} from '../res';
 
-const AboutView = (props) => {
+const AboutView = (props) => {    
     return (
         <About logo={logo}
             title={'About OCS Assistant'}
             version={props.version}
-            releasedate={props.releasedate}
+            releasedate={moment(props.releasedate).format("MMMM Do YYYY, h:mm:ss a")}
             description={'An assistant for the Operational Combat Series games from Multi-Man Publishing.'}
             dependencies={[
                 {description: 'react-redux', url: 'https://github.com/reactjs/react-redux'},

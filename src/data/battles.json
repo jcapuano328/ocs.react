@@ -2,7 +2,7 @@
 	{
 	    "id": 8,
 	    "name": "Guderian's Blitzkrieg",
-	    "desc": "The Campaign in Central Russia, Oct 1 1943 to May 30 1943",
+	    "desc": "The Campaign in Central Russia, Oct 1 1941 to May 30 1943",
 	    "image": "guderiansblitzkrieg",
 	    "startDate": "1941-10-01T12:00:00Z",
 	    "turns": "178",

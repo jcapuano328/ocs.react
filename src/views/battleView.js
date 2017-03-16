@@ -17,7 +17,7 @@ import getGame from '../selectors/game';
 var BattleView = React.createClass({
     getInitialState() {
         return {
-            initialPage: 0
+            initialPage: 3
         };
     },
     render() {        

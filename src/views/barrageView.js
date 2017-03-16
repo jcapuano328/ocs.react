@@ -92,19 +92,17 @@ let BarrageView = React.createClass({
     render() {
         return (
             <View style={{flex: 1}}>
-                <View style={{flex: 1}}>
-                    <View style={{flex: 1, flexDirection: 'row', alignItems: 'flex-start'}}>
-                        <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
-                            <Text style={{marginTop: 35, fontSize: Style.Font.medium(), fontWeight: 'bold'}}>{this.state.results}</Text>
-                        </View>
-                        <View style={{flex: 2, marginRight: 15}}>
-                            <DiceRoll dice={this.dice} values={[this.state.die1,this.state.die2,this.state.die3]}
-                                onRoll={this.onDiceRoll}
-                                onDie={this.onDieChanged} />
-                        </View>
+                <View style={{flex: 1, flexDirection: 'row', alignItems: 'center'}}>
+                    <View style={{flex: 1}}>
+                        <Text style={{fontSize: Style.Font.medium(), fontWeight: 'bold', alignSelf:'center'}}>{this.state.results}</Text>
                     </View>
-                </View>                
-                <View style={{flex: 3, flexDirection: 'row'}}>
+                    <View style={{flex: 1, marginRight: 5}}>
+                        <DiceRoll dice={this.dice} values={[this.state.die1,this.state.die2,this.state.die3]}
+                            onRoll={this.onDiceRoll}
+                            onDie={this.onDieChanged} />
+                    </View>
+                </View>
+                <View style={{flex: 5, flexDirection: 'row'}}>
                     <View style={{flex: 2}}>
                         <View style={{flex:1, justifyContent: 'center'}}>
                             <SelectDropdown label={'Type'} values={Barrage.types} value={this.state.type} onSelected={this.onChangeType} />
@@ -130,8 +128,9 @@ let BarrageView = React.createClass({
                     </View>
                     <View style={{flex: 1, alignItems: 'flex-start'}}>
                         <SelectList title={'Terrain'} items={Terrain.inside().map((t) => t.desc)} selected={this.state.terrain} onChanged={this.onChangeTerrain}/>
-                    </View>
+                    </View>                    
                 </View>
+                <View style={{flex: 2}}/>
             </View>
         );
     }

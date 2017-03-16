@@ -34,14 +34,14 @@ const nextPlayer = (p,l) => {
 
 module.exports = (state = defaultState, action) => {
     switch (action.type) {
-    case REHYDRATE:
+    case REHYDRATE:        
         if (action.payload.current) {
             return {
                 ...state,
                 ...action.payload.current
             };        	
         }
-        return state;
+        return {...state};
         
     case types.SET_CURRENT:
         return {

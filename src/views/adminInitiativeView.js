@@ -53,17 +53,19 @@ var AdminInitiativeView = React.createClass({
     },
     render() {
         let player = this.props.player ? this.props.player : {icon: 'tie'};
-        let iconwidth = /*this.state.width || */80;
-        let iconheight = /*this.state.height || */80;        
+        let iconwidth = /*this.state.width || */88;
+        let iconheight = /*this.state.height || */82;        
         return (
-            <View style={{flex: 1,flexDirection: 'row'}}>
-                <Text style={{flex: 1, fontSize: Style.Font.medium(), marginLeft: 5, marginVertical: 25}}>Initiative</Text>
-                <View style={{flex: 2, marginRight: 5}}>
-                    <IconButton image={Icons[player.icon.toLowerCase()]} width={iconwidth} height={iconheight} resizeMode={'contain'} onPress={this.onNextPlayer}/>
+            <View style={{flex: 1, paddingTop: 4}}>
+                <View style={{flex: 1,flexDirection: 'row'}}>
+                    <View style={{flex: 3, justifyContent:'center', alignItems:'center'}}>
+                        <IconButton image={Icons[player.icon.toLowerCase()]} width={iconwidth} height={iconheight} resizeMode={'contain'} onPress={this.onNextPlayer}/>
+                    </View>
+                    <View style={{flex: 2, marginRight: 5}}>
+                        <DiceRoll dice={this.dice} values={[this.state.die1,this.state.die2]} onRoll={this.onDiceRoll} onDie={this.onDieChanged}/>
+                    </View>
                 </View>
-                <View style={{flex: 1, marginRight: 5}}>
-                    <DiceRoll dice={this.dice} values={[this.state.die1,this.state.die2]} onRoll={this.onDiceRoll} onDie={this.onDieChanged}/>
-                </View>
+                <View style={{flex: 7}}/>
             </View>
         );        
     }
