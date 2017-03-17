@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, Text } from 'react-native';
-import {Style,Checkbox,SelectDropdown,RadioButtonGroup} from 'react-native-nub';
+import {Style,RadioButtonGroup,MultiSelectList/*,SelectDropdown,Checkbox*/} from 'react-native-nub';
 import {DiceRoll} from 'react-native-dice';
 import Air from '../services/air';
 
@@ -43,34 +43,36 @@ let AirBaseCaptureView = React.createClass({
     render() {
         return (
             <View style={{flex: 1}}>
-                <View style={{flex: 1, flexDirection: 'row'}}>
-                    <View style={{flex: .5}}>
-                        <View style={{flex:1, justifyContent: 'center'}}>
-                            <Text style={{marginLeft: 10}}>State</Text>
-                        </View>
+                <View style={{flex: 1, flexDirection: 'row', justifyContent:'center', alignItems: 'center', paddingTop: 4}}>
+                    <View style={{flex: 3, alignItems: 'center', justifyContent: 'center'}}>
+                        <Text style={{fontSize: Style.Font.medium(), fontWeight: 'bold', alignSelf:'center'}}>{this.state.results}</Text>
                     </View>
-                    <View style={{flex: 1}}>
-                        <View style={{flex:1, justifyContent: 'center', alignItems: 'flex-start'}}>
-                            <RadioButtonGroup buttons={[{label: 'Active', value: 0}, {label: 'Inactive', value: 1}]} state={this.state.state}
-                                onSelected={this.onChangeState} />
-                        </View>
-                    </View>
-                    <View style={{flex: 2}}>
-                        <View style={{flex:1, justifyContent: 'center', marginLeft: 20}}>
-                            <Checkbox label={'Advance after Combat'} selected={this.state.advance} onSelected={this.onChangeAdvance}/>
-                        </View>
-                    </View>
-                </View>
-                <View style={{flex: 4, flexDirection: 'row', alignItems: 'flex-start'}}>
-                    <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
-                        <Text style={{marginTop: 35, fontSize: Style.Font.medium(), fontWeight: 'bold'}}>{this.state.results}</Text>
-                    </View>
-                    <View style={{flex: 2, marginRight: 15}}>
-                    <DiceRoll dice={this.dice} values={[this.state.die1,this.state.die2]}
+                    <View style={{flex: 2, marginRight: 5}}>
+                    <DiceRoll dice={this.dice} values={[this.state.die1,this.state.die2,this.state.die3]}
                         onRoll={this.onDiceRoll}
                         onDie={this.onDieChanged} />
                     </View>
+                </View>                
+                
+                <View style={{flex: 1, flexDirection: 'row'}}>
+                    <View style={{flex: .5, justifyContent: 'center'}}>
+                        <Text style={{fontSize: Style.Font.medium(), marginLeft: 10}}>State</Text>
+                    </View>
+                    <View style={{flex: 1, justifyContent: 'center', alignItems: 'flex-start'}}>                        
+                        <RadioButtonGroup buttons={[{label: 'Active', value: 0}, {label: 'Inactive', value: 1}]} state={this.state.state}
+                            onSelected={this.onChangeState} />
+                    </View>
+                    <View style={{flex: 1, paddingTop: 25}}>                        
+                        <MultiSelectList 
+                            items={[{name: 'Advance after Combat', selected: this.state.advance}]}
+                            onChanged={(m) => {
+                                if (m.name == 'Advance after Combat') {this.onChangeAdvance(m.selected);}                                
+                            }}
+                        />
+                        {/*<Checkbox label={'Advance after Combat'} selected={this.state.advance} onSelected={this.onChangeAdvance}/>*/}
+                    </View>
                 </View>
+                <View style={{flex:6}} />
             </View>
         );
         //<SelectDropdown values={Air.states} value={this.state.state} onSelected={this.onChangeState} />

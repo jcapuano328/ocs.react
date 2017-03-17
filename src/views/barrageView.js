@@ -92,7 +92,7 @@ let BarrageView = React.createClass({
     render() {
         return (
             <View style={{flex: 1}}>
-                <View style={{flex: 1, flexDirection: 'row', alignItems: 'center'}}>
+                <View style={{flex: 1, flexDirection: 'row', alignItems: 'center', paddingTop: 4}}>
                     <View style={{flex: 1}}>
                         <Text style={{fontSize: Style.Font.medium(), fontWeight: 'bold', alignSelf:'center'}}>{this.state.results}</Text>
                     </View>

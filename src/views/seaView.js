@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, Text } from 'react-native';
-import {Style,SpinNumeric,SelectList,Checkbox} from 'react-native-nub';
+import {Style,SpinNumeric,SelectList,MultiSelectList/*,Checkbox*/} from 'react-native-nub';
 import {DiceRoll} from 'react-native-dice';
 import Sea from '../services/sea';
 import Terrain from '../services/terrain';
@@ -69,42 +69,62 @@ let SeaView = React.createClass({
     },
     render() {
         return (
-            <View style={{flex: 1}}>
-                <Text style={{fontSize: Style.Font.large(), fontWeight: 'bold'}}>Amphibious Landing</Text>
-                <View style={{flex: 1.5, flexDirection: 'row'}}>
+            <View style={{flex: 1, paddingTop: 4}}>
+                <View style={{flex:.5, marginLeft:10}}>
+                    <Text style={{fontSize: Style.Font.mediumlarge(), fontWeight: 'bold'}}>Amphibious Landing</Text>
+                </View>
+                <View style={{flex: 1, flexDirection: 'row', justifyContent:'center', alignItems: 'center'}}>
+                    <View style={{flex: 3, alignItems: 'center', justifyContent: 'center'}}>
+                        <Text style={{fontSize: Style.Font.medium(), fontWeight: 'bold', alignSelf:'center'}}>{this.state.results}</Text>
+                    </View>
+                    <View style={{flex: 2, marginRight: 5}}>
+                    <DiceRoll dice={this.dice} values={[this.state.die1,this.state.die2,this.state.die3]}
+                        onRoll={this.onDiceRoll}
+                        onDie={this.onDieChanged} />
+                    </View>
+                </View>                                                
+                <View style={{flex: 3, flexDirection: 'row', marginLeft:10}}>
                     <View style={{flex: 3}}>
                         <View style={{flex:1, flexDirection: 'row', justifyContent: 'center'}}>
                             <View style={{flex:1, justifyContent: 'center'}}>
-                                <Text style={{marginLeft: 10}}>Coastal Arty</Text>
+                                <Text style={{fontSize: Style.Font.medium()}}>Coastal Arty</Text>
                             </View>
                             <View style={{flex:2, justifyContent: 'center'}}>
                                 <SpinNumeric value={this.state.coastalarty} min={0} max={20} onChanged={this.onChangeCoastalArty} />
                             </View>
                         </View>
                         <View style={{flex:5, justifyContent: 'center'}}>
+                            <MultiSelectList 
+                                items={[{name: 'Naval Support', selected: this.state.ship},
+                                        {name: 'Non-DG Unit Adjacent', selected: this.state.nondgadj},
+                                        {name: 'DG Unit Adjacent', selected: this.state.dgadj},
+                                        {name: 'In Enemy ZOC', selected: this.state.zoc},
+                                        {name: 'All Commando/Marine/SP', selected: this.state.elite}]}
+                                onChanged={(m) => {
+                                    if (m.name == 'Naval Support') {this.onChangeShip(m.selected);}
+                                    else if (m.name == 'Non-DG Unit Adjacent') {this.onChangeNonDGAdj(m.selected);}
+                                    else if (m.name == 'DG Unit Adjacent') {this.onChangeDGAdj(m.selected);}
+                                    else if (m.name == 'In Enemy ZOC') {this.onChangeZOC(m.selected);}
+                                    else if (m.name == 'All Commando/Marine/SP') {this.onChangeElite(m.selected);}                                    
+                                }}
+                            />                        
+                            
+                            {/*
                             <View style={{flex:1, justifyContent: 'flex-start', marginLeft: 20}}>
                                 <Checkbox label={'Naval Support'} selected={this.state.ship} onSelected={this.onChangeShip}/>
                                 <Checkbox label={'Non-DG Unit Adjacent'} selected={this.state.nondgadj} onSelected={this.onChangeNonDGAdj}/>
                                 <Checkbox label={'DG Unit Adjacent'} selected={this.state.dgadj} onSelected={this.onChangeDGAdj}/>
                                 <Checkbox label={'In Enemy ZOC'} selected={this.state.zoc} onSelected={this.onChangeZOC}/>
-                                <Checkbox label={'All Commando/Marine/SP'} selected={this.state.elite} onSelected={this.onChangeElite}/>
+                                <Checkbox label={'All Commando/Marine/SP'} selected={this.state.elite} onSelected={this.onChangeElite}/>                                
                             </View>
+                            */}
                         </View>
                     </View>
                     <View style={{flex: 2}}>
-                        <SelectList title={'Terrain'} items={Sea.terrains} selected={this.state.terrain} onChanged={this.onChangeTerrain}/>
+                        <SelectList title={'Terrain'} titleonly={true} items={Sea.terrains} selected={this.state.terrain} onChanged={this.onChangeTerrain}/>
                     </View>
                 </View>
-                <View style={{flex: 2, flexDirection: 'row', alignItems: 'flex-start'}}>
-                    <View style={{flex: 2, alignItems: 'center', justifyContent: 'flex-start'}}>
-                        <Text style={{marginTop: 35, fontSize: Style.Font.medium(), fontWeight: 'bold'}}>{this.state.results}</Text>
-                    </View>
-                    <View style={{flex: 1, marginRight: 15}}>
-                        <DiceRoll dice={this.dice} values={[this.state.die1,this.state.die2]}
-                            onRoll={this.onDiceRoll}
-                            onDie={this.onDieChanged} />
-                    </View>
-                </View>
+                <View style={{flex:4}} />
             </View>
         );
     }

@@ -170,6 +170,68 @@ let findResults = (odds,density,dice,drm,shift) => {
 	return resultsTable[index][dice-1];
 }
 
+let oddsIndex = (odds) => {
+	switch(odds)
+	{
+		case '1:5':
+		return 0;
+		case '1:4':
+		return 1;
+		case '1:3':
+		return 2;
+		case '1:2':
+		return 3;
+		case '1:1':
+		return 4;
+		case '2:1':
+		return 5;
+		case '3:1':
+		return 6;
+		case '4:1':
+		return 7;
+		case '5:1':
+		return 8;
+		case '6:1':
+		return 9;
+		case '7:1':
+		return 10;
+		case '8:1':
+		return 11;	
+		case '9:1':
+		return 12;
+		case '10:1':
+		return 13;		
+		case '11:1':
+		return 14;
+		case '12:1':				
+		return 15;
+		case '13:1':
+		return 16;
+		case '15:1':
+		return 17;
+		case '16:1':
+		return 18;		
+		case '18:1':
+		return 19;
+		case '20:1':
+		return 20;		
+		case '21:1':
+		return 21;
+		case '24:1':
+		return 22;
+		case '28:1':
+		return 23;
+		case '36:1':
+		return 24;
+		case '44:1':
+		return 25;
+		case '52:1':
+		return 26;		
+		default:
+		return 0;
+	}
+}
+
 module.exports = {
 	odds(density) {
     	return oddsTable[density] || [];
@@ -193,5 +255,47 @@ module.exports = {
 			surprise: sur.side,
 			results: results
 		};
+	},
+	resolvePossible(attackAR,defendAR,defendHH,combatMode,die1,die2,die3,die4,die5) {		
+		let drm = attackAR - defendAR - defendHH;
+		let sur = surprise(die4 + die5, die3, drm, combatMode);
+		let dice = die1 + die2 + drm;		
+		if (dice < 1) {
+			dice = 1;
+		} else if (dice > 15) {
+			dice = 15;
+		}		
+
+		let results = [];
+		Object.keys(oddsTable).forEach((density, di) => {
+			oddsTable[density].forEach((odds) => {				
+				let index = oddsTable[density].findIndex((o) => o == odds);
+				if (index < 0) {
+					index = 0;
+				}				
+				results.push({terrain: density, odds: odds, results: resultsTable[index][dice-1]});
+			})			
+		});		
+		/* transform this:
+			{terrain: '', odds: '', results: ''}
+		into this:
+			{odds: '', open: '', close: '', veryclose: '', extremelyclose: ''}
+		*/
+		return results.map((v) => v.odds).filter((v,i,a) => i == a.indexOf(v)).sort((l,r) => {
+			l = oddsIndex(l);
+			r = oddsIndex(r);
+			if (l < r) {return -1;}
+			else if (l > r) {return 1;}
+			return 0;
+		}).map((o) => {
+			let odds = o;
+			return {
+				odds: odds,
+				open: (results.find((r) => r.odds == odds && r.terrain == 'open')||{results: ''}).results,
+				close: (results.find((r) => r.odds == odds && r.terrain == 'close')||{results: ''}).results,
+				veryclose: (results.find((r) => r.odds == odds && r.terrain == 'veryclose')||{results: ''}).results,
+				extremelyclose: (results.find((r) => r.odds == odds && r.terrain == 'extremelyclose')||{results: ''}).results
+			};
+		});
 	}
 };

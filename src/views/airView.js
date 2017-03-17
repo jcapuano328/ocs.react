@@ -10,7 +10,7 @@ import AirBaseCaptureView from './airBaseCaptureView';
 var AirView = React.createClass({
     getInitialState() {
         return {
-            page: 1
+            page: 0
         };
     },
     componentDidMount() {

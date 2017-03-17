@@ -45,53 +45,52 @@ let SupplyDestructionView = React.createClass({
     render() {
         return (
             <View style={{flex: 1}}>
-                <View style={{flex: 1}}>
-                    <View style={{flex: 1, flexDirection: 'row', justifyContent: 'center', alignItems: 'center'}}>
-                        <View style={{flex:1}}/>
-                        <View style={{flex:1, alignItems: 'center'}}>
-                            <Text>Supply</Text>
-                        </View>
-                        <View style={{flex:1, alignItems: 'center'}}>
-                            <Text>Tokens</Text>
-                        </View>
-                        <View style={{flex:1}} />
-                    </View>
-                    <View style={{flex: 1, flexDirection: 'row', alignItems: 'center'}}>
-                        <View style={{flex:1}}>
-                            <Text style={{marginLeft: 10}}>Start</Text>
-                        </View>
-                        <View style={{flex:1}}>
-                            <SpinNumeric value={this.state.sp} min={0} max={100} onChanged={this.onChangeSP} />
-                        </View>
-                        <View style={{flex:1}}>
-                            <SpinNumeric value={this.state.token} min={0} max={3} onChanged={this.onChangeToken} />
-                        </View>
-                        <View style={{flex:1}} />
-                    </View>
-                    <View style={{flex: 1, flexDirection: 'row', alignItems: 'center'}}>
-                        <View style={{flex:1}}>
-                            <Text style={{marginLeft: 10}}>Remaining</Text>
-                        </View>
-                        <View style={{flex:1, alignItems: 'center'}}>
-                            <Text>{this.state.remainingsp}</Text>
-                        </View>
-                        <View style={{flex:1, alignItems: 'center'}}>
-                            <Text>{this.state.remainingtoken}</Text>
-                        </View>
-                        <View style={{flex:1}} />
-                    </View>
-                </View>
-
-                <View style={{flex: 3, flexDirection: 'row', alignItems: 'flex-start'}}>
+                <View style={{flex: 1, flexDirection: 'row', justifyContent:'center', alignItems: 'center', paddingTop: 4}}>
                     <View style={{flex: 3, alignItems: 'center', justifyContent: 'center'}}>
-                        <Text style={{marginTop: 35, fontSize: Style.Font.medium(), fontWeight: 'bold'}}>{this.state.results}</Text>
+                        <Text style={{fontSize: Style.Font.medium(), fontWeight: 'bold', alignSelf:'center'}}>{this.state.results}</Text>
                     </View>
-                    <View style={{flex: 2, marginRight: 15}}>
+                    <View style={{flex: 1, marginRight: 5}}>
                     <DiceRoll dice={this.dice} values={[this.state.die1]}
                         onRoll={this.onDiceRoll}
                         onDie={this.onDieChanged} />
                     </View>
+                </View>                                
+                
+                <View style={{flex: 1, flexDirection: 'row', justifyContent: 'center', alignItems: 'center'}}>
+                    <View style={{flex:1}}/>
+                    <View style={{flex:1, alignItems: 'center'}}>
+                        <Text style={{fontSize: Style.Font.medium()}}>Supply</Text>
+                    </View>
+                    <View style={{flex:1, alignItems: 'center'}}>
+                        <Text style={{fontSize: Style.Font.medium()}}>Tokens</Text>
+                    </View>
+                    <View style={{flex:1}} />
                 </View>
+                <View style={{flex: 1, flexDirection: 'row', alignItems: 'center'}}>
+                    <View style={{flex:1}}>
+                        <Text style={{fontSize: Style.Font.medium(), marginLeft: 10}}>Start</Text>
+                    </View>
+                    <View style={{flex:1}}>
+                        <SpinNumeric value={this.state.sp} min={0} max={100} onChanged={this.onChangeSP} />
+                    </View>
+                    <View style={{flex:1}}>
+                        <SpinNumeric value={this.state.token} min={0} max={3} onChanged={this.onChangeToken} />
+                    </View>
+                    <View style={{flex:1}} />
+                </View>
+                <View style={{flex: 1, flexDirection: 'row', alignItems: 'center'}}>
+                    <View style={{flex:1}}>
+                        <Text style={{fontSize: Style.Font.medium(), marginLeft: 10}}>Remaining</Text>
+                    </View>
+                    <View style={{flex:1, alignItems: 'center'}}>
+                        <Text style={{fontSize: Style.Font.medium(), fontWeight: 'bold'}}>{this.state.remainingsp}</Text>
+                    </View>
+                    <View style={{flex:1, alignItems: 'center'}}>
+                        <Text style={{fontSize: Style.Font.medium(), fontWeight: 'bold'}}>{this.state.remainingtoken}</Text>
+                    </View>
+                    <View style={{flex:1}} />
+                </View>
+                <View style={{flex:5}} />
             </View>
         );
     }

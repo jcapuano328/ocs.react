@@ -46,7 +46,7 @@ let AirCombatView = React.createClass({
     render() {
         return (
             <View style={{flex: 1}}>
-                <View style={{flex: 1, flexDirection: 'row', justifyContent:'center', alignItems: 'center'}}>
+                <View style={{flex: 1, flexDirection: 'row', justifyContent:'center', alignItems: 'center', paddingTop: 4}}>
                     <View style={{flex: 1}}>
                         <Text style={{fontSize: Style.Font.medium(), fontWeight: 'bold', alignSelf:'center'}}>{this.state.results}</Text>
                     </View>
@@ -60,7 +60,7 @@ let AirCombatView = React.createClass({
                     <View style={{flex: 1, flexDirection: 'row', alignItems: 'center'}}>
                         <View style={{flex: 1}}/>
                         <View style={{flex:1}}>
-                            <Text style={{marginLeft: 10}}>Attacker</Text>
+                            <Text style={{fontSize: Style.Font.medium(), marginLeft: 10}}>Attacker</Text>
                         </View>
                         <View style={{flex:2}}>
                             <SpinNumeric value={this.state.attack} min={0} max={10} onChanged={this.onChangeAttack} />
@@ -70,7 +70,7 @@ let AirCombatView = React.createClass({
                     <View style={{flex: 1, flexDirection: 'row', alignItems: 'center'}}>
                         <View style={{flex: 1}}/>
                         <View style={{flex:1, justifyContent: 'center'}}>
-                            <Text style={{marginLeft: 10}}>Defender</Text>
+                            <Text style={{fontSize: Style.Font.medium(), marginLeft: 10}}>Defender</Text>
                         </View>
                         <View style={{flex:2, justifyContent: 'center'}}>
                             <SpinNumeric value={this.state.defend} min={0} max={10} onChanged={this.onChangeDefend} />

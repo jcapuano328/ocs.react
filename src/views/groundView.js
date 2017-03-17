@@ -2,6 +2,7 @@ import React from 'react';
 import { View, Text, Picker } from 'react-native';
 import {Style,SpinNumeric,IconButton,Checkbox,SelectList,RadioButtonGroup} from 'react-native-nub';
 import {DiceRoll} from 'react-native-dice';
+import GroundResultsView from './groundResultsView';
 import Icons from '../res';
 import Ground from '../services/ground';
 import Terrain from '../services/terrain';
@@ -177,29 +178,39 @@ let GroundView = React.createClass({
     render() {
         return (
             <View style={{flex: 1}}>
-                <View style={{flex: 1}}>
-                    <View style={{flex: 1, flexDirection:'row', alignItems: 'center', justifyContent: 'center'}}>
-                        <View style={{flex:1}}/>
-                        <View style={{flex:3, marginRight: 5}}>
-                            <DiceRoll dice={this.dice} values={[this.state.die1,this.state.die2,this.state.die3,this.state.die4,this.state.die5]}
-                                onRoll={this.onDiceRoll}
-                                onDie={this.onDieChanged} />
-                        </View>
-                    </View>                    
-                    <View style={{flex: 1, flexDirection: 'row', justifyContent: 'center'}}>
-                        <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
-                            <OddsView odds={Ground.odds(this.state.density)} value={this.state.odds} onChanged={this.onChangeOdds}/>
-                        </View>
-                        <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
-                            <Text style={{fontSize: Style.Font.medium(), fontWeight: 'bold'}}>{this.state.surprise}</Text>
-                        </View>
-                        <View style={{flex: 2, alignItems: 'center', justifyContent: 'center'}}>
-                            <Text style={{fontSize: Style.Font.medium(), fontWeight: 'bold'}}>{this.state.results}</Text>
-                        </View>
+                <View style={{flex: 1, flexDirection:'row', alignItems: 'center', justifyContent: 'center', paddingTop: 4}}>
+                    <View style={{flex:1}}/>
+                    <View style={{flex:3, marginRight: 5}}>
+                        <DiceRoll dice={this.dice} values={[this.state.die1,this.state.die2,this.state.die3,this.state.die4,this.state.die5]}
+                            onRoll={this.onDiceRoll}
+                            onDie={this.onDieChanged} />
                     </View>
-                </View>                
-                <View style={{flex: 4, flexDirection: 'row'}}>
+                </View>                    
+                <View style={{flex: 3, flexDirection: 'row', justifyContent: 'center'}}>
+                    <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
+                        <OddsView odds={Ground.odds(this.state.density)} value={this.state.odds} onChanged={this.onChangeOdds}/>
+                        <GroundType value={this.state.combatMode} onChanged={this.onChangeMode} />
+                    </View>
+                    <View style={{flex: 3}}>                        
+                        <GroundResultsView odds={this.state.odds} terrain={Terrain.find(this.state.terrain).density}
+                            results={Ground.resolvePossible(
+                                +this.state.attackAR,+this.state.defendAR,+this.state.defendHH,this.state.combatMode,
+                                this.state.die1,this.state.die2,this.state.die3,this.state.die4,this.state.die5)} 
+                        />
+                    </View>
+                    {/*
+                    <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
+                        <Text style={{fontSize: Style.Font.medium(), fontWeight: 'bold'}}>{this.state.surprise}</Text>
+                    </View>
+                    <View style={{flex: 2, alignItems: 'center', justifyContent: 'center'}}>
+                        <Text style={{fontSize: Style.Font.medium(), fontWeight: 'bold'}}>{this.state.results}</Text>
+                    </View>
+                    */}
+                </View>
+                
+                <View style={{flex: 5, flexDirection: 'row'}}>
                     <View style={{flex: 3, alignItems: 'center'}}>
+                        {/*<GroundType value={this.state.combatMode} onChanged={this.onChangeMode} />*/}
                         <GroundHeader onReset={this.onReset}/>
                         <GroundInput label={'Armor'} attack={this.state.attackArmor} defend={this.state.defendArmor} onChangeAttack={this.onChangeAttackArmor} onChangeDefend={this.onChangeDefendArmor} />
                         <GroundInput label={'Mech'} attack={this.state.attackMech} defend={this.state.defendMech} onChangeAttack={this.onChangeAttackMech} onChangeDefend={this.onChangeDefendMech} />
@@ -207,14 +218,13 @@ let GroundView = React.createClass({
                         <GroundInput label={'AR'} min={-1} max={5} attack={this.state.attackAR} defend={this.state.defendAR} onChangeAttack={this.onChangeAttackAR} onChangeDefend={this.onChangeDefendAR} />
                         <GroundInputDefend label={'Hedgehog'} defend={this.state.defendHH} onChangeDefend={this.onChangeDefendHH} />
                         <GroundCheck label={'Combat'} attack={this.state.attackCS} defend={this.state.defendCS} onChangeAttack={this.onChangeAttackCS} onChangeDefend={this.onChangeDefendCS} />
-                        <GroundCheck label={'Trace'} attack={this.state.attackTS} defend={this.state.defendTS} onChangeAttack={this.onChangeAttackTS} onChangeDefend={this.onChangeDefendTS} />
-                        <GroundType value={this.state.combatMode} onChanged={this.onChangeMode} />
+                        <GroundCheck label={'Trace'} attack={this.state.attackTS} defend={this.state.defendTS} onChangeAttack={this.onChangeAttackTS} onChangeDefend={this.onChangeDefendTS} />                        
                     </View>
                     <View style={{flex: 2, alignItems: 'center'}}>
-                        <View style={{flex: 3}}>
+                        <View style={{flex: 5}}>
                             <SelectList title={'Terrain'} items={Terrain.inside().map((t) => t.desc)} selected={this.state.terrain} onChanged={this.onChangeTerrain}/>
                         </View>
-                        <View style={{flex: 1}}>
+                        <View style={{flex: 3}}>
                             <SelectList title={'Between'} items={Terrain.between().map((t) => t.desc)} selected={this.state.between} onChanged={this.onChangeTerrainBetween}/>
                         </View>
                     </View>
@@ -272,7 +282,7 @@ let GroundInput = React.createClass({
                 <View style={{flex:1, justifyContent: 'center'}}>
                     <Text style={{marginLeft: 10}}>{this.props.label}</Text>
                 </View>
-                <View style={{flex:2, justifyContent: 'center'}}>
+                <View style={{flex:2, justifyContent: 'center', borderRightWidth:2, borderRightColor:'gray'}}>
                     <SpinNumeric value={this.props.attack} min={this.props.min || 0} max={this.props.max} onChanged={this.props.onChangeAttack} />
                 </View>
                 <View style={{flex:2, justifyContent: 'center'}}>
@@ -290,7 +300,7 @@ let GroundInputDefend = React.createClass({
                 <View style={{flex:3, justifyContent: 'center'}}>
                     <Text style={{marginLeft: 10}}>{this.props.label}</Text>
                 </View>
-                <View style={{flex:2}}>
+                <View style={{flex:2, borderLeftWidth:2, borderLeftColor:'gray'}}>
                     <SpinNumeric value={this.props.defend} min={0} max={4} onChanged={this.props.onChangeDefend} />
                 </View>
             </View>
@@ -305,7 +315,7 @@ let GroundCheck = React.createClass({
                 <View style={{flex:1, justifyContent: 'center'}}>
                     <Text style={{marginLeft: 10}}>{this.props.label}</Text>
                 </View>
-                <View style={{flex:2, justifyContent: 'center', alignItems: 'center'}}>
+                <View style={{flex:2, justifyContent: 'center', alignItems: 'center', borderRightWidth:2, borderRightColor:'gray'}}>
                     <Checkbox selected={this.props.attack} onSelected={this.props.onChangeAttack}/>
                 </View>
                 <View style={{flex:2, justifyContent: 'center', alignItems: 'center'}}>
@@ -320,7 +330,8 @@ let GroundType = React.createClass({
     render() {
         return (
             <View style={{flex: 1, justifyContent: 'center'}}>
-                <RadioButtonGroup buttons={[{label: 'Regular', value: 0}, {label: 'Overrun', value: 1}]} state={this.props.value}
+                <RadioButtonGroup direction={'vertical'} 
+                    buttons={[{label: 'Regular', value: 0}, {label: 'Overrun', value: 1}]} state={this.props.value}
                     onSelected={this.props.onChanged} />
             </View>
         );
