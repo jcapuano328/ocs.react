@@ -16,9 +16,25 @@ var AdminReinforcementsView = React.createClass({
     getInitialState() {
         return {
             die1: 1,
-            die2: 1
+            die2: 1,
+            x: 0,
+            y: 0,
+            width: 0,
+            height: 0,
+            viewHeight: 100
         };
     },
+    onLayout(e) {
+        if (/*this.state.width != e.nativeEvent.layout.width ||*/
+            this.state.height != e.nativeEvent.layout.height) {
+            this.setState({
+                x: e.nativeEvent.layout.x,
+                y: e.nativeEvent.layout.y,
+                width: e.nativeEvent.layout.width,
+                height: e.nativeEvent.layout.height
+            });
+        }
+    },            
     onDiceRoll(d) {
         this.resolve(d[0].value, d[1].value);
     },
@@ -31,28 +47,31 @@ var AdminReinforcementsView = React.createClass({
         this.props.setReinforcements(this.props.player, Reinforcements.find(this.props.turn, this.props.reinforcements[this.props.player], die1, die2));
     },
     render() {
-        let iconwidth = /*this.state.width || */96;
-        let iconheight = /*this.state.height || */88;    
+        let iconwidth = this.state.width;// || */96;
+        let iconheight = this.state.height;// || */88;    
         let player = this.props.reinforcements[this.props.player];
         let playerreinforcements = this.props[this.props.player];
         
         return (            
-            <View style={{flex: 1, paddingTop: 4}}>
+            <View style={{flex: 2, paddingTop: 4}}>
                 <Text style={{fontSize: Style.Font.medium(),fontWeight: 'bold',backgroundColor: 'silver', textAlign: 'left', paddingLeft:10}}>Variable Reinforcements</Text>
                 <View style={{flex: 1, flexDirection: 'row', alignItems: 'center', paddingTop: 4}}>
-                    <View style={{flex: 3, flexDirection: 'row', alignItems: 'center'}}>
-                        <View style={{flex: 2, justifyContent:'center', alignItems:'center'}}>
-                            <Image
-                                style={{width: iconwidth, height: iconheight, resizeMode: 'contain'}}
-                                source={Icons[player.icon.toLowerCase()]} />
-                        </View>
-                        <View style={{flex: 3, alignItems: 'center'}}>
-                            <Text style={{marginLeft: 10, fontSize: Style.Font.mediumlarge(), fontWeight: 'bold'}}>{playerreinforcements}</Text>
+                    <View style={{flex: 3, justifyContent:'flex-start', alignItems:'center'}} onLayout={this.onLayout}>
+                        <View style={{flex: 1, flexDirection: 'row', alignItems: 'center'}}>
+                            <View style={{flex: 2, justifyContent:'center', alignItems:'center'}}>
+                                <Image
+                                    style={{width: iconwidth, height: iconheight, resizeMode: 'contain'}}
+                                    source={Icons[player.icon.toLowerCase()]} />
+                            </View>
+                            <View style={{flex: 3, alignItems: 'center'}}>
+                                <Text style={{marginLeft: 10, fontSize: Style.Font.mediumlarge(), fontWeight: 'bold'}}>{playerreinforcements}</Text>
+                            </View>
                         </View>
                     </View>
                     <View style={{flex: 2, marginRight: 5}}>
                         <DiceRoll dice={this.dice} values={[this.state.die1,this.state.die2]}
                             onRoll={this.onDiceRoll} onDie={this.onDieChanged}/>
+                        <View style={{flex:1}} />
                     </View>
                 </View>                
             </View>

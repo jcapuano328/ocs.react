@@ -51,17 +51,17 @@ var TurnView = React.createClass({
         let iconheight = this.state.height || 88;
         
         return (
-          <View style={{flexDirection: 'row', height: Style.Scaling.scale(75), marginLeft: 5, marginRight: 5}}>
-            <View style={{flex: 1}}>
-                <Image style={{width: iconwidth,height: iconheight,resizeMode: 'contain'}} source={this.props.logo}/>
-            </View>
-            <View style={{flex: 4}}>
-                <SpinSelect value={this.props.turn} onPrev={this.onPrevTurn} onNext={this.onNextTurn} />
-                <SpinSelect value={this.props.phase} onPrev={this.onPrevPhase} onNext={this.onNextPhase} />
-            </View>
-            <View style={{flex: 1}}>
-                <TurnPlayerView />
-            </View>
+            <View style={{flexDirection: 'row', alignItems:'center', height: Style.Scaling.scale(75), marginLeft: 5, marginRight: 5}}>
+                <View style={{flex: 1, justifyContent:'center', marginRight: 2}} onLayout={this.onLayout}>
+                    <Image style={{width: iconwidth,height: iconheight,resizeMode: 'contain'}} source={this.props.logo}/>
+                </View>
+                <View style={{flex: 4}}>
+                    <SpinSelect value={this.props.turn} onPrev={this.onPrevTurn} onNext={this.onNextTurn} />
+                    <SpinSelect value={this.props.phase} onPrev={this.onPrevPhase} onNext={this.onNextPhase} />
+                </View>
+                <View style={{flex: 1}}>
+                    <TurnPlayerView />
+                </View>
           </View>
         );
     }

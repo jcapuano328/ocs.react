@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text } from 'react-native';
+import { View, Text, Image, TouchableOpacity } from 'react-native';
 import { connect } from 'react-redux';
 import {Style,IconButton} from 'react-native-nub';
 import {DiceRoll} from 'react-native-dice';
@@ -27,7 +27,7 @@ var AdminInitiativeView = React.createClass({
         };
     },
     onLayout(e) {
-        if (this.state.width != e.nativeEvent.layout.width ||
+        if (/*this.state.width != e.nativeEvent.layout.width ||*/
             this.state.height != e.nativeEvent.layout.height) {
             this.setState({
                 x: e.nativeEvent.layout.x,
@@ -53,19 +53,22 @@ var AdminInitiativeView = React.createClass({
     },
     render() {
         let player = this.props.player ? this.props.player : {icon: 'tie'};
-        let iconwidth = /*this.state.width || */88;
-        let iconheight = /*this.state.height || */82;        
+        let iconwidth = this.state.width;// || */Style.Scaling.scale(88);
+        let iconheight = this.state.height;// || */Style.Scaling.scale(82);
         return (
-            <View style={{flex: 1, paddingTop: 4}}>
+            <View style={{flex: 2, paddingTop: 4}}>
                 <Text style={{fontSize: Style.Font.medium(),fontWeight: 'bold',backgroundColor: 'silver', textAlign: 'left', paddingLeft:10}}>Initiative</Text>
                 <View style={{flex: 1,flexDirection: 'row', paddingTop: 4}}>
-                    <View style={{flex: 3, justifyContent:'center', alignItems:'center'}}>
-                        <IconButton image={Icons[player.icon.toLowerCase()]} width={iconwidth} height={iconheight} resizeMode={'contain'} onPress={this.onNextPlayer}/>
+                    <View style={{flex: 3, justifyContent:'flex-start', alignItems:'center'}} onLayout={this.onLayout}>
+                        <TouchableOpacity onPress={this.onNextPlayer}>
+                            <Image style={{width: iconwidth,height: iconheight,resizeMode: 'contain'}} source={Icons[player.icon.toLowerCase()]} />
+                        </TouchableOpacity>                        
                     </View>
                     <View style={{flex: 2, marginRight: 5}}>
                         <DiceRoll dice={this.dice} values={[this.state.die1,this.state.die2]} onRoll={this.onDiceRoll} onDie={this.onDieChanged}/>
+                        <View style={{flex:1}} />
                     </View>
-                </View>
+                </View>                
             </View>
         );        
     }

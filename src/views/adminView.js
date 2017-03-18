@@ -24,8 +24,7 @@ var AdminView = React.createClass({
                 <AdminWeatherView />
                 <AdminInitiativeView />
                 <AdminSupplyView />
-                <AdminReinforcementsView />
-                <View style={{flex: 2}}/>
+                <AdminReinforcementsView />                
             </View>
 
             /*

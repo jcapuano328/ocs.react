@@ -53,7 +53,7 @@ var AdminWeatherView = React.createClass({
         }
         
         return (            
-            <View style={{flex: 1, paddingTop: 4}}>
+            <View style={{flex: 1.1, paddingTop: 2}}>
                 <Text style={{fontSize: Style.Font.medium(),fontWeight: 'bold',backgroundColor: 'silver', textAlign: 'left', paddingLeft:10}}>Weather</Text>
                 <View style={{flex: 1, flexDirection: 'row', paddingTop: 4}}>
                     <View style={{flex: 3, justifyContent:'center', alignItems:'center'}}>
@@ -61,7 +61,7 @@ var AdminWeatherView = React.createClass({
                     </View>                
                     <View style={{flex: 2}}>
                         <DiceRoll dice={dice} values={[this.state.die1,this.state.die2,this.state.die3,this.state.die4]}
-                            onRoll={this.onDiceRoll} onDie={this.onDieChanged}/>
+                            onRoll={this.onDiceRoll} onDie={this.onDieChanged}/>                        
                     </View>                
                 </View>
             </View>
