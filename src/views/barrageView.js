@@ -81,7 +81,7 @@ let BarrageView = React.createClass({
     render() {
         return (
             <View style={{flex: 1}}>
-                <View style={{flex: 1, flexDirection: 'row', alignItems: 'center', paddingTop: 4}}>
+                <View style={{flex: .9, flexDirection: 'row', alignItems: 'center', paddingTop: 4}}>
                     <View style={{flex: 1}}>
                         <Text style={{fontSize: Style.Font.medium(), fontWeight: 'bold', alignSelf:'center'}}>{this.state.results}</Text>
                     </View>
@@ -91,7 +91,7 @@ let BarrageView = React.createClass({
                             onDie={this.onDieChanged} />
                     </View>
                 </View>
-                <View style={{flex:2, flexDirection:'row'}}>
+                <View style={{flex:2.5, flexDirection:'row'}}>
                     <View style={{flex:1}}>
                         <RadioButtonGroup title={'Type'} direction={'vertical'} 
                             buttons={Barrage.types.map((t) => {
@@ -128,10 +128,10 @@ let BarrageView = React.createClass({
                             onSelected={this.onChangeSize} />                        
                     </View>
                     <View style={{flex: 1, alignItems: 'flex-start'}}>
-                        <View style={{flex:2}}>
+                        <View style={{flex:3}}>
                             <SelectList title={'Terrain'} titleonly={true} items={Terrain.inside().map((t) => t.desc)} selected={this.state.terrain} onChanged={this.onChangeTerrain}/>
                         </View>
-                        <View style={{flex:1}}>
+                        <View style={{flex:2}}>
                             <MultiSelectList title={'Modifiers'}
                                 items={[
                                     {name: 'Spotter', selected: this.state.spotter},

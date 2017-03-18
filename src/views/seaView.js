@@ -70,7 +70,7 @@ let SeaView = React.createClass({
     render() {
         return (
             <View style={{flex: 1, paddingTop: 4}}>
-                <View style={{flex:.5, marginLeft:10}}>
+                <View style={{flex:.5, marginLeft:5}}>
                     <Text style={{fontSize: Style.Font.mediumlarge(), fontWeight: 'bold'}}>Amphibious Landing</Text>
                 </View>
                 <View style={{flex: 1, flexDirection: 'row', justifyContent:'center', alignItems: 'center'}}>
@@ -83,7 +83,7 @@ let SeaView = React.createClass({
                         onDie={this.onDieChanged} />
                     </View>
                 </View>                                                
-                <View style={{flex: 3, flexDirection: 'row', marginLeft:10}}>
+                <View style={{flex: 4, flexDirection: 'row', paddingTop: 2, marginLeft:5}}>
                     <View style={{flex: 3}}>
                         <View style={{flex:1, flexDirection: 'row', justifyContent: 'center'}}>
                             <View style={{flex:1, justifyContent: 'center'}}>
@@ -124,7 +124,7 @@ let SeaView = React.createClass({
                         <SelectList title={'Terrain'} titleonly={true} items={Sea.terrains} selected={this.state.terrain} onChanged={this.onChangeTerrain}/>
                     </View>
                 </View>
-                <View style={{flex:4}} />
+                <View style={{flex:3}} />
             </View>
         );
     }

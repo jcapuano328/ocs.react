@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, Text } from 'react-native';
-import {Style,RadioButtonGroup,MultiSelectList/*,SelectDropdown,Checkbox*/} from 'react-native-nub';
+import {Style,RadioButtonGroup,Checkbox} from 'react-native-nub';
 import {DiceRoll} from 'react-native-dice';
 import Air from '../services/air';
 
@@ -62,20 +62,13 @@ let AirBaseCaptureView = React.createClass({
                         <RadioButtonGroup buttons={[{label: 'Active', value: 0}, {label: 'Inactive', value: 1}]} state={this.state.state}
                             onSelected={this.onChangeState} />
                     </View>
-                    <View style={{flex: 1, paddingTop: 25}}>                        
-                        <MultiSelectList 
-                            items={[{name: 'Advance after Combat', selected: this.state.advance}]}
-                            onChanged={(m) => {
-                                if (m.name == 'Advance after Combat') {this.onChangeAdvance(m.selected);}                                
-                            }}
-                        />
-                        {/*<Checkbox label={'Advance after Combat'} selected={this.state.advance} onSelected={this.onChangeAdvance}/>*/}
+                    <View style={{flex: 1, alignItems:'center'}}>                        
+                        <Checkbox label={'Advance after Combat'} selected={this.state.advance} onSelected={this.onChangeAdvance}/>
                     </View>
                 </View>
                 <View style={{flex:6}} />
             </View>
         );
-        //<SelectDropdown values={Air.states} value={this.state.state} onSelected={this.onChangeState} />
     }
 });
 
