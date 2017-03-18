@@ -8,18 +8,27 @@ import AdminSupplyView from './adminSupplyView';
 import AdminReinforcementsView from './adminReinforcementsView';
 
 var AdminView = React.createClass({
-    getInitialState() {
-        return {
-            page: 0
-        };
-    },
-    componentDidMount() {
-        // hack to get the page to display (in a nested view)
-        this.refs.tab.goToPage(-1);
-        setTimeout(() => this.refs.tab.goToPage(this.state.page), 0);
-    },
+    // getInitialState() {
+    //     return {
+    //         page: 0
+    //     };
+    // },
+    // componentDidMount() {
+    //     // hack to get the page to display (in a nested view)
+    //     this.refs.tab.goToPage(-1);
+    //     setTimeout(() => this.refs.tab.goToPage(this.state.page), 0);
+    // },
     render() {
         return (
+            <View style={{flex: 1}}>
+                <AdminWeatherView />
+                <AdminInitiativeView />
+                <AdminSupplyView />
+                <AdminReinforcementsView />
+                <View style={{flex: 2}}/>
+            </View>
+
+            /*
             <View style={{flex: 1}}>
                 <ScrollableTabView
                     ref="tab"
@@ -32,6 +41,7 @@ var AdminView = React.createClass({
                     <AdminReinforcementsView tabLabel="Reinforcements" />
                 </ScrollableTabView>
             </View>
+            */
         );
     }
 });

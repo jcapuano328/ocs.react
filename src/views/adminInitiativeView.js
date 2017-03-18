@@ -57,7 +57,8 @@ var AdminInitiativeView = React.createClass({
         let iconheight = /*this.state.height || */82;        
         return (
             <View style={{flex: 1, paddingTop: 4}}>
-                <View style={{flex: 1,flexDirection: 'row'}}>
+                <Text style={{fontSize: Style.Font.medium(),fontWeight: 'bold',backgroundColor: 'silver', textAlign: 'left', paddingLeft:10}}>Initiative</Text>
+                <View style={{flex: 1,flexDirection: 'row', paddingTop: 4}}>
                     <View style={{flex: 3, justifyContent:'center', alignItems:'center'}}>
                         <IconButton image={Icons[player.icon.toLowerCase()]} width={iconwidth} height={iconheight} resizeMode={'contain'} onPress={this.onNextPlayer}/>
                     </View>
@@ -65,7 +66,6 @@ var AdminInitiativeView = React.createClass({
                         <DiceRoll dice={this.dice} values={[this.state.die1,this.state.die2]} onRoll={this.onDiceRoll} onDie={this.onDieChanged}/>
                     </View>
                 </View>
-                <View style={{flex: 7}}/>
             </View>
         );        
     }

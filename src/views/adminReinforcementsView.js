@@ -37,8 +37,9 @@ var AdminReinforcementsView = React.createClass({
         let playerreinforcements = this.props[this.props.player];
         
         return (            
-            <View style={{flex: 1, paddingTop: 4,justifyContent: 'flex-start'}}>
-                <View style={{flex: 1, flexDirection: 'row', alignItems: 'center'}}>
+            <View style={{flex: 1, paddingTop: 4}}>
+                <Text style={{fontSize: Style.Font.medium(),fontWeight: 'bold',backgroundColor: 'silver', textAlign: 'left', paddingLeft:10}}>Variable Reinforcements</Text>
+                <View style={{flex: 1, flexDirection: 'row', alignItems: 'center', paddingTop: 4}}>
                     <View style={{flex: 3, flexDirection: 'row', alignItems: 'center'}}>
                         <View style={{flex: 2, justifyContent:'center', alignItems:'center'}}>
                             <Image
@@ -46,15 +47,14 @@ var AdminReinforcementsView = React.createClass({
                                 source={Icons[player.icon.toLowerCase()]} />
                         </View>
                         <View style={{flex: 3, alignItems: 'center'}}>
-                            <Text style={{marginLeft: 10, fontSize: Style.Font.medium(), fontWeight: 'bold'}}>{playerreinforcements}</Text>
+                            <Text style={{marginLeft: 10, fontSize: Style.Font.mediumlarge(), fontWeight: 'bold'}}>{playerreinforcements}</Text>
                         </View>
                     </View>
                     <View style={{flex: 2, marginRight: 5}}>
                         <DiceRoll dice={this.dice} values={[this.state.die1,this.state.die2]}
                             onRoll={this.onDiceRoll} onDie={this.onDieChanged}/>
                     </View>
-                </View>
-                <View style={{flex: 7}}/>
+                </View>                
             </View>
         );
     }
