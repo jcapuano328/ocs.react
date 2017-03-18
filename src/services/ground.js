@@ -121,13 +121,13 @@ let surprise = (dice, die, drm, mode) => {
 		//  regular: <= 5 is defender; >= 10 is attacker
 		if (dice <= 5) {
 			return {
-				side: 'Defender',
+				side: 'Def Surprise',
 				shift: -die
 			};
 		}
 		else if (dice >= 10) {
 			return {
-				side: 'Attacker',
+				side: 'Att Surprise',
 				shift: die
 			};
 		}
@@ -135,20 +135,20 @@ let surprise = (dice, die, drm, mode) => {
 		//  overrun: <= 6 is defender; >= 9 is attacker
 		if (dice <= 6) {
 			return {
-				side: 'Defender',
+				side: 'Def Surprise',
 				shift: -die
 			};
 		}
 		else if (dice >= 9)	{
 			return {
-				side: 'Attacker',
+				side: 'Att Surprise',
 				shift: die
 			};
 		}
 	}
 
 	return {
-		side: 'None',
+		side: 'No Surprise',
 		shift: 0
 	};
 }

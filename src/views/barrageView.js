@@ -1,7 +1,8 @@
 import React from 'react';
 import { View, Text } from 'react-native';
-import {Style,SelectDropdown,SelectList,Checkbox} from 'react-native-nub';
+import {Style,RadioButtonGroup,SelectList,MultiSelectList/*,SelectDropdown,Checkbox*/} from 'react-native-nub';
 import {DiceRoll} from 'react-native-dice';
+import BarrageResultsView from './barrageResultsView';
 import Barrage from '../services/barrage';
 import Terrain from '../services/terrain';
 
@@ -32,52 +33,41 @@ let BarrageView = React.createClass({
         this.setState({type: v, strength: Barrage.strengths(v)[0], results: ''});
     },
     onChangeSize(v) {
-        //this.setState({size: v});
         this.state.size = v;
         this.resolve();
     },
     onChangeStrength(v) {
-        //this.setState({strength: v});
         this.state.strength = v;
         this.resolve();
     },
     onChangeTerrain(t) {
-        //this.setState({terrain: t});
         this.state.terrain = t;
         this.resolve();
     },
     onChangeSpotter(b) {
-        //this.setState({spotter: b});
         this.state.spotter = b;
         this.resolve();
     },
     onChangeHedgehog(b) {
-        //this.setState({hedgehog: b});
         this.state.hedgehog = b;
         this.resolve();
     },
     onChangeStratMode(b) {
-        //this.setState({stratmode: b});
         this.state.stratmode = b;
         this.resolve();
     },
     onChangeAirCloseToBase(b) {
-        //this.setState({airclosetobase: b});
         this.state.airclosetobase = b;
         this.resolve();
     },
 
     onDiceRoll(d) {
-        //this.setState({die1: d[0].value,die2: d[1].value, die3: d[2].value});
         this.state.die1 = d[0].value;
         this.state.die2 = d[1].value;
         this.state.die3 = d[2].value;
         this.resolve();
     },
     onDieChanged(d,v) {
-        //let state = {};
-        //state['die'+d] = v;
-        //this.setState(state);
         this.state['die'+d] = v;
         this.resolve();
     },
@@ -85,7 +75,6 @@ let BarrageView = React.createClass({
         let results = Barrage.resolve(this.state.type,this.state.size,this.state.strength,this.state.terrain,
             this.state.spotter,this.state.hedgehog,this.state.stratmode,this.state.airclosetobase,
             this.state.die1,this.state.die2,this.state.die3);
-        //this.setState({results: results});
         this.state.results = results;
         this.setState(this.state);
     },
@@ -102,35 +91,64 @@ let BarrageView = React.createClass({
                             onDie={this.onDieChanged} />
                     </View>
                 </View>
+                <View style={{flex:2, flexDirection:'row'}}>
+                    <View style={{flex:1}}>
+                        <RadioButtonGroup title={'Type'} direction={'vertical'} 
+                            buttons={Barrage.types.map((t) => {
+                                return {label: t, value: t}
+                            })} 
+                            state={this.state.type}
+                            onSelected={this.onChangeType} />                        
+                    </View>                    
+                    <View style={{flex:2}}>
+                        <BarrageResultsView strength={this.state.strength} 
+                            results={Barrage.resolvePossible(
+                                this.state.type,this.state.size,this.state.strength,this.state.terrain,
+                                this.state.spotter,this.state.hedgehog,this.state.stratmode,this.state.airclosetobase,
+                                this.state.die1,this.state.die2                         
+                            )} 
+                        />                    
+                    </View>
+                </View>
                 <View style={{flex: 5, flexDirection: 'row'}}>
-                    <View style={{flex: 2}}>
-                        <View style={{flex:1, justifyContent: 'center'}}>
-                            <SelectDropdown label={'Type'} values={Barrage.types} value={this.state.type} onSelected={this.onChangeType} />
-                        </View>
-                        <View style={{flex:1}}>
-                            <SelectDropdown label={'REs'} values={Barrage.sizes} value={this.state.size} onSelected={this.onChangeSize} />
-                        </View>
-                        <View style={{flex:1}}>
-                            <SelectDropdown label={'Strength'} values={Barrage.strengths(this.state.type)} value={this.state.strength} onSelected={this.onChangeStrength} />
-                        </View>
-                        <View style={{flex:1, justifyContent: 'center', alignItems: 'flex-start', marginLeft: 20}}>
-                            <Checkbox label={'Spotter'} selected={this.state.spotter} onSelected={this.onChangeSpotter}/>
-                        </View>
-                        <View style={{flex:1, justifyContent: 'center', alignItems: 'flex-start', marginLeft: 20}}>
-                            <Checkbox label={'Hedgehog'} selected={this.state.hedgehog} onSelected={this.onChangeHedgehog}/>
-                        </View>
-                        <View style={{flex:1, justifyContent: 'center', alignItems: 'flex-start', marginLeft: 20}}>
-                            <Checkbox label={'Strat Mode'} selected={this.state.stratmode} onSelected={this.onChangeStratMode}/>
-                        </View>
-                        <View style={{flex:1, justifyContent: 'center', alignItems: 'flex-start', marginLeft: 20}}>
-                            <Checkbox label={'Air Close to Base'} selected={this.state.airclosetobase} onSelected={this.onChangeAirCloseToBase}/>
-                        </View>
+                    <View style={{flex:1}}>
+                        <RadioButtonGroup title={'Strength'} direction={'vertical'} 
+                            buttons={Barrage.strengths(this.state.type).map((s) => {
+                                return {label: s, value: s}
+                            })} 
+                            state={this.state.strength}
+                            onSelected={this.onChangeStrength} />                        
+                    </View>                        
+                    <View style={{flex:1}}>
+                        <RadioButtonGroup title={'Density'} direction={'vertical'} 
+                            buttons={Barrage.sizes.map((s) => {
+                                return {label: s, value: s}
+                            })} 
+                            state={this.state.size}
+                            onSelected={this.onChangeSize} />                        
                     </View>
                     <View style={{flex: 1, alignItems: 'flex-start'}}>
-                        <SelectList title={'Terrain'} items={Terrain.inside().map((t) => t.desc)} selected={this.state.terrain} onChanged={this.onChangeTerrain}/>
+                        <View style={{flex:2}}>
+                            <SelectList title={'Terrain'} titleonly={true} items={Terrain.inside().map((t) => t.desc)} selected={this.state.terrain} onChanged={this.onChangeTerrain}/>
+                        </View>
+                        <View style={{flex:1}}>
+                            <MultiSelectList title={'Modifiers'}
+                                items={[
+                                    {name: 'Spotter', selected: this.state.spotter},
+                                    {name: 'Hedgehog', selected: this.state.hedgehog},
+                                    {name: 'Strat Mode', selected: this.state.stratmode},
+                                    {name: 'Air Close to Base', selected: this.state.airclosetobase},
+                                ]}
+                                onChanged={(m) => {
+                                    if (m.name == 'Spotter') {this.onChangeSpotter(m.selected);}
+                                    else if (m.name == 'Hedgehog') {this.onChangeHedgehog(m.selected);}
+                                    else if (m.name == 'Strat Mode') {this.onChangeStratMode(m.selected);}
+                                    else if (m.name == 'Air Close to Base') {this.onChangeAirCloseToBase(m.selected);}                                
+                                }}
+                            />
+                        </View>
                     </View>                    
-                </View>
-                <View style={{flex: 2}}/>
+                </View>                
             </View>
         );
     }

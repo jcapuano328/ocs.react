@@ -67,11 +67,7 @@ let resolveBarrage = (type, shift, strength, dice) => {
 	return results[dice];
 }
 
-let resolveGround = (size,strength,terrain,spotter,hedgehog,stratmode,airclosetobase,die1,die2,die3) => {
-	let dice = die1 + die2;
-	if 		(dice < 2)  {dice = 2;}
-	else if (dice > 12) {dice = 12;}
-
+let groundShift = (size,terrain,spotter,hedgehog,stratmode,airclosetobase) => {
 	// determine modifiers
 	let shift = 0;
 	if (hedgehog) {shift--;}
@@ -88,6 +84,16 @@ let resolveGround = (size,strength,terrain,spotter,hedgehog,stratmode,aircloseto
 	// air unit proximity to base
 	if (airclosetobase) {shift++;}
 
+	return shift;
+}
+
+let resolveGround = (size,strength,terrain,spotter,hedgehog,stratmode,airclosetobase,die1,die2,die3) => {
+	let dice = die1 + die2;
+	if 		(dice < 2)  {dice = 2;}
+	else if (dice > 12) {dice = 12;}
+
+	// determine modifiers
+	let shift = groundShift(size,terrain,spotter,hedgehog,stratmode,airclosetobase);
 	let results = resolveBarrage('Ground', shift, strength, dice-2);
 	if (results.indexOf('1/2') > -1) {
 		results += (die3 > 3) ? ' (loss)' : ' (no loss)';
@@ -150,5 +156,14 @@ module.exports = {
 			default:
 				return 'NE';
 		}
+	},
+	resolvePossible(type,size,strength,terrain,spotter,hedgehog,stratmode,airclosetobase,die1,die2) {
+		let dice = die1 + (type == 'Facility' ? 0 : die2);		
+
+		let table = resultsTable[type];
+		return table.map((t) => {
+			let index = (dice > t.results.length) ? t.results.length - 1 : dice;
+			return {strength: t.strength, results: t.results[index]};
+		});
 	}
 };

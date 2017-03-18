@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, Text } from 'react-native';
-import {Style,SpinNumeric,SelectDropdown,MultiSelectList/*,Checkbox*/} from 'react-native-nub';
+import {Style,MultiSelectList,RadioButtonGroup} from 'react-native-nub';
 import {DiceRoll} from 'react-native-dice';
 import Air from '../services/air';
 
@@ -78,52 +78,55 @@ let AirFlakView = React.createClass({
                         onRoll={this.onDiceRoll}
                         onDie={this.onDieChanged} />
                     </View>
-                </View>                
-                <View style={{flex: 4, flexDirection: 'row'}}>
-                    <View style={{flex: 0.5, marginLeft:10}}>
-                        <View style={{flex:1, justifyContent: 'center'}}>
-                            <Text style={{fontSize: Style.Font.medium()}}>Mission Size</Text>
-                        </View>
-                        <View style={{flex:1, justifyContent: 'center'}}>
-                            <Text style={{fontSize: Style.Font.medium()}}>Air Base</Text>
-                        </View>
-                        <View style={{flex:1, justifyContent: 'center'}}>
-                            <Text style={{fontSize: Style.Font.medium()}}>Ship/Port</Text>
-                        </View>
-                        <View style={{flex:1, justifyContent: 'center'}}>
-                            <Text style={{fontSize: Style.Font.medium()}}>Patrol Zone</Text>
-                        </View>
+                </View>
+                <View style={{flex: 6, marginTop: 10}}>
+                    <View style={{flex: 1, alignItems: 'center'}}>
+                        <RadioButtonGroup title={'Mission Size'} direction={'horizontal'} 
+                            buttons={[0,1,2,3,4,5,6,7,8,9,10].map((s) => {
+                                return {label: s.toString(), value: s}
+                            })} 
+                            state={this.state.size}
+                            onSelected={this.onChangeSize} />
                     </View>
-                    <View style={{flex: 1}}>
-                        <View style={{flex:1, justifyContent: 'center'}}>
-                            <SpinNumeric value={this.state.size} min={1} max={10} onChanged={this.onChangeSize} />
-                        </View>
-                        <View style={{flex:1, justifyContent: 'center'}}>
-                            <SelectDropdown values={Air.bases} value={this.state.base} onSelected={this.onChangeBase} />
-                        </View>
-                        <View style={{flex:1, justifyContent: 'center'}}>
-                            <SpinNumeric value={this.state.port} min={0} max={10} onChanged={this.onChangeShip} />
-                        </View>
-                        <View style={{flex: 1, justifyContent: 'center'}}>
-                            <SelectDropdown values={Air.zones} value={this.state.patrol} onSelected={this.onChangePatrol} />
-                        </View>
+                    <View style={{flex: 1, alignItems: 'center'}}>
+                        <RadioButtonGroup title={'Ship/Port'} direction={'horizontal'} 
+                            buttons={[0,1,2,3,4,5,6,7,8,9,10].map((s) => {
+                                return {label: s.toString(), value: s}
+                            })} 
+                            state={this.state.port}
+                            onSelected={this.onChangeShip} />                        
+                        
                     </View>
-                    <View style={{flex:1, justifyContent: 'center'}}>
-                        <MultiSelectList 
-                            items={[{name: 'HQ', selected: this.state.hq},
-                                    {name: 'Trainbusting in PZ', selected: this.state.trainbusting}]}
-                            onChanged={(m) => {
-                                if (m.name == 'HQ') {this.onChangeHQ(m.selected);}
-                                else if (m.name == 'Trainbusting in PZ') {this.onChangeTrainbusting(m.selected);}
-                            }}
-                        />                        
-                        {/* don't care to figure this out...
-                        <Checkbox label={'HQ'} selected={this.state.hq} onSelected={this.onChangeHQ}/>
-                        <Checkbox label={'Trainbusting in PZ'} selected={this.state.trainbusting} onSelected={this.onChangeTrainbusting}/>
-                        */}
+                    <View style={{flex: 1, alignItems: 'center'}}>
+                        <RadioButtonGroup title={'Air Base'} direction={'horizontal'} 
+                            buttons={Air.bases.map((s) => {
+                                return {label: s, value: s}
+                            })} 
+                            state={this.state.base}
+                            onSelected={this.onChangeBase} />                        
+                    </View>
+                    <View style={{flex: 1, flexDirection: 'row'}}>  
+                        <View style={{flex:1, borderRightWidth: 2, borderRightColor:'gray'}}>
+                            <RadioButtonGroup title={'Patrol Zone'} direction={'vertical'} 
+                                buttons={Air.zones.map((s) => {
+                                    return {label: s, value: s}
+                                })} 
+                                state={this.state.patrol}
+                                onSelected={this.onChangePatrol} />                        
+                        </View>                        
+                        <View style={{flex:2, justifyContent: 'center'}}>
+                            <MultiSelectList title={'Modifiers'}
+                                items={[{name: 'HQ', selected: this.state.hq},
+                                        {name: 'Trainbusting in PZ', selected: this.state.trainbusting}]}
+                                onChanged={(m) => {
+                                    if (m.name == 'HQ') {this.onChangeHQ(m.selected);}
+                                    else if (m.name == 'Trainbusting in PZ') {this.onChangeTrainbusting(m.selected);}
+                                }}
+                            />                        
+                        </View>                                                  
                     </View>
                 </View>
-                <View style={{flex:3}} />
+                <View style={{flex:2}} />
             </View>
         );
     }

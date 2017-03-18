@@ -6,6 +6,7 @@ module.exports = {
 	"menu": Icons['menu-dark'],
 	"info": Icons['info-dark'],
 	"refresh": Icons['refresh-dark'],
+	"eraser": require('./reset-2.png'),
 
 	"axis": require('./axis.png'),
 	"axis-east": require('./axis-east.png'),

@@ -2,13 +2,6 @@ import React from 'react';
 import { View, Text, ScrollView } from 'react-native';
 import {Style} from 'react-native-nub';
 
-/*
-    Terrain         Odds        Result
-    Open            1-1         XXX
-    Close           1-1
-
-*/
-
 var GroundResultsView = React.createClass({
     getInitialState() {
         return {

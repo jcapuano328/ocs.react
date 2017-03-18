@@ -190,6 +190,12 @@ let GroundView = React.createClass({
                     <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
                         <OddsView odds={Ground.odds(this.state.density)} value={this.state.odds} onChanged={this.onChangeOdds}/>
                         <GroundType value={this.state.combatMode} onChanged={this.onChangeMode} />
+                        <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
+                            <Text style={{fontSize: Style.Font.medium(), fontWeight: 'bold'}}>{this.state.surprise}</Text>
+                        </View>
+                        <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
+                            <Text style={{fontSize: Style.Font.medium(), fontWeight: 'bold'}}>{this.state.results}</Text>
+                        </View>                        
                     </View>
                     <View style={{flex: 3}}>                        
                         <GroundResultsView odds={this.state.odds} terrain={Terrain.find(this.state.terrain).density}
@@ -198,18 +204,10 @@ let GroundView = React.createClass({
                                 this.state.die1,this.state.die2,this.state.die3,this.state.die4,this.state.die5)} 
                         />
                     </View>
-                    {/*
-                    <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
-                        <Text style={{fontSize: Style.Font.medium(), fontWeight: 'bold'}}>{this.state.surprise}</Text>
-                    </View>
-                    <View style={{flex: 2, alignItems: 'center', justifyContent: 'center'}}>
-                        <Text style={{fontSize: Style.Font.medium(), fontWeight: 'bold'}}>{this.state.results}</Text>
-                    </View>
-                    */}
                 </View>
                 
                 <View style={{flex: 5, flexDirection: 'row'}}>
-                    <View style={{flex: 3, alignItems: 'center'}}>
+                    <View style={{flex: 3, alignItems: 'center', borderWidth:2,borderColor:'gray',borderRadius:3}}>
                         {/*<GroundType value={this.state.combatMode} onChanged={this.onChangeMode} />*/}
                         <GroundHeader onReset={this.onReset}/>
                         <GroundInput label={'Armor'} attack={this.state.attackArmor} defend={this.state.defendArmor} onChangeAttack={this.onChangeAttackArmor} onChangeDefend={this.onChangeDefendArmor} />
@@ -222,10 +220,10 @@ let GroundView = React.createClass({
                     </View>
                     <View style={{flex: 2, alignItems: 'center'}}>
                         <View style={{flex: 5}}>
-                            <SelectList title={'Terrain'} items={Terrain.inside().map((t) => t.desc)} selected={this.state.terrain} onChanged={this.onChangeTerrain}/>
+                            <SelectList title={'Terrain'} titleonly={true} items={Terrain.inside().map((t) => t.desc)} selected={this.state.terrain} onChanged={this.onChangeTerrain}/>
                         </View>
                         <View style={{flex: 3}}>
-                            <SelectList title={'Between'} items={Terrain.between().map((t) => t.desc)} selected={this.state.between} onChanged={this.onChangeTerrainBetween}/>
+                            <SelectList title={'Between'} titleonly={true} items={Terrain.between().map((t) => t.desc)} selected={this.state.between} onChanged={this.onChangeTerrainBetween}/>
                         </View>
                     </View>
                 </View>
@@ -262,7 +260,7 @@ let GroundHeader = React.createClass({
         return (
             <View style={{flex: .75, flexDirection: 'row', alignItems: 'center'}}>
                 <View style={{flex:1, alignItems: 'center', backgroundColor: '#3F51B5', marginLeft: 10, borderRadius:5}} onLayout={this.onLayout}>
-                    <IconButton image={Icons['refresh']} width={width} height={height} resizeMode={'contain'} onPress={this.props.onReset}/>
+                    <IconButton image={Icons['eraser']} width={width} height={height} resizeMode={'contain'} onPress={this.props.onReset}/>
                 </View>
                 <View style={{flex:2, alignItems: 'center'}}>
                     <Text style={{fontSize: Style.Font.medium(), fontWeight: 'bold'}}>{'Attack'}</Text>

@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, Text } from 'react-native';
-import {Style,SpinNumeric} from 'react-native-nub';
+import {Style,RadioButtonGroup/*,SpinNumeric*/} from 'react-native-nub';
 import {DiceRoll} from 'react-native-dice';
 import Air from '../services/air';
 
@@ -56,29 +56,26 @@ let AirCombatView = React.createClass({
                             onDie={this.onDieChanged} />
                     </View>
                 </View>                
-                <View style={{flex: 2}}>                    
-                    <View style={{flex: 1, flexDirection: 'row', alignItems: 'center'}}>
-                        <View style={{flex: 1}}/>
-                        <View style={{flex:1}}>
-                            <Text style={{fontSize: Style.Font.medium(), marginLeft: 10}}>Attacker</Text>
-                        </View>
-                        <View style={{flex:2}}>
-                            <SpinNumeric value={this.state.attack} min={0} max={10} onChanged={this.onChangeAttack} />
-                        </View>
-                        <View style={{flex: 1}}/>
+                <View style={{flex: 3, marginTop: 10}}>                    
+                    <View style={{flex: 1, alignItems: 'center'}}>
+                        <RadioButtonGroup title={'Attacker'} direction={'horizontal'} 
+                            buttons={[0,1,2,3,4,5,6,7,8,9,10].map((s) => {
+                                return {label: s.toString(), value: s}
+                            })} 
+                            state={this.state.attack}
+                            onSelected={this.onChangeAttack} />                        
                     </View>
-                    <View style={{flex: 1, flexDirection: 'row', alignItems: 'center'}}>
-                        <View style={{flex: 1}}/>
-                        <View style={{flex:1, justifyContent: 'center'}}>
-                            <Text style={{fontSize: Style.Font.medium(), marginLeft: 10}}>Defender</Text>
-                        </View>
-                        <View style={{flex:2, justifyContent: 'center'}}>
-                            <SpinNumeric value={this.state.defend} min={0} max={10} onChanged={this.onChangeDefend} />
-                        </View>
-                        <View style={{flex: 1}}/>
-                    </View>                
-                </View>
-                <View style={{flex: 6}}/>
+
+                    <View style={{flex: 1, alignItems: 'center'}}>
+                        <RadioButtonGroup title={'Defender'} direction={'horizontal'} 
+                            buttons={[0,1,2,3,4,5,6,7,8,9,10].map((s) => {
+                                return {label: s.toString(), value: s}
+                            })} 
+                            state={this.state.defend}
+                            onSelected={this.onChangeDefend} />                        
+                    </View>                    
+                </View>    
+                <View style={{flex: 5}} />
             </View>
         );
     }
