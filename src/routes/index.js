@@ -14,7 +14,7 @@ const rightButtons = [
 const navBarOpts = {
     icons: Icons,
     style: {
-        backgroundColor: 'blue'
+        backgroundColor: 'forestgreen'
     },    
     textcolor: 'white',
     menu: 'menu',
