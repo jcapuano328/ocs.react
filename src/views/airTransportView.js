@@ -71,45 +71,32 @@ let AirTransportView = React.createClass({
                     </View>
                 </View>                
                 
-                <View style={{flex: 2, flexDirection: 'row', marginTop: 10}}>
-                    <View style={{flex: 0.5, marginLeft: 10}}>
-                        <View style={{flex:1, justifyContent: 'center'}}>
-                            <Text style={{fontSize: Style.Font.medium()}}>Type</Text>
-                        </View>
-                        <View style={{flex:1, justifyContent: 'center'}}>
-                            <Text style={{fontSize: Style.Font.medium()}}>Status</Text>
-                        </View>
-                        <View style={{flex:1, justifyContent: 'center'}}>
-                            <Text style={{fontSize: Style.Font.medium()}}>Terrain</Text>
-                        </View>
+                <View style={{flex: 7, flexDirection: 'row', marginTop: 10}}>
+                    <View style={{flex:1, justifyContent: 'center'}}>
+                        <RadioButtonGroup title={'Type'} direction={'vertical'} 
+                            buttons={Air.transportTypes.map((s) => {
+                                return {label: s, value: s}
+                            })} 
+                            state={this.state.type}
+                            onSelected={this.onChangeType} />
                     </View>
-                    <View style={{flex: 1}}>
-                        <View style={{flex:1, justifyContent: 'center'}}>
-                            <RadioButtonGroup direction={'horizontal'} 
-                                buttons={Air.transportTypes.map((s) => {
-                                    return {label: s, value: s}
-                                })} 
-                                state={this.state.type}
-                                onSelected={this.onChangeType} />
-                        </View>
-                        <View style={{flex:1, justifyContent: 'center'}}>
-                            <RadioButtonGroup direction={'horizontal'} 
-                                buttons={Air.transportStatuses.map((s) => {
-                                    return {label: s, value: s}
-                                })} 
-                                state={this.state.status}
-                                onSelected={this.onChangeStatus} />
-                        </View>
-                        <View style={{flex:1, justifyContent: 'center'}}>
-                            <RadioButtonGroup direction={'horizontal'} 
-                                buttons={Air.transportTerrains.map((s) => {
-                                    return {label: s, value: s}
-                                })} 
-                                state={this.state.terrain}
-                                onSelected={this.onChangeTerrain} />
-                        </View>
+                    <View style={{flex:1, justifyContent: 'center'}}>
+                        <RadioButtonGroup title={'Status'} direction={'vertical'} 
+                            buttons={Air.transportStatuses.map((s) => {
+                                return {label: s, value: s}
+                            })} 
+                            state={this.state.status}
+                            onSelected={this.onChangeStatus} />
                     </View>
-                    <View style={{flex: 1}}>
+                    <View style={{flex:1, justifyContent: 'center'}}>
+                        <RadioButtonGroup title={'Terrain'} direction={'vertical'} 
+                            buttons={Air.transportTerrains.map((s) => {
+                                return {label: s, value: s}
+                            })} 
+                            state={this.state.terrain}
+                            onSelected={this.onChangeTerrain} />
+                    </View>
+                    <View style={{flex: 1.75, marginTop: 15}}>
                         <MultiSelectList
                             items={[{name: 'Soviet', selected: this.state.soviet},
                                     {name: 'Allied pre-Aug 44', selected: this.state.allied}]}
@@ -119,8 +106,7 @@ let AirTransportView = React.createClass({
                             }}
                         />                        
                     </View>
-                </View>
-                <View style={{flex:5}} />
+                </View>                
             </View>
         );
     }

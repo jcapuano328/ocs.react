@@ -64,10 +64,10 @@ let SupplyCaptureView = React.createClass({
         return (
             <View style={{flex: 1}}>
                 <View style={{flex: 1, flexDirection: 'row', justifyContent:'center', alignItems: 'center', paddingTop: 4}}>
-                    <View style={{flex: 3, alignItems: 'center', justifyContent: 'center'}}>
+                    <View style={{flex: 5, alignItems: 'center', justifyContent: 'center'}}>
                         <Text style={{fontSize: Style.Font.medium(), fontWeight: 'bold', alignSelf:'center'}}>{this.state.results}</Text>
                     </View>
-                    <View style={{flex: 1, marginRight: 5}}>
+                    <View style={{flex: 2, marginRight: 5}}>
                     <DiceRoll dice={this.dice} values={[this.state.die1]}
                         onRoll={this.onDiceRoll}
                         onDie={this.onDieChanged} />
@@ -133,7 +133,7 @@ let SupplyCaptureView = React.createClass({
                         <Text style={{fontSize: Style.Font.medium(), fontWeight: 'bold'}}>{this.state.remainingtoken}</Text>
                     </View>
                 </View>
-                <View style={{flex:5}} />
+                <View style={{flex:2}} />
             </View>
         );
     }

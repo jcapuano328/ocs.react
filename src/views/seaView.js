@@ -25,7 +25,7 @@ let SeaView = React.createClass({
         };
     },
     onChangeTerrain(v) {
-        this.state.size = v;
+        this.state.terrain = v;
         this.resolve();
     },
     onChangeCoastalArty(v) {

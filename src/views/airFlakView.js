@@ -79,9 +79,9 @@ let AirFlakView = React.createClass({
                         onDie={this.onDieChanged} />
                     </View>
                 </View>
-                <View style={{flex: 6, marginTop: 10}}>
+                <View style={{flex: 8, flexDirection: 'row', marginTop: 10}}>
                     <View style={{flex: 1, alignItems: 'center'}}>
-                        <RadioButtonGroup title={'Mission Size'} direction={'horizontal'} 
+                        <RadioButtonGroup title={'Mission Size'} direction={'vertical'} 
                             buttons={[0,1,2,3,4,5,6,7,8,9,10].map((s) => {
                                 return {label: s.toString(), value: s}
                             })} 
@@ -89,7 +89,7 @@ let AirFlakView = React.createClass({
                             onSelected={this.onChangeSize} />
                     </View>
                     <View style={{flex: 1, alignItems: 'center'}}>
-                        <RadioButtonGroup title={'Ship/Port'} direction={'horizontal'} 
+                        <RadioButtonGroup title={'Ship/Port'} direction={'vertical'} 
                             buttons={[0,1,2,3,4,5,6,7,8,9,10].map((s) => {
                                 return {label: s.toString(), value: s}
                             })} 
@@ -98,15 +98,15 @@ let AirFlakView = React.createClass({
                         
                     </View>
                     <View style={{flex: 1, alignItems: 'center'}}>
-                        <RadioButtonGroup title={'Air Base'} direction={'horizontal'} 
+                        <RadioButtonGroup title={'Air Base'} direction={'vertical'} 
                             buttons={Air.bases.map((s) => {
                                 return {label: s, value: s}
                             })} 
                             state={this.state.base}
                             onSelected={this.onChangeBase} />                        
                     </View>
-                    <View style={{flex: 1, flexDirection: 'row'}}>  
-                        <View style={{flex:1, borderRightWidth: 2, borderRightColor:'gray'}}>
+                    <View style={{flex: 1.75}}>  
+                        <View style={{flex:2}}>
                             <RadioButtonGroup title={'Patrol Zone'} direction={'vertical'} 
                                 buttons={Air.zones.map((s) => {
                                     return {label: s, value: s}
@@ -114,8 +114,8 @@ let AirFlakView = React.createClass({
                                 state={this.state.patrol}
                                 onSelected={this.onChangePatrol} />                        
                         </View>                        
-                        <View style={{flex:2, justifyContent: 'center'}}>
-                            <MultiSelectList title={'Modifiers'}
+                        <View style={{flex:3, justifyContent: 'center'}}>
+                            <MultiSelectList 
                                 items={[{name: 'HQ', selected: this.state.hq},
                                         {name: 'Trainbusting in PZ', selected: this.state.trainbusting}]}
                                 onChanged={(m) => {
@@ -125,8 +125,7 @@ let AirFlakView = React.createClass({
                             />                        
                         </View>                                                  
                     </View>
-                </View>
-                <View style={{flex:2}} />
+                </View>                
             </View>
         );
     }

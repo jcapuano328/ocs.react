@@ -56,26 +56,27 @@ let AirCombatView = React.createClass({
                             onDie={this.onDieChanged} />
                     </View>
                 </View>                
-                <View style={{flex: 3, marginTop: 10}}>                    
+                <View style={{flex: 7, flexDirection:'row', marginTop: 10}}>                    
+                    <View style={{flex: 1.5}} />
                     <View style={{flex: 1, alignItems: 'center'}}>
-                        <RadioButtonGroup title={'Attacker'} direction={'horizontal'} 
+                        <RadioButtonGroup title={'Attacker'} direction={'vertical'} 
                             buttons={[0,1,2,3,4,5,6,7,8,9,10].map((s) => {
                                 return {label: s.toString(), value: s}
                             })} 
                             state={this.state.attack}
                             onSelected={this.onChangeAttack} />                        
                     </View>
-
+                    <View style={{flex: 1}} />
                     <View style={{flex: 1, alignItems: 'center'}}>
-                        <RadioButtonGroup title={'Defender'} direction={'horizontal'} 
+                        <RadioButtonGroup title={'Defender'} direction={'vertical'} 
                             buttons={[0,1,2,3,4,5,6,7,8,9,10].map((s) => {
                                 return {label: s.toString(), value: s}
                             })} 
                             state={this.state.defend}
                             onSelected={this.onChangeDefend} />                        
-                    </View>                    
-                </View>    
-                <View style={{flex: 5}} />
+                    </View>                   
+                    <View style={{flex: 1.5}} /> 
+                </View>                
             </View>
         );
     }
