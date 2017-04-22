@@ -17,7 +17,7 @@ export default createSelector(
         }
 
 		let d = moment(game.startDate);
-		let lastday = d.endOf('month').date();
+		let lastday = moment(d).endOf('month').date();
 		let turn = turnIndex(game,d);
 		for (let i = 1; i<curturn; i++) {
 			turn++;
