@@ -20,7 +20,7 @@ module.exports = {
 	"soviet": require('./ussr.png'),
 	"japanese": require('./japan.png'),
 	"communist": require('./communist.png'),
-	"un": require('./un.jpg'),
+	"un": require('./un.png'),
 	"vichy": require('./france.png'),
 
 	"tie": require('./tie.png'),
@@ -33,5 +33,6 @@ module.exports = {
 	"reluctantenemies": require('./reluctantenemies.jpg'),
 	"sicily": require('./sicily.jpg'),
 	"theblitzkrieglegend": require('./theblitzkrieglegend.jpg'),
-	"tunisia": require('./tunisia.jpg')
+	"tunisia": require('./tunisia.jpg'),
+	"smolensk": require('./smolensk.png')
 };

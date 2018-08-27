@@ -2312,5 +2312,105 @@
 				]
 			}
 		]
+	},
+	{
+		"id": 15,
+		"name": "Smolensk",
+		"desc": "Barbarossa Derailed",
+		"image": "smolensk",
+		"startDate": "1941-07-08T12:00:00Z",
+		"turns": "19",
+		"turnTable": [1,5,8,12,15,19,22,26,29],
+		"weather": {
+			"dice": {
+				"number": 1,
+				"sides": 6,
+				"op": "C"
+			},
+			"effects": [
+				{
+					"turnStart": 1,
+					"turnEnd": 19,
+					"effects": [
+						{"low": 1,"high": 1,"effect": "Limited"},
+						{"low": 2,"high": 6,"effect": "Normal"}						
+					]
+				}
+			]
+		},
+		"players": [
+			{
+				"player": "player1",
+				"name": "Axis",
+				"icon": "german",
+				"supply": [
+					{
+						"turnStart": 1,
+						"turnEnd": 12,
+						"effects": [
+							{"low": 2,"high": 3,"effect": "3"},
+							{"low": 4,"high": 5,"effect": "5"},
+							{"low": 6,"high": 8,"effect": "7"},
+							{"low": 9,"high": 10,"effect": "9"},
+							{"low": 11,"high": 12,"effect": "11"}
+						]
+					},
+					{
+						"turnStart": 13,
+						"turnEnd": 19,
+						"effects": [
+							{"low": 2,"high": 3,"effect": "1"},
+							{"low": 4,"high": 5,"effect": "2"},
+							{"low": 6,"high": 8,"effect": "3"},
+							{"low": 9,"high": 10,"effect": "4"},
+							{"low": 11,"high": 12,"effect": "5"}
+						]
+					}					
+				],
+				"reinforcements": [
+					{"low": 2,"high": 7,"effect": "None"},
+					{"low": 8,"high": 8,"effect": "1 Pax"},
+					{"low": 9,"high": 9,"effect": "1 Pax, 1 Ftr"},
+					{"low": 10,"high": 10,"effect": "2 Pax, 1 Ftr, 1 Tac, 1 Eq"},
+					{"low": 11,"high": 12,"effect": "2 Pax, 2 Ftr, 1 Tac, 1 Eq"}
+				]
+			},
+			{
+				"player": "player2",
+				"name": "Soviet",
+				"icon": "soviet",
+				"supply": [
+					{
+						"turnStart": 1,
+						"turnEnd": 12,
+						"effects": [
+							{"low": 2,"high": 3,"effect": "5"},
+							{"low": 4,"high": 5,"effect": "7"},
+							{"low": 6,"high": 8,"effect": "9"},
+							{"low": 9,"high": 10,"effect": "11"},
+							{"low": 11,"high": 12,"effect": "13"}
+						]
+					},
+					{
+						"turnStart": 13,
+						"turnEnd": 19,
+						"effects": [
+							{"low": 2,"high": 3,"effect": "3"},
+							{"low": 4,"high": 5,"effect": "4"},
+							{"low": 6,"high": 8,"effect": "5"},
+							{"low": 9,"high": 10,"effect": "6"},
+							{"low": 11,"high": 12,"effect": "7"}
+						]
+					}					
+				],
+				"reinforcements": [
+					{"low": 2,"high": 6,"effect": "None"},
+					{"low": 7,"high": 8,"effect": "1 Pax"},
+					{"low": 9,"high": 9,"effect": "2 Pax, 1 Ftr, 1 Eq"},
+					{"low": 10,"high": 10,"effect": "2 Pax, 1 Ftr, 1 Tac, 1 Eq"},
+					{"low": 11,"high": 12,"effect": "2 Pax, 2 Ftr, 1 Tac, 1 Eq"}					
+				]
+			}
+		]
 	}
 ]

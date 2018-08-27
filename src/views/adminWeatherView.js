@@ -33,7 +33,7 @@ var AdminWeatherView = React.createClass({
         this.state['die'+d] = v;
         this.resolve(this.state.die1, this.state.die2, this.state.die3, this.state.die4);
     },
-    resolve(die1, die2, die3, die4) {
+    resolve(die1, die2, die3, die4) {        
         this.setState({die1: die1, die2: die2, die3: die3, die4: die4});
         this.props.setWeather(Weather.find(this.props.turn, this.props.wx, die1, die2, die3, die4));        
     },
