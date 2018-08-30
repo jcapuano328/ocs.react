@@ -105,7 +105,7 @@ let BarrageView = React.createClass({
                             results={Barrage.resolvePossible(
                                 this.state.type,this.state.size,this.state.strength,this.state.terrain,
                                 this.state.spotter,this.state.hedgehog,this.state.stratmode,this.state.airclosetobase,
-                                this.state.die1,this.state.die2                         
+                                this.state.die1,this.state.die2,this.state.die3
                             )} 
                         />                    
                     </View>

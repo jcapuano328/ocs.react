@@ -157,12 +157,26 @@ module.exports = {
 				return 'NE';
 		}
 	},
-	resolvePossible(type,size,strength,terrain,spotter,hedgehog,stratmode,airclosetobase,die1,die2) {
-		let dice = die1 + (type == 'Facility' ? 0 : die2);		
-
+	resolvePossible(type,size,strength,terrain,spotter,hedgehog,stratmode,airclosetobase,die1,die2,die3) {
+		let shift = 0;
+		let dice = 0;
+		switch(type) {
+			case 'Ground':
+				dice = die1 + die2 - 2;
+				shift = groundShift(size,terrain,spotter,hedgehog,stratmode,airclosetobase);
+				break;
+			case 'Ship-to-Shore':
+			case 'Ship-to-Ship':			
+				dice = die1 + die2 - 2;
+				break;
+			case 'Facility':
+				dice = die1 - 1;
+			default:
+				break;
+		}
 		let table = resultsTable[type];
 		return table.map((t) => {
-			let index = (dice > t.results.length) ? t.results.length - 1 : dice;
+			let index = ((dice > t.results.length) ? t.results.length - 1 : dice) + shift;
 			return {strength: t.strength, results: t.results[index]};
 		});
 	}
