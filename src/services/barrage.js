@@ -54,7 +54,7 @@ var resultsTable = {
 	]
 };
 
-let resolveBarrage = (type, shift, strength, dice) => {
+let resolveBarrage = (type, shift, strength, dice) => {	
 	let table = resultsTable[type];
 	let index = table.findIndex((r) => r.strength == strength) + shift;
 	if (index < 0) {index = 0;}
@@ -62,8 +62,7 @@ let resolveBarrage = (type, shift, strength, dice) => {
 	let results = table[index].results;
 
 	if (dice < 0) {dice = 0;}
-	else if (dice > results.length) {dice = results.length - 1;}
-
+	else if (dice > results.length) {dice = results.length - 1;}	
 	return results[dice];
 }
 

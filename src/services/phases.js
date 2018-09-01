@@ -1,5 +1,6 @@
 var phases = [
-	"Admin",
+	"Weather Determination",
+	"Initiative Determination",
 	"{a} Air Unit Refit",
 	"{a} Reinforcement",
 	"{a} Breakout",
