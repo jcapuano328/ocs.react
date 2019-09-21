@@ -181,12 +181,6 @@ let GroundView = React.createClass({
                 <View style={{flex: 3, flexDirection:'row', alignItems: 'center', justifyContent: 'center'}}>
                     <View style={{flex: 1}}>
                         <OddsView odds={Ground.odds(this.state.density)} value={this.state.odds} onChanged={this.onChangeOdds}/>                        
-                        {/*
-                        <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
-                            <SelectDropdown label={'Odds'} values={Ground.odds(this.state.density)} 
-                                value={this.state.odds} onSelected={this.onChangeOdds} />
-                        </View>
-                        */}
                         <GroundType value={this.state.combatMode} onChanged={this.onChangeMode} />
                         <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
                             <Text style={{fontSize: Style.Font.medium(), fontWeight: 'bold'}}>{this.state.surprise}</Text>
@@ -200,48 +194,27 @@ let GroundView = React.createClass({
                                 onRoll={this.onDiceRoll}
                                 onDie={this.onDieChanged} />
                         </View>
-                        <View style={{flex: 3}}>                        
+                        <View style={{flex: 3, flexDirection: 'row'}}>
+                            <View style={{flex: 1}}>
+                                <SelectList title={'Terrain'} titleonly={true} items={Terrain.inside().map((t) => t.desc)} selected={this.state.terrain} onChanged={this.onChangeTerrain}/>
+                            </View>
+                            <View style={{flex: 1}}>
+                                <SelectList title={'Between'} titleonly={true} items={Terrain.between().map((t) => t.desc)} selected={this.state.between} onChanged={this.onChangeTerrainBetween}/>
+                            </View>                        
+                            {/*
                             <GroundResultsView odds={this.state.odds} terrain={Terrain.find(this.state.terrain).density}
                                 results={Ground.resolvePossible(
                                     +this.state.attackAR,+this.state.defendAR,+this.state.defendHH,this.state.combatMode,
                                     this.state.die1,this.state.die2,this.state.die3,this.state.die4,this.state.die5)} 
                             />
+                            */}
                         </View>                            
                     </View>
                 </View>
 
-                {/*
-                <View style={{flex: 1, flexDirection:'row', alignItems: 'center', justifyContent: 'center'}}>
-                    <View style={{flex:1}}/>
-                    <View style={{flex:3, marginRight: 5}}>
-                        <DiceRoll dice={this.dice} values={[this.state.die1,this.state.die2,this.state.die3,this.state.die4,this.state.die5]}
-                            onRoll={this.onDiceRoll}
-                            onDie={this.onDieChanged} />
-                    </View>
-                </View>                    
-                <View style={{flex: 3, flexDirection: 'row', justifyContent: 'center'}}>
-                    <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
-                        <OddsView odds={Ground.odds(this.state.density)} value={this.state.odds} onChanged={this.onChangeOdds}/>
-                        <GroundType value={this.state.combatMode} onChanged={this.onChangeMode} />
-                        <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
-                            <Text style={{fontSize: Style.Font.medium(), fontWeight: 'bold'}}>{this.state.surprise}</Text>
-                        </View>
-                        <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
-                            <Text style={{fontSize: Style.Font.medium(), fontWeight: 'bold'}}>{this.state.results}</Text>
-                        </View>                        
-                    </View>
-                    <View style={{flex: 3}}>                        
-                        <GroundResultsView odds={this.state.odds} terrain={Terrain.find(this.state.terrain).density}
-                            results={Ground.resolvePossible(
-                                +this.state.attackAR,+this.state.defendAR,+this.state.defendHH,this.state.combatMode,
-                                this.state.die1,this.state.die2,this.state.die3,this.state.die4,this.state.die5)} 
-                        />
-                    </View>
-                </View>
-                */}
                 
-                <View style={{flex: 5, flexDirection: 'row'}}>
-                    <View style={{flex: 3, alignItems: 'center', borderWidth:2,borderColor:'gray',borderRadius:3}}>
+                <View style={{flex: 5/*, flexDirection: 'row'*/}}>
+                    {/*<View style={{flex: 3, alignItems: 'center', borderWidth:2,borderColor:'gray',borderRadius:3}}>*/}
                         {/*<GroundType value={this.state.combatMode} onChanged={this.onChangeMode} />*/}
                         <GroundHeader onReset={this.onReset}/>
                         <GroundInput label={'Armor'} attack={this.state.attackArmor} defend={this.state.defendArmor} onChangeAttack={this.onChangeAttackArmor} onChangeDefend={this.onChangeDefendArmor} />
@@ -251,7 +224,9 @@ let GroundView = React.createClass({
                         <GroundInputDefend label={'Hedgehog'} defend={this.state.defendHH} onChangeDefend={this.onChangeDefendHH} />
                         <GroundCheck label={'Combat'} attack={this.state.attackCS} defend={this.state.defendCS} onChangeAttack={this.onChangeAttackCS} onChangeDefend={this.onChangeDefendCS} />
                         <GroundCheck label={'Trace'} attack={this.state.attackTS} defend={this.state.defendTS} onChangeAttack={this.onChangeAttackTS} onChangeDefend={this.onChangeDefendTS} />                        
+                    {/*
                     </View>
+
                     <View style={{flex: 2, alignItems: 'center'}}>
                         <View style={{flex: 5}}>
                             <SelectList title={'Terrain'} titleonly={true} items={Terrain.inside().map((t) => t.desc)} selected={this.state.terrain} onChanged={this.onChangeTerrain}/>
@@ -260,6 +235,7 @@ let GroundView = React.createClass({
                             <SelectList title={'Between'} titleonly={true} items={Terrain.between().map((t) => t.desc)} selected={this.state.between} onChanged={this.onChangeTerrainBetween}/>
                         </View>
                     </View>
+                    */}
                 </View>
             </View>
         );

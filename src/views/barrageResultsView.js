@@ -22,10 +22,10 @@ var BarrageResultsView = React.createClass({
             <View style={{flex:1}}>
                 <View style={{flexDirection: 'row'}}>
                     <View style={{flex:2}}>
-                        <Text style={{fontSize: Style.Font.smallmedium(),fontWeight: 'bold',backgroundColor: 'silver', textAlign: 'center'}}>Strength</Text>
+                        <Text style={{fontSize: Style.Font.medium(),backgroundColor: 'silver', textAlign: 'center'}}>Strength</Text>
                     </View>
                     <View style={{flex:1}}>
-                        <Text style={{fontSize: Style.Font.smallmedium(),fontWeight: 'bold',backgroundColor: 'silver', textAlign: 'center'}}>Result</Text>
+                        <Text style={{fontSize: Style.Font.medium(),backgroundColor: 'silver', textAlign: 'center'}}>Result</Text>
                     </View>                    
                 </View>
                 <View style={{flex:1}}>

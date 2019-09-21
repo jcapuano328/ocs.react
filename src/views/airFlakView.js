@@ -82,7 +82,7 @@ let AirFlakView = React.createClass({
                 <View style={{flex: 8, flexDirection: 'row', marginTop: 10}}>
                     <View style={{flex: 1, alignItems: 'center'}}>
                         <RadioButtonGroup title={'Mission Size'} direction={'vertical'} 
-                            buttons={[0,1,2,3,4,5,6,7,8,9,10].map((s) => {
+                            buttons={[1,2,3,4,5,6,7,8,9,10].map((s) => {
                                 return {label: s.toString(), value: s}
                             })} 
                             state={this.state.size}

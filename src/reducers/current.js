@@ -64,7 +64,7 @@ module.exports = (state = defaultState, action) => {
         let phase = state.phase - 1;
         let player = state.player;
         let turn = state.turn;
-		if (phase < 0) {
+		if (phase < 0 || (phase < 2 && state.initiative != player)) {
 			phase = action.value.maxphases - 1;
             if (state.initiative == player) {
 				turn = prevTurn(state.turn);
@@ -86,8 +86,10 @@ module.exports = (state = defaultState, action) => {
 			phase =  0;
 			if (state.initiative != player) {
 				turn = nextTurn(turn, action.value.maxturns);
-			}
-            player = nextPlayer(player, action.value.players);
+            } else {
+                phase = 2; // skip the 2 common phases
+            }            
+            player = nextPlayer(player, action.value.players);            
 		}
         return {
             ...state,

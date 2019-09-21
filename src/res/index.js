@@ -34,5 +34,7 @@ module.exports = {
 	"sicily": require('./sicily.jpg'),
 	"theblitzkrieglegend": require('./theblitzkrieglegend.jpg'),
 	"tunisia": require('./tunisia.jpg'),
-	"smolensk": require('./smolensk.png')
+	"smolensk": require('./smolensk.png'),
+	"btr": require('./btr.jpg'),
+	"bg": require('./bg.jpg')
 };

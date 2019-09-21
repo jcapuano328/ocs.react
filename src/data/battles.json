@@ -2105,6 +2105,189 @@
 	},
 
 	{
+    	"id": 16,
+	    "name": "Baltic Gap",
+        "desc": "Summer 1944",
+        "image": "bg",
+	    "startDate":"1944-06-26T12:00:00Z",
+	    "turns": 38,
+		"turnTable": [1,5,8,12,15,19,22,26,29],
+        "weather": {
+	        "dice": {
+	            "number": 1,
+	            "sides": 6,
+	            "op": "C"
+	        },
+	        "effects": [
+	            {
+	                "turnStart": 1,
+	                "turnEnd": 11,
+	                "effects": [
+	                    { "low": 1, "high": 1, "effect": "Limited" },
+						{ "low": 2, "high": 6, "effect": "Normal" }
+	                ]
+	            },
+	            {
+	                "turnStart": 12,
+	                "turnEnd": 30,
+	                "effects": [
+	                    { "low": 1, "high": 2, "effect": "Limited" },
+						{ "low": 3, "high": 6, "effect": "Normal" }
+	                ]
+	            },
+	            {
+	                "turnStart": 31,
+	                "turnEnd": 38,
+	                "effects": [
+						{ "low": 1, "high": 1, "effect": "Limited" },
+	                    { "low": 2, "high": 3, "effect": "Limited" },
+						{ "low": 4, "high": 6, "effect": "Normal" }
+	                ]
+	            }				
+	        ]
+        },
+        "players": [
+        	{
+	            "player": "player1",
+	        	"name": "Soviet",
+				"icon": "soviet",
+			    "supply": [
+		        	{
+		            	"turnStart": 1,
+		                "turnEnd": 38,
+		                "effects": [
+		                	{
+		                    	"low": 2,
+		                        "high": 3,
+		                        "effect": "A,B,C: 1 \r\n D*,E*,F*: 0 \r\n I*: 1"
+							},
+		                	{
+		                    	"low": 4,
+		                        "high": 5,
+		                        "effect": "A,B,C: 2 \r\n D*,E*,F*: 1 \r\n I*: 1"
+							},
+		                	{
+		                    	"low": 6,
+		                        "high": 8,
+		                        "effect": "A,B,C: 3 \r\n D*,E*,F*: 1 \r\n I*: 2"
+							},
+		                	{
+		                    	"low": 9,
+		                        "high": 10,
+		                        "effect": "A,B,C: 4 \r\n D*,E*,F*: 2 \r\n I*: 2"
+							},
+		                	{
+		                    	"low": 11,
+		                        "high": 12,
+		                        "effect": "A,B,C: 5 \r\n D*,E*,F*: 2 \r\n I*: 3"
+							}							
+		                ]
+		            }
+		        ],
+			    "reinforcements": [
+	            	{
+	                	"low": 2,
+	                    "high": 5,
+	                    "effect": "Partisans"
+					},
+	            	{
+	                	"low": 6,
+	                    "high": 6,
+	                    "effect": "AR1, Eq, Plane"
+					},
+	            	{
+	                	"low": 7,
+	                    "high": 7,
+	                    "effect": "AR2, Eq, Plane"
+					},
+	            	{
+	                	"low": 8,
+	                    "high": 8,
+	                    "effect": "AR3, Eq, Plane"
+					},
+	            	{
+	                	"low": 9,
+	                    "high": 9,
+	                    "effect": "AR4, Eq, Plane"
+					},										
+	            	{
+	                	"low": 10,
+	                    "high": 12,
+	                    "effect": "2x Eq, Pax, Arty, Plane"
+					}
+	            ]
+			},
+
+        	{
+	            "player": "player2",
+	        	"name": "German",
+				"icon": "german",
+			    "supply": [
+		        	{
+		            	"turnStart": 1,
+		                "turnEnd": 38,
+		                "effects": [
+		                	{
+		                    	"low": 2,
+		                        "high": 3,
+		                        "effect": "2"
+							},
+		                	{
+		                    	"low": 4,
+		                        "high": 5,
+		                        "effect": "4"
+							},
+		                	{
+		                    	"low": 6,
+		                        "high": 8,
+		                        "effect": "6"
+							},							
+		                	{
+		                    	"low": 9,
+		                        "high": 10,
+		                        "effect": "8"
+							},
+		                	{
+		                    	"low": 11,
+		                        "high": 12,
+		                        "effect": "10"
+							}
+		                ]
+		            }
+			    ],
+			    "reinforcements": [
+	            	{
+	                	"low": 2,
+	                    "high": 5,
+	                    "effect": "Partisans, Gar"
+					},
+	            	{
+	                	"low": 6,
+	                    "high": 6,
+	                    "effect": "AR2, Gar"
+					},
+	            	{
+	                	"low": 7,
+	                    "high": 7,
+	                    "effect": "AR3, Gar"
+					},
+	            	{
+	                	"low": 8,
+	                    "high": 8,
+	                    "effect": "AR4, Gar, Plane"
+					},
+	            	{
+	                	"low": 0,
+	                    "high": 12,
+	                    "effect": "2x Eq, Pax, Hogs, Gar, Plane"
+					}				
+				]
+			}
+		]
+	},	
+
+
+	{
     	"id": 13,
 	    "name": "Reluctant Enemies",
         "desc": "The Commonwealth Invasion of Lebanon and Syria",
@@ -2211,7 +2394,9 @@
 			    "reinforcements": []
 			}
 		]
-	},
+	},	
+	
+	
 	{
 		"id": 14,
 		"name": "Sicily 2",
@@ -2412,5 +2597,5 @@
 				]
 			}
 		]
-	}
+	}	
 ]
