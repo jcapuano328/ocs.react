@@ -22,6 +22,8 @@ module.exports = {
 	"communist": require('./communist.png'),
 	"un": require('./un.png'),
 	"vichy": require('./france.png'),
+	"uk": require('./uk.png'),
+	"usa": require('./usa.png'),
 
 	"tie": require('./tie.png'),
 	"burma": require('./burma.jpg'),

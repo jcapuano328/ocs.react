@@ -7,6 +7,9 @@ import Weather from '../services/weather';
 import getWeather from '../selectors/weather';
 import {setWeather} from '../actions/current';
 
+const diecolors = ['red', 'white',   'black', 'black', 'yellow', 'blue',  'green', 'purple', 'gray', 'olive', 'sienna'];
+const dotcolors = ['white', 'black', 'red',   'white', 'black',  'white', 'white', 'white',  'white', 'white', 'white'];
+
 var AdminWeatherView = React.createClass({
     getInitialState() {
         return {
@@ -35,25 +38,39 @@ var AdminWeatherView = React.createClass({
     },
     resolve(die1, die2, die3, die4) {        
         this.setState({die1: die1, die2: die2, die3: die3, die4: die4});
-        this.props.setWeather(Weather.find(this.props.turn, this.props.wx, die1, die2, die3, die4));        
+		let weathers = this.props.wx;
+		if (!Array.isArray(weathers)) {
+			weathers = [weathers];			
+		}
+		let currentwx = '';
+		weathers.forEach(wx => {
+			let wxres = Weather.find(this.props.turn, wx, die1, die2, die3, die4);
+			if (currentwx) {
+				currentwx += '\r\n';
+			}
+			currentwx += wxres;
+		});
+		
+        this.props.setWeather(currentwx);        
     },
     render() {
-        let wxdice = this.props.wx.dice;
-        let dice = [
-            {num: 1, low: 1, high: wxdice.sides, color: 'red', dotcolor:'white'}
-        ];
-        if (wxdice.number > 1) {
-            dice.push({num: 1, low: 1, high: wxdice.sides, color: 'white', dotcolor:'black'});
+        let dice = [];
+
+		let weathers = this.props.wx;
+		if (!Array.isArray(weathers)) {
+			weathers = [weathers];			
         }
-        if (wxdice.number > 2) {
-            dice.push({num: 1, low: 1, high: wxdice.sides, color: 'yellow', dotcolor:'black'});
-        }
-        if (wxdice.number > 3) {
-            dice.push({num: 1, low: 1, high: wxdice.sides, color: 'green', dotcolor:'white'});
-        }
+        let wxdicenumber = 0;
+		weathers.forEach(wx => {
+            let wxdice = wx.dice;
+            for (var i = 0; i < wxdice.number; i++) {
+                dice.push({num: 1, low: 1, high: wxdice.sides, color: diecolors[wxdicenumber+i], dotcolor: dotcolors[wxdicenumber+i]});
+            }
+            wxdicenumber += wxdice.number;
+		});
         
-        let resultsflex = wxdice.number > 3 ? 2 : 3;
-        let diceflex = wxdice.number > 3 ? 3 : 2;
+        let resultsflex = wxdicenumber > 3 ? 2 : 3;
+        let diceflex = wxdicenumber > 3 ? 3 : 2;
         return (            
             <View style={{flex: 1.1, paddingTop: 2}}>
                 <Text style={{fontSize: Style.Font.medium(),fontWeight: 'bold',backgroundColor: 'silver', textAlign: 'left', paddingLeft:10}}>Weather</Text>

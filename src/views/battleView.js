@@ -27,7 +27,7 @@ var BattleView = React.createClass({
                 <ScrollableTabView
                     style={{backgroundColor: '#fff'}}
                     tabBarTextStyle={{fontSize: Style.Font.medium()}}
-                    initialPage={this.state.initialPage}                    
+                    initialPage={this.state.initialPage}
                 >
                     <AdminView tabLabel="Admin" />
                     <GroundView tabLabel="Ground" />

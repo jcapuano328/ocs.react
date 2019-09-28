@@ -2073,7 +2073,7 @@
 	                        {
 	                            "low": 2,
 	                            "high": 12,
-	                            "effect": "4 (2.5)"
+	                            "effect": "4 (2.5))"
 	                        }
 	                    ]
 	                }
@@ -2394,8 +2394,417 @@
 			    "reinforcements": []
 			}
 		]
+	},
+
+	{
+		"id": 17,
+		"name": "Beyond the Rhine",
+		"desc": "The Campaign for Northwest Europe",
+		"image": "btr",
+		"startDate": "1945-09-05T12:00:00Z",
+		"turns": "70",
+		"turnTable": [1,5,8,12,15,19,22,26,29],
+		"weather": [
+			{
+				"dice": {
+					"number": 1,
+					"sides": 6,
+					"op": "C"
+				},
+				"effects": [
+					{
+						"turnStart": 1,
+						"turnEnd": 12,
+						"effects": [
+							{"low": 1,"high": 6,"effect": "Ground: Dry"}
+						]
+					},
+					{
+						"turnStart": 13,
+						"turnEnd": 17,
+						"effects": [
+							{"low": 1,"high": 4,"effect": "Ground: Dry"},
+							{"low": 5,"high": 6,"effect": "Ground: Mud"}
+						]
+					},
+					{
+						"turnStart": 18,
+						"turnEnd": 26,
+						"effects": [
+							{"low": 1,"high": 2,"effect": "Ground: Dry"},
+							{"low": 3,"high": 6,"effect": "Ground: Mud"}
+						]
+					},
+					{
+						"turnStart": 27,
+						"turnEnd": 32,
+						"effects": [
+							{"low": 1,"high": 3,"effect": "Ground: Dry"},
+							{"low": 4,"high": 4,"effect": "Ground: Mud"},
+							{"low": 5,"high": 6,"effect": "Ground: Snow"}
+						]
+					},
+					{
+						"turnStart": 32,
+						"turnEnd": 34,
+						"effects": [
+							{"low": 1,"high": 2,"effect": "Ground: Dry"},
+							{"low": 3,"high": 6,"effect": "Ground: Snow"}
+						]
+					},
+					{
+						"turnStart": 35,
+						"turnEnd": 40,
+						"effects": [							
+							{"low": 1,"high": 6,"effect": "Ground: Snow"}
+						]
+					},					
+					{
+						"turnStart": 41,
+						"turnEnd": 43,
+						"effects": [							
+							{"low": 1,"high": 1,"effect": "Ground: Dry"},
+							{"low": 2,"high": 6,"effect": "Ground: Snow"}
+						]
+					},					
+					{
+						"turnStart": 44,
+						"turnEnd": 48,
+						"effects": [
+							{"low": 1,"high": 2,"effect": "Ground: Dry"},
+							{"low": 3,"high": 3,"effect": "Ground: Mud"},
+							{"low": 4,"high": 6,"effect": "Ground: Snow"}
+						]
+					},					
+					{
+						"turnStart": 49,
+						"turnEnd": 51,
+						"effects": [
+							{"low": 1,"high": 2,"effect": "Ground: Dry"},
+							{"low": 3,"high": 4,"effect": "Ground: Mud"},
+							{"low": 5,"high": 6,"effect": "Ground: Snow"}
+						]
+					},					
+					{
+						"turnStart": 52,
+						"turnEnd": 54,
+						"effects": [
+							{"low": 1,"high": 3,"effect": "Ground: Dry"},
+							{"low": 4,"high": 5,"effect": "Ground: Mud"},
+							{"low": 6,"high": 6,"effect": "Ground: Snow"}
+						]
+					},
+					{
+						"turnStart": 55,
+						"turnEnd": 57,
+						"effects": [
+							{"low": 1,"high": 2,"effect": "Ground: Dry"},
+							{"low": 3,"high": 6,"effect": "Ground: Mud"}
+						]
+					},					
+					{
+						"turnStart": 58,
+						"turnEnd": 70,
+						"effects": [
+							{"low": 1,"high": 3,"effect": "Ground: Dry"},
+							{"low": 4,"high": 6,"effect": "Ground: Mud"}
+						]
+					}
+				]
+			},
+						
+			{
+				"dice": {
+					"number": 2,
+					"sides": 6,
+					"op": "A"
+				},
+				"effects": [
+					{
+						"turnStart": 1,
+						"turnEnd": 12,
+						"effects": [
+							{"low": 2,"high": 3,"effect": "Flight: None"},
+							{"low": 4,"high": 6,"effect": "Flight: Limited"},
+							{"low": 7,"high": 12,"effect": "Flight: Normal"}
+						]
+					},
+					{
+						"turnStart": 13,
+						"turnEnd": 22,
+						"effects": [
+							{"low": 2,"high": 4,"effect": "Flight: None"},
+							{"low": 5,"high": 7,"effect": "Flight: Limited"},
+							{"low": 8,"high": 12,"effect": "Flight: Normal"}
+						]
+					},
+					{
+						"turnStart": 23,
+						"turnEnd": 26,
+						"effects": [
+							{"low": 2,"high": 4,"effect": "Flight: None"},
+							{"low": 5,"high": 8,"effect": "Flight: Limited"},
+							{"low": 9,"high": 12,"effect": "Flight: Normal"}
+						]
+					},
+					{
+						"turnStart": 27,
+						"turnEnd": 41,
+						"effects": [
+							{"low": 2,"high": 5,"effect": "Flight: None"},
+							{"low": 6,"high": 8,"effect": "Flight: Limited"},
+							{"low": 9,"high": 12,"effect": "Flight: Normal"}
+						]
+					},
+					{
+						"turnStart": 42,
+						"turnEnd": 44,
+						"effects": [
+							{"low": 2,"high": 4,"effect": "Flight: None"},
+							{"low": 5,"high": 8,"effect": "Flight: Limited"},
+							{"low": 9,"high": 12,"effect": "Flight: Normal"}
+						]
+					},
+					{
+						"turnStart": 45,
+						"turnEnd": 52,
+						"effects": [
+							{"low": 2,"high": 4,"effect": "Flight: None"},
+							{"low": 5,"high": 7,"effect": "Flight: Limited"},
+							{"low": 8,"high": 12,"effect": "Flight: Normal"}
+						]
+					},
+					{
+						"turnStart": 53,
+						"turnEnd": 55,
+						"effects": [
+							{"low": 2,"high": 3,"effect": "Flight: None"},
+							{"low": 4,"high": 7,"effect": "Flight: Limited"},
+							{"low": 8,"high": 12,"effect": "Flight: Normal"}
+						]
+					},
+					{
+						"turnStart": 56,
+						"turnEnd": 70,
+						"effects": [
+							{"low": 2,"high": 3,"effect": "Flight: None"},
+							{"low": 4,"high": 6,"effect": "Flight: Limited"},
+							{"low": 7,"high": 12,"effect": "Flight: Normal"}
+						]
+					}					
+				]
+			}			
+			
+		],
+		"players": [
+			{
+				"player": "player1",
+				"name": "Allies",
+				"icon": "allies-west",
+				"supply": [
+					{
+						"icon": "usa",
+						"supply": [
+							{
+								"turnStart": 1,
+								"turnEnd": 1,
+								"effects": [
+									{"low": 2,"high": 3,"effect": "2: 1, 3-4: 2, 5: 3, 6-7: 4, 8-9: 5"},
+									{"low": 4,"high": 5,"effect": "2: 2, 3-4: 3, 5: 4, 6-7: 5, 8-9: 6"},
+									{"low": 6,"high": 8,"effect": "2: 3, 3: 4, 4: 5, 5: 6, 6: 7, 7-8: 8, 9: 9"},
+									{"low": 9,"high": 10,"effect": "2: 3, 3: 5, 4-5: 6, 6: 7, 7: 8, 8-9: 9"},
+									{"low": 11,"high": 12,"effect": "2: 4, 3: 5, 4: 6, 5: 7, 6: 8, 7: 9, 8-9: 10"}
+								]
+							},
+							{
+								"turnStart": 2,
+								"turnEnd": 3,
+								"effects": [
+									{"low": 2,"high": 3,"effect": "2: 1, 3-4: 2, 5: 3, 6-7: 4, 10: 6"},
+									{"low": 4,"high": 5,"effect": "2: 2, 3-4: 3, 5: 4, 6-7: 5, 8-9: 6, 10: 7"},
+									{"low": 6,"high": 8,"effect": "2: 3, 3: 4, 4: 5, 5: 6, 6: 7, 7-8: 8, 9: 9, 10: 10"},
+									{"low": 9,"high": 10,"effect": "2: 3, 3: 5, 4-5: 6, 6: 7, 7: 8, 8-9: 9, 10: 10"},
+									{"low": 11,"high": 12,"effect": "2: 4, 3: 5, 4: 6, 5: 7, 6: 8, 7: 9, 8-9: 10, 10: 11"}								
+								]
+							},
+							{
+								"turnStart": 4,
+								"turnEnd": 7,
+								"effects": [								
+									{"low": 2,"high": 3,"effect": "3-4: 2, 5: 3, 6-7: 4, 10: 6, 11: 7"},
+									{"low": 4,"high": 5,"effect": "3-4: 3, 5: 4, 6-7: 5, 8-9: 6, 10: 7, 11: 8"},
+									{"low": 6,"high": 8,"effect": "3: 4, 4: 5, 5: 6, 6: 7, 7-8: 8, 9: 9, 10: 10, 11: 11"},
+									{"low": 9,"high": 10,"effect": "3: 5, 4-5: 6, 6: 7, 7: 8, 8-9: 9, 10: 10, 11: 11"},
+									{"low": 11,"high": 12,"effect": "3: 5, 4: 6, 5: 7, 6: 8, 7: 9, 8-9: 10, 10: 11, 11: 12"}								
+								]
+							},
+						
+							{
+								"turnStart": 8,
+								"turnEnd": 11,
+								"effects": [
+									{"low": 2,"high": 3,"effect": "4: 2, 5: 3, 6-7: 4, 10: 6, 11: 7, 12: 8"},
+									{"low": 4,"high": 5,"effect": "4: 3, 5: 4, 6-7: 5, 8-9: 6, 10: 7, 11: 8, 12: 10"},
+									{"low": 6,"high": 8,"effect": "4: 5, 5: 6, 6: 7, 7-8: 8, 9: 9, 10: 10, 11: 11, 12: 12"},
+									{"low": 9,"high": 10,"effect": "4-5: 6, 6: 7, 7: 8, 8-9: 9, 10: 10, 11: 11, 12: 12"},
+									{"low": 11,"high": 12,"effect": "4: 6, 5: 7, 6: 8, 7: 9, 8-9: 10, 10: 11, 11: 12, 12: 14"}
+								]
+							},
+							{
+								"turnStart": 12,
+								"turnEnd": 16,
+								"effects": [								
+									{"low": 2,"high": 3,"effect": "5: 3, 6-7: 4, 10: 6, 11: 7, 12: 8, 13: 9"},
+									{"low": 4,"high": 5,"effect": "5: 4, 6-7: 5, 8-9: 6, 10: 7, 11: 8, 12: 10, 13: 11"},
+									{"low": 6,"high": 8,"effect": "5: 6, 6: 7, 7-8: 8, 9: 9, 10: 10, 11: 11, 12: 12, 13: 13"},
+									{"low": 9,"high": 10,"effect": "5: 6, 6: 7, 7: 8, 8-9: 9, 10: 10, 11: 11, 12: 12, 13: 14"},
+									{"low": 11,"high": 12,"effect": "5: 7, 6: 8, 7: 9, 8-9: 10, 10: 11, 11: 12, 12: 14, 13: 15"}
+								]
+							},
+							{
+								"turnStart": 17,
+								"turnEnd": 70,
+								"effects": [								
+									{"low": 2,"high": 3,"effect": "6-7: 4, 10: 6, 11: 7, 12: 8, 13: 9"},
+									{"low": 4,"high": 5,"effect": "6-7: 5, 8-9: 6, 10: 7, 11: 8, 12: 10, 13: 11"},
+									{"low": 6,"high": 8,"effect": "6: 7, 7-8: 8, 9: 9, 10: 10, 11: 11, 12: 12, 13: 13"},
+									{"low": 9,"high": 10,"effect": "6: 7, 7: 8, 8-9: 9, 10: 10, 11: 11, 12: 12, 13: 14"},
+									{"low": 11,"high": 12,"effect": "6: 8, 7: 9, 8-9: 10, 10: 11, 11: 12, 12: 14, 13: 15"}
+								]
+							}
+						]
+					},
+					{
+						"icon": "uk",
+						"supply": [
+							{
+								"turnStart": 1,
+								"turnEnd": 3,
+								"effects": [
+									{"low": 2,"high": 3,"effect": "2: 0, 3-5: 1, 6-7: 2, 8-10: 3"},
+									{"low": 4,"high": 5,"effect": "2: 1, 3-5: 2, 6-7: 3, 8-9: 4, 10: 5"},
+									{"low": 6,"high": 8,"effect": "2-3: 2, 4-6: 3, 7-8: 4, 9: 5, 10: 6"},
+									{"low": 9,"high": 10,"effect": "2: 2, 3-4: 3, 5-7: 4, 8-9: 5, 10: 6"},
+									{"low": 11,"high": 12,"effect": "2: 2, 3: 3, 4-6: 4, 7-8: 5, 9: 6, 10: 7"}
+								]
+							},
+							{
+								"turnStart": 4,
+								"turnEnd": 23,
+								"effects": [
+									{"low": 2,"high": 3,"effect": "3-5: 1, 6-7: 2, 8-10: 3, 11: 4"},
+									{"low": 4,"high": 5,"effect": "3-5: 2, 6-7: 3, 8-9: 4, 10: 5, 11: 6"},
+									{"low": 6,"high": 8,"effect": "3: 2, 4-6: 3, 7-8: 4, 9: 5, 10: 6, 11: 7"},
+									{"low": 9,"high": 10,"effect": "3-4: 3, 5-7: 4, 8-9: 5, 10: 6, 11: 7"},
+									{"low": 11,"high": 12,"effect": "3: 3, 4-6: 4, 7-8: 5, 9: 6, 10: 7, 11: 8"}
+								]
+							},
+							{
+								"turnStart": 24,
+								"turnEnd": 70,
+								"effects": [
+									{"low": 2,"high": 3,"effect": "4-5: 1, 6-7: 2, 8-10: 3, 11-12: 4"},
+									{"low": 4,"high": 5,"effect": "4-5: 2, 6-7: 3, 8-9: 4, 10: 5, 11-12: 6"},
+									{"low": 6,"high": 8,"effect": "4-6: 3, 7-8 : 4, 9 : 5, 10: 6, 11-12: 7"},
+									{"low": 9,"high": 10,"effect": "4: 3, 5-7: 4, 8-9: 5, 10: 6, 11: 7, 12: 8"},
+									{"low": 11,"high": 12,"effect": "4-6: 4, 7-8: 5, 9: 6, 10: 7, 11: 8, 12: 9"}
+								]
+							}
+						]
+					}									
+				],
+				"reinforcements": [
+					{
+						"icon": "usa",
+						"reinforcements": [
+							{"low": 2,"high": 5,"effect": "None"},
+							{"low": 6,"high": 6,"effect": "1 Pax"},
+							{"low": 7,"high": 7,"effect": "1 Pax, 1 Eq"},
+							{"low": 8,"high": 9,"effect": "1 Ftr, 1 Oth, 2* Pax, 1 Eq"},
+							{"low": 10,"high": 10,"effect": "2 Ftr, 2 Oth, 2* Pax, 2 Eq, 1 Misc"},
+							{"low": 11,"high": 11,"effect": "2 Ftr, 2 Oth, 2* Pax, 3 Eq, 1 Misc"},
+							{"low": 12,"high": 12,"effect": "2 Ftr, 2 Oth, 3* Pax, 3 Eq, 1+ Misc"}					
+						]						
+					},
+					{
+						"icon": "uk",
+						"reinforcements": [
+							{"low": 2,"high": 6,"effect": "None"},							
+							{"low": 7,"high": 7,"effect": "1 Eq"},
+							{"low": 8,"high": 9,"effect": "1 Ftr, 1 Oth, 1 Pax, 1 Eq"},
+							{"low": 10,"high": 10,"effect": "1 Ftr, 1 Oth, 1 Pax, 1 Eq, 1 Misc"},
+							{"low": 11,"high": 11,"effect": "1 Ftr, 1 Oth, 2 Pax, 2 Eq, 1 Misc"},
+							{"low": 12,"high": 12,"effect": "1 Ftr, 1 Oth, 2 Pax, 2 Eq, 1+ Misc"}					
+						]						
+					}
+								
+				]
+			},
+			{
+				"player": "player2",
+				"name": "German",
+				"icon": "german",
+				"supply": [
+					{
+						"turnStart": 1,
+						"turnEnd": 17,
+						"effects": [
+							{"low": 2,"high": 3,"effect": "5: 4, 6: 5, 7: 6, 8: 7, 9: 8, 10: 9"},
+							{"low": 4,"high": 5,"effect": "5-6: 5, 7: 6, 8 : 7, 9: 8, 10: 9"},
+							{"low": 6,"high": 8,"effect": "5-6: 6, 7: 7, 8 : 8, 9: 9, 10: 10"},
+							{"low": 9,"high": 10,"effect": "5-6: 7, 7: 8, 8 : 9, 9: 10, 10: 11"},
+							{"low": 11,"high": 12,"effect": "5: 7, 6: 8, 7-8: 9, 9: 10, 10: 11"}
+						]
+					},
+					{
+						"turnStart": 18,
+						"turnEnd": 26,
+						"effects": [
+							{"low": 2,"high": 3,"effect": "4: 3, 5: 4, 6: 5, 7: 6, 8: 7, 9: 8"},
+							{"low": 4,"high": 5,"effect": "4: 4, 5-6: 5, 7: 6, 8 : 7, 9: 8"},
+							{"low": 6,"high": 8,"effect": "4: 5, 5-6: 6, 7: 7, 8 : 8, 9: 9"},
+							{"low": 9,"high": 10,"effect": "4: 6, 5-6: 7, 7: 8, 8 : 9, 9: 10"},
+							{"low": 11,"high": 12,"effect": "4-5: 7, 6: 8, 7-8: 9, 9: 10"}
+						]
+					},
+					{
+						"turnStart": 27,
+						"turnEnd": 35,
+						"effects": [
+							{"low": 2,"high": 3,"effect": "5: 4, 6: 5, 7: 6, 8: 7, 9: 8, 10: 9"},
+							{"low": 4,"high": 5,"effect": "5-6: 5, 7: 6, 8 : 7, 9: 8, 10: 9"},
+							{"low": 6,"high": 8,"effect": "5-6: 6, 7: 7, 8 : 8, 9: 9, 10: 10"},
+							{"low": 9,"high": 10,"effect": "5-6: 7, 7: 8, 8 : 9, 9: 10, 10: 11"},
+							{"low": 11,"high": 12,"effect": "5: 7, 6: 8, 7-8: 9, 9: 10, 10: 11"}
+						]
+					},
+					{
+						"turnStart": 36,
+						"turnEnd": 70,
+						"effects": [
+							{"low": 2,"high": 3,"effect": "4: 3, 5: 4, 6: 5, 7: 6, 8: 7, 9: 8"},
+							{"low": 4,"high": 5,"effect": "4: 4, 5-6: 5, 7: 6, 8 : 7, 9: 8"},
+							{"low": 6,"high": 8,"effect": "4: 5, 5-6: 6, 7: 7, 8 : 8, 9: 9"},
+							{"low": 9,"high": 10,"effect": "4: 6, 5-6: 7, 7: 8, 8 : 9, 9: 10"},
+							{"low": 11,"high": 12,"effect": "4-5: 7, 6: 8, 7-8: 9, 9: 10"}
+						]
+					}					
+					
+				],
+				"reinforcements": [
+					{"low": 2,"high": 3,"effect": "1 FP, 1 HH, EP, FA"},
+					{"low": 4,"high": 5,"effect": "1 Pax, Alarm"},
+					{"low": 6,"high": 6,"effect": "1 Pax, Alarm, WW"},
+					{"low": 7,"high": 7,"effect": "1 Ftr, 2 Pax, 1 Eq, Alarm, WW"},
+					{"low": 8,"high": 8,"effect": "1 Ftr, 2 Pax, 1 Eq, Alarm, FA, WaR, WW"},
+					{"low": 9,"high": 9,"effect": "1 Ftr, 2 Pax, 1 Eq, 1 HH, Alarm, FA, WaR, WW"},
+					{"low": 10,"high": 10,"effect": "2 Ftr, 1 Jet, 2 Pax, 1 Eq, 1 Misc, 1 HH, Alarm, EP, FA, WaR, LR, WW"},
+					{"low": 11,"high": 11,"effect": "2 Ftr, 1 Jet, 3 Pax, 1 Eq, 1 Misc, 1 FP, 1 HH, Alarm, EP, FA, WaR, LR, WW"},
+					{"low": 12,"high": 12,"effect": "2 Ftr, 1 Jet, 3 Pax, 2 Eq, 1 Misc, 1 FP, 1 HH, Alarm, EP, FA, WaR, LR, WW"}
+				]
+			}
+		]
 	},	
-	
 	
 	{
 		"id": 14,
@@ -2597,5 +3006,5 @@
 				]
 			}
 		]
-	}	
+	}
 ]
