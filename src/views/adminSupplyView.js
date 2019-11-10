@@ -9,7 +9,7 @@ import AdminSupplyMultiView from './adminSupplyMultiView';
 var AdminSupplyView = React.createClass({
     render() {
         let playersupply = this.props.supply[this.props.player];
-        if (playersupply.supply[0].icon) {
+        if (playersupply && playersupply.supply && playersupply.supply.length > 0 && playersupply.supply[0].icon) {
             return (<AdminSupplyMultiView />);
         }
         return (<AdminSupplySingleView />);

@@ -1,6 +1,6 @@
 {
   "name": "ocs",
-  "version": "1.0.20",
+  "version": "1.0.21",
   "private": true,
   "scripts": {
     "start": "node node_modules/react-native/local-cli/cli.js start",
@@ -13,8 +13,8 @@
     "install-dbg": "adb -d install -r android/app/build/outputs/apk/ocs-debug-1.0.apk",
     "install-stg": "adb -d install -r android/app/build/outputs/apk/ocs-releaseStaging-1.0.apk",
     "install-rel": "adb -d install -r android/app/build/outputs/apk/ocs-release-1.0.apk",
-    "push": "code-push release-react OCSAssistant android --description '1.0.20'",
-    "promote": "code-push promote OCSAssistant Staging Production --description '1.0.20' --mandatory",  
+    "push": "code-push release-react OCSAssistant android --description '1.0.21'",
+    "promote": "code-push promote OCSAssistant Staging Production --description '1.0.21' --mandatory",  
 		"emulate-s3": "%ANDROID_HOME%/tools/emulator.exe -avd Galaxy_SIII",
 		"emulate-nexus7": "%ANDROID_HOME%/tools/emulator.exe -avd Nexus_7",    
     "bridge": "adb reverse tcp:8081 tcp:8081",
