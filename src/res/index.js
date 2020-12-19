@@ -16,8 +16,11 @@ module.exports = {
 	"allies-south": require('./allies-south.png'),
 	"allies-east": require('./allies-east.png'),
 	"allies-west": require('./allies-west.png'),
+	"germany-hungary": require('./germany-hungary.png'),
 	"german": require('./germany.png'),
+	"hungarian": require('./hungary.png'),
 	"soviet": require('./ussr.png'),
+	"ussr-rumania": require('./ussr-rumania.png'),
 	"japanese": require('./japan.png'),
 	"communist": require('./communist.png'),
 	"un": require('./un.png'),
@@ -38,5 +41,6 @@ module.exports = {
 	"tunisia": require('./tunisia.jpg'),
 	"smolensk": require('./smolensk.png'),
 	"btr": require('./btr.jpg'),
-	"bg": require('./bg.jpg')
+	"bg": require('./bg.jpg'),
+	"hr": require('./hr.jpg')
 };

@@ -7,6 +7,7 @@ import Icons from '../res';
 import Reinforcements from '../services/reinforcements';
 import getReinforcements from '../selectors/reinforcements';
 import {setReinforcements} from '../actions/current';
+import inRange from '../services/inrange';
 
 var AdminReinforcementsSingleView = React.createClass({
     dice: [
@@ -45,7 +46,8 @@ var AdminReinforcementsSingleView = React.createClass({
     resolve(die1, die2) {
         this.setState({die1: die1, die2: die2});        
 
-        let reinforcements = Reinforcements.find(this.props.turn, this.props.playerreinforcements, die1, die2);        
+        let playerreinforcements = this.getPlayerReinforcements(this.props.playerreinforcements, this.props.turn);
+        let reinforcements = Reinforcements.find(this.props.turn, {reinforcements: playerreinforcements}, die1, die2);        
         
         let current = this.props[this.props.player] || {};
 
@@ -61,7 +63,7 @@ var AdminReinforcementsSingleView = React.createClass({
         let currentplayerreinforcements = this.props[this.props.player];
         let iconwidth = this.state.width * 0.45;// || */Style.Scaling.scale(96);
         let iconheight = this.state.height * 0.45;// || */Style.Scaling.scale(88);
-        
+
         return (            
             <View style={{flex: 1, flexDirection: 'row', alignItems: 'center', paddingTop: 4}}>
                 <View style={{flex: 5, justifyContent:'flex-start', alignItems:'center'}} onLayout={this.onLayout}>
@@ -83,6 +85,15 @@ var AdminReinforcementsSingleView = React.createClass({
                 </View>
             </View>                
         );
+    },    
+    getPlayerReinforcements(player, turn) {
+        if (player.reinforcements && player.reinforcements.length > 0) {
+            if ('turnStart' in player.reinforcements[0]) {
+                return (player.reinforcements.find((r) => inRange(turn, r.turnStart, r.turnEnd)) || {effects:[]}).effects;
+            }
+            return player.reinforcements;
+        }
+        return [];
     }
 });
 

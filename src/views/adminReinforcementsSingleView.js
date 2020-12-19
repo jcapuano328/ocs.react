@@ -7,6 +7,7 @@ import Icons from '../res';
 import Reinforcements from '../services/reinforcements';
 import getReinforcements from '../selectors/reinforcements';
 import {setReinforcements} from '../actions/current';
+import inRange from '../services/inrange';
 
 var AdminReinforcementsSingleView = React.createClass({
     dice: [
@@ -44,14 +45,15 @@ var AdminReinforcementsSingleView = React.createClass({
     },
     resolve(die1, die2) {
         this.setState({die1: die1, die2: die2});        
-        this.props.setReinforcements(this.props.player, Reinforcements.find(this.props.turn, this.props.reinforcements[this.props.player], die1, die2));
+        let playerreinforcements = this.getPlayerReinforcements(this.props.reinforcements[this.props.player], this.props.turn);
+        this.props.setReinforcements(this.props.player, Reinforcements.find(this.props.turn, {reinforcements: playerreinforcements}, die1, die2));
     },
     render() {
         let iconwidth = this.state.width;// || */96;
         let iconheight = this.state.height;// || */88;    
-        let player = this.props.reinforcements[this.props.player];
-        let playerreinforcements = this.props[this.props.player];
-        
+        let player = this.props.reinforcements[this.props.player];        
+        let currentreinforcements = this.props[this.props.player];
+
         return (            
             <View style={{flex: 2, paddingTop: 4}}>
                 <Text style={{fontSize: Style.Font.medium(),fontWeight: 'bold',backgroundColor: 'silver', textAlign: 'left', paddingLeft:10}}>Variable Reinforcements</Text>
@@ -61,10 +63,10 @@ var AdminReinforcementsSingleView = React.createClass({
                             <View style={{flex: 2, justifyContent:'center', alignItems:'center'}}>
                                 <Image
                                     style={{width: iconwidth, height: iconheight, resizeMode: 'contain'}}
-                                    source={Icons[player.icon.toLowerCase()]} />
+                                    source={Icons[(player||{icon:''}).icon.toLowerCase()]} />
                             </View>
                             <View style={{flex: 3, alignItems: 'center'}}>
-                                <Text style={{marginLeft: 10, fontSize: Style.Font.mediumlarge(), fontWeight: 'bold'}}>{playerreinforcements}</Text>
+                                <Text style={{marginLeft: 10, fontSize: Style.Font.mediumlarge(), fontWeight: 'bold'}}>{currentreinforcements}</Text>
                             </View>
                         </View>
                     </View>
@@ -76,7 +78,17 @@ var AdminReinforcementsSingleView = React.createClass({
                 </View>                
             </View>
         );
+    },
+    getPlayerReinforcements(player, turn) {
+        if (player.reinforcements && player.reinforcements.length > 0) {
+            if ('turnStart' in player.reinforcements[0]) {
+                return (player.reinforcements.find((r) => inRange(turn, r.turnStart, r.turnEnd)) || {effects:[]}).effects;
+            }
+            return player.reinforcements;
+        }
+        return [];
     }
+
 });
 
 const mapStateToProps = (state) => ({

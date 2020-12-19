@@ -127,7 +127,8 @@ module.exports = (state = defaultState, action) => {
     case types.SET_INITIATIVE:
         return {
             ...state,
-            initiative: action.value
+            initiative: action.value,
+            player: action.value
         };
 
     case types.SET_WEATHER:

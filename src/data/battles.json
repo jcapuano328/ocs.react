@@ -3006,5 +3006,409 @@
 				]
 			}
 		]
-	}
+	},
+
+	{
+		"id": 18,
+		"name": "Hungarian Rhapsody",
+		"desc": "The Drive into Hungary",
+		"image": "hr",
+		"startDate": "1944-10-05T12:00:00Z",
+		"turns": "43",
+		"turnTable": [1,5,8,12,15,19,22,26,29],
+		"weather": [
+			{
+				"dice": {
+					"number": 1,
+					"sides": 6,
+					"op": "C"
+				},
+				"effects": [
+					{
+						"turnStart": 1,
+						"turnEnd": 2,
+						"effects": [
+							{"low": 1,"high": 6,"effect": "Ground: Dry"}
+						]
+					},
+					{
+						"turnStart": 3,
+						"turnEnd": 5,
+						"effects": [
+							{"low": 1,"high": 5,"effect": "Ground: Dry"},
+							{"low": 6,"high": 6,"effect": "Ground: Lt Mud"}
+						]
+					},
+					{
+						"turnStart": 6,
+						"turnEnd": 8,
+						"effects": [
+							{"low": 1,"high": 4,"effect": "Ground: Dry"},
+							{"low": 5,"high": 6,"effect": "Ground: Lt Mud"}
+						]
+					},
+					{
+						"turnStart": 9,
+						"turnEnd": 11,
+						"effects": [
+							{"low": 1,"high": 3,"effect": "Ground: Dry"},
+							{"low": 4,"high": 6,"effect": "Ground: Lt Mud"}
+						]
+					},
+					{
+						"turnStart": 12,
+						"turnEnd": 14,
+						"effects": [
+							{"low": 1,"high": 2,"effect": "Ground: Dry"},
+							{"low": 3,"high": 6,"effect": "Ground: Lt Mud"}
+						]
+					},
+					{
+						"turnStart": 15,
+						"turnEnd": 17,
+						"effects": [							
+							{"low": 1,"high": 1,"effect": "Ground: Dry"},
+							{"low": 2,"high": 6,"effect": "Ground: Lt Mud"}
+						]
+					},					
+					{
+						"turnStart": 18,
+						"turnEnd": 20,
+						"effects": [							
+							{"low": 1,"high": 3,"effect": "Ground: Lt Mud"},
+							{"low": 4,"high": 4,"effect": "Ground: Mud"},
+							{"low": 5,"high": 6,"effect": "Ground: Snow"}
+						]
+					},					
+					{
+						"turnStart": 21,
+						"turnEnd": 23,
+						"effects": [
+							{"low": 1,"high": 2,"effect": "Ground: Lt Mud"},
+							{"low": 3,"high": 3,"effect": "Ground: Mud"},
+							{"low": 4,"high": 6,"effect": "Ground: Snow"}
+						]
+					},					
+					{
+						"turnStart": 24,
+						"turnEnd": 26,
+						"effects": [
+							{"low": 1,"high": 1,"effect": "Ground: Lt Mud"},
+							{"low": 2,"high": 2,"effect": "Ground: Mud"},
+							{"low": 3,"high": 6,"effect": "Ground: Snow"}
+						]
+					},					
+					{
+						"turnStart": 27,
+						"turnEnd": 35,
+						"effects": [
+							{"low": 1,"high": 6,"effect": "Ground: Snow"}
+						]
+					},
+					{
+						"turnStart": 36,
+						"turnEnd": 38,
+						"effects": [
+							{"low": 1,"high": 1,"effect": "Ground: Lt Mud"},
+							{"low": 2,"high": 2,"effect": "Ground: Mud"},
+							{"low": 3,"high": 6,"effect": "Ground: Snow"}
+						]
+					},					
+					{
+						"turnStart": 39,
+						"turnEnd": 41,
+						"effects": [
+							{"low": 1,"high": 2,"effect": "Ground: Lt Mud"},
+							{"low": 3,"high": 3,"effect": "Ground: Mud"},
+							{"low": 4,"high": 6,"effect": "Ground: Snow"}
+						]
+					},
+					{
+						"turnStart": 42,
+						"turnEnd": 43,
+						"effects": [
+							{"low": 1,"high": 3,"effect": "Ground: Lt Mud"},
+							{"low": 4,"high": 4,"effect": "Ground: Mud"},
+							{"low": 5,"high": 6,"effect": "Ground: Snow"}
+						]
+					}
+				]
+			},
+						
+			{
+				"dice": {
+					"number": 1,
+					"sides": 6,
+					"op": "C"
+				},
+				"effects": [
+					{
+						"turnStart": 1,
+						"turnEnd": 8,
+						"effects": [
+							{"low": 1,"high": 2,"effect": "Flight: Limited"},
+							{"low": 3,"high": 6,"effect": "Flight: Normal"}
+						]
+					},
+					{
+						"turnStart": 9,
+						"turnEnd": 23,
+						"effects": [
+							{"low": 1,"high": 4,"effect": "Flight: Limited"},
+							{"low": 5,"high": 6,"effect": "Flight: Normal"}
+						]
+					},
+					{
+						"turnStart": 24,
+						"turnEnd": 35,
+						"effects": [
+							{"low": 1,"high": 5,"effect": "Flight: Limited"},
+							{"low": 6,"high": 6,"effect": "Flight: Normal"}
+						]
+					},
+					{
+						"turnStart": 36,
+						"turnEnd": 41,
+						"effects": [
+							{"low": 1,"high": 4,"effect": "Flight: Limited"},
+							{"low": 5,"high": 6,"effect": "Flight: Normal"}
+						]
+					}					
+				]
+			}			
+		],
+
+		"players": [
+			{
+				"player": "player1",
+				"name": "Axis",
+				"icon": "germany-hungary",
+				"supply": [
+					{
+						"turnStart": 1,
+						"turnEnd": 8,
+						"effects": [
+							{"low": 2,"high": 3,"effect": "North: 1\r\nWest: 5"},
+							{"low": 4,"high": 8,"effect": "North: 2\r\nWest: 5"},
+							{"low": 9,"high": 10,"effect": "North: 2\r\nWest: 7"},
+							{"low": 11,"high": 12,"effect": "North: 3\r\nWest: 9"}
+						]
+					},
+					{
+						"turnStart": 9,
+						"turnEnd": 26,
+						"effects": [
+							{"low": 2,"high": 3,"effect": "North: 1\r\nWest: 6"},
+							{"low": 4,"high": 8,"effect": "North: 2\r\nWest: 6"},
+							{"low": 9,"high": 10,"effect": "North: 2\r\nWest: 8"},
+							{"low": 11,"high": 12,"effect": "North: 3\r\nWest: 10"}
+						]
+					},
+					{
+						"turnStart": 27,
+						"turnEnd": 35,
+						"effects": [
+							{"low": 2,"high": 3,"effect": "North: 1\r\nWest: 6"},
+							{"low": 4,"high": 5,"effect": "North: 2\r\nWest: 7"},
+							{"low": 6,"high": 8,"effect": "North: 2\r\nWest: 8"},
+							{"low": 9,"high": 10,"effect": "North: 2\r\nWest: 9"},
+							{"low": 11,"high": 12,"effect": "North: 3\r\nWest: 10"}
+						]
+					},
+					{
+						"turnStart": 36,
+						"turnEnd": 41,
+						"effects": [
+							{"low": 2,"high": 3,"effect": "North: 1\r\nWest: 2"},
+							{"low": 4,"high": 5,"effect": "North: 2\r\nWest: 3"},
+							{"low": 6,"high": 8,"effect": "North: 2\r\nWest: 4"},
+							{"low": 9,"high": 10,"effect": "North: 2\r\nWest: 5"},
+							{"low": 11,"high": 12,"effect": "North: 3\r\nWest: 6"}
+						]
+					}
+				],
+				"reinforcements": [
+					{
+						"icon": "german",
+						"reinforcements": [
+							{
+								"turnStart": 1,
+								"turnEnd": 8,
+								"effects": [
+									{"low": 2,"high": 6,"effect": "None"},
+									{"low": 7,"high": 7,"effect": "AR2"},
+									{"low": 8,"high": 8,"effect": "AR3, Air Unit"},
+									{"low": 9,"high": 9,"effect": "AR4 EQ 4, 1 Ftr"},
+									{"low": 10,"high": 11,"effect": "EQ 5, PG or AR4, Air Unit"},
+									{"low": 12,"high": 12,"effect": "EQ 4, EQ 5, PG or AR4, Air Unit"}		
+								]
+							},
+							{
+								"turnStart": 9,
+								"turnEnd": 41,
+								"effects": [
+									{"low": 2,"high": 3,"effect": "None"},
+									{"low": 4,"high": 4,"effect": "AR2"},
+									{"low": 5,"high": 5,"effect": "AR3"},
+									{"low": 6,"high": 6,"effect": "AR3, Air Unit"},
+									{"low": 7,"high": 7,"effect": "PG or AR4, Air Unit"},
+									{"low": 8,"high": 8,"effect": "EQ 4, PG or AR4, Air Unit"},
+									{"low": 9,"high": 9,"effect": "EQ 5, PG or AR4, Air Unit"},
+									{"low": 10,"high": 10,"effect": "EQ 5, PG or AR4, 2x Air Units"},
+									{"low": 11,"high": 11,"effect": "EQ 4, PG or AR4, 2x Air Units"},
+									{"low": 12,"high": 12,"effect": "EQ 4, EQ 5, PG or AR4, 2x Air Units"}
+								]
+							}					
+						]
+					},
+					{
+						"icon": "hungarian",
+						"reinforcements": [
+							{
+								"turnStart": 1,
+								"turnEnd": 8,
+								"effects": [
+									{"low": 2,"high": 3,"effect": "2x AR1"},
+									{"low": 4,"high": 7,"effect": "2x AR2"},
+									{"low": 8,"high": 9,"effect": "AR2, AR3"},
+									{"low": 9,"high": 9,"effect": "AR4 EQ 4, 1 Ftr"},
+									{"low": 10,"high": 12,"effect": "AR3, AR4, HQ, EQ, Air Unit"}
+								]
+							},
+							{
+								"turnStart": 9,
+								"turnEnd": 41,
+								"effects": [
+									{"low": 2,"high": 8,"effect": "None"},
+									{"low": 9,"high": 9,"effect": "AR2"},
+									{"low": 10,"high": 10,"effect": "AR3"},
+									{"low": 11,"high": 12,"effect": "AR4, EQ, Air Unit"}
+								]
+							}		
+						]
+
+					}
+				]
+			},
+			{
+				"player": "player2",
+				"name": "Soviet",
+				"icon": "ussr-rumania",
+				"supply": [
+					{
+						"turnStart": 1,
+						"turnEnd": 8,
+						"effects": [
+							{"low": 2,"high": 3,"effect": "North: 0\r\nEast: 5\r\nSouth: 0"},
+							{"low": 4,"high": 5,"effect": "North: 1\r\nEast: 8\r\nSouth: 0"},
+							{"low": 6,"high": 8,"effect": "North: 1\r\nEast: 12\r\nSouth: 0"},
+							{"low": 9,"high": 10,"effect": "North: 1\r\nEast: 14\r\nSouth: 0"},
+							{"low": 11,"high": 12,"effect": "North: 2\r\nEast: 17\r\nSouth: 0"}
+						]
+					},
+					{
+						"turnStart": 9,
+						"turnEnd": 17,
+						"effects": [
+							{"low": 2,"high": 3,"effect": "North: 0\r\nEast: 6\r\nSouth: 0"},
+							{"low": 4,"high": 5,"effect": "North: 1\r\nEast: 8\r\nSouth: 1"},
+							{"low": 6,"high": 8,"effect": "North: 1\r\nEast: 10\r\nSouth: 2"},
+							{"low": 9,"high": 10,"effect": "North: 1\r\nEast: 12\r\nSouth: 2"},
+							{"low": 11,"high": 12,"effect": "North: 2\r\nEast: 14\r\nSouth: 3"}
+						]
+					},
+					{
+						"turnStart": 18,
+						"turnEnd": 26,
+						"effects": [
+							{"low": 2,"high": 3,"effect": "North: 2\r\nEast: 19\r\nSouth: 1"},
+							{"low": 4,"high": 5,"effect": "North: 3\r\nEast: 21\r\nSouth: 2"},
+							{"low": 6,"high": 8,"effect": "North: 3\r\nEast: 23\r\nSouth: 3"},
+							{"low": 9,"high": 10,"effect": "North: 3\r\nEast: 26\r\nSouth: 3"},
+							{"low": 11,"high": 12,"effect": "North: 4\r\nEast: 28\r\nSouth: 4"}
+						]
+					},
+					{
+						"turnStart": 27,
+						"turnEnd": 39,
+						"effects": [
+							{"low": 2,"high": 3,"effect": "North: 0\r\nEast: 8\r\nSouth: 1"},
+							{"low": 4,"high": 5,"effect": "North: 1\r\nEast: 10\r\nSouth: 2"},
+							{"low": 6,"high": 10,"effect": "North: 1\r\nEast: 12\r\nSouth: 3"},							
+							{"low": 11,"high": 12,"effect": "North: 2\r\nEast: 14\r\nSouth: 4"}
+						]
+					},
+					{
+						"turnStart": 40,
+						"turnEnd": 43,
+						"effects": [
+							{"low": 2,"high": 3,"effect": "North: 0\r\nEast: 2\r\nSouth: 0"},
+							{"low": 4,"high": 5,"effect": "North: 1\r\nEast: 4\r\nSouth: 0"},
+							{"low": 6,"high": 10,"effect": "North: 1\r\nEast: 6\r\nSouth: 1"},							
+							{"low": 11,"high": 12,"effect": "North: 2\r\nEast: 7\r\nSouth: 2"}
+						]
+					}
+				],
+				"reinforcements": [
+					{
+						"turnStart": 1,
+						"turnEnd": 7,
+						"effects": [
+							{"low": 2,"high": 12,"effect": "None"}
+						]
+					},
+					{
+						"turnStart": 8,
+						"turnEnd": 26,
+						"effects": [
+							{"low": 2,"high": 2,"effect": "None"},
+							{"low": 3,"high": 3,"effect": "EQ 3"},
+							{"low": 4,"high": 4,"effect": "EQ 3, CAV or MOT, Air Unit"},
+							{"low": 5,"high": 5,"effect": "EQ 3, EQ 4, CAV or MOT, Air Unit"},
+							{"low": 6,"high": 8,"effect": "EQ 3, EQ 4, CAV or MOT, 2x Air Unit"},
+							{"low": 9,"high": 9,"effect": "Rum AR1, 2x EQ 3, EQ 4, 2x CAV or 2x MOT, 2x Air Unit"},
+							{"low": 10,"high": 10,"effect": "Rum AR1, 2x EQ 3, EQ 4, 2x CAV or 2x MOT, 2x Air Unit, Arty"},
+							{"low": 11,"high": 11,"effect": "Rum AR2, EQ 3, 2x EQ 4, 2x CAV or 2x MOT, 2x Air Unit, Arty"},
+							{"low": 12,"high": 12,"effect": "Rum AR3, 3x EQ 4, 2x CAV or 2x MOT, 2x Air Unit, Arty"}
+						]
+					},
+					{
+						"turnStart": 27,
+						"turnEnd": 35,
+						"effects": [
+							{"low": 2,"high": 2,"effect": "None"},
+							{"low": 3,"high": 3,"effect": "EQ 3"},
+							{"low": 4,"high": 4,"effect": "EQ 3, CAV or MOT,"},
+							{"low": 5,"high": 5,"effect": "EQ 3, EQ 4, CAV or MOT"},
+							{"low": 6,"high": 8,"effect": "EQ 3, EQ 4, CAV or MOT"},
+							{"low": 9,"high": 9,"effect": "Rum AR1, 2x EQ 3, EQ 4, 2x CAV or 2x MOT"},
+							{"low": 10,"high": 10,"effect": "Rum AR1, 2x EQ 3, EQ 4, 2x CAV or 2x MOT, Arty"},
+							{"low": 11,"high": 11,"effect": "Rum AR2, EQ 3, 2x EQ 4, 2x CAV or 2x MOT, Arty"},
+							{"low": 12,"high": 12,"effect": "Rum AR3, 3x EQ 4, 2x CAV or 2x MOT, Arty"}
+						]
+					},
+					{
+						"turnStart": 36,
+						"turnEnd": 39,
+						"effects": [
+							{"low": 2,"high": 4,"effect": "None"},
+							{"low": 5,"high": 5,"effect": "EQ 3, EQ 4, CAV or MOT"},
+							{"low": 6,"high": 8,"effect": "EQ 3, EQ 4, CAV or MOT, Air Unit"},
+							{"low": 9,"high": 10,"effect": "Rum AR1, EQ 3, EQ 4, CAV or MOT, Air Unit"},
+							{"low": 11,"high": 11,"effect": "Rum AR2, EQ 3, EQ 4, 2x CAV or MOT, Air Unit, Arty"},
+							{"low": 12,"high": 12,"effect": "Rum AR3, EQ 3, EQ 4, 2x CAV or MOT, Air Unit, Arty"}
+						]
+					},
+					{
+						"turnStart": 40,
+						"turnEnd": 43,
+						"effects": [
+							{"low": 2,"high": 12,"effect": "None"}
+						]
+					}
+
+				]
+			}
+		]
+	}	
 ]

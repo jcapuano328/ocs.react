@@ -31,12 +31,12 @@ var TurnPlayerView = React.createClass({
         this.props.nextPlayer();        
     },    
     render() {
-        //console.log(this.props);        
+        console.log(this.props);        
         let width = this.state.width || 96;
         let height = this.state.height || 88;
         return (            
             <TouchableOpacity onPress={this.onNextPlayer} onLayout={this.onLayout}>
-                <Image style={{width: width,height: height,resizeMode: 'contain'}} source={Icons[this.props.player.icon.toLowerCase()]}/>
+                <Image style={{width: width,height: height,resizeMode: 'contain'}} source={Icons[((this.props.player||{icon:''}).icon||'').toLowerCase()]}/>
             </TouchableOpacity>
         );
     }
