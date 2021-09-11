@@ -21,6 +21,7 @@ module.exports = {
     find(turn, player, d1, d2) {
 		let dice = d1 + d2;
 		let range = player.supply.find((s) => inRange(turn, s.turnStart, s.turnEnd)) || {effects:[]};
+		dice += (range.drm ? +range.drm : 0);
 		let res = range.effects.find((r) => inRange(dice, r.low, r.high)) || {effect: ''};
 		return res.effect;
     },

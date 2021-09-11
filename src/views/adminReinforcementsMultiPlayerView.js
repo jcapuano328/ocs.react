@@ -44,10 +44,11 @@ var AdminReinforcementsSingleView = React.createClass({
         this.resolve(this.state.die1, this.state.die2);
     },
     resolve(die1, die2) {
-        this.setState({die1: die1, die2: die2});        
-
+        console.log('*****************Reinforcements', this.props.playerreinforcements);        
+        die2 = (!this.props.playerreinforcements.dice || this.props.playerreinforcements.dice > 1 ? die2 : 0);
+        this.setState({die1: die1, die2: die2});                        
         let playerreinforcements = this.getPlayerReinforcements(this.props.playerreinforcements, this.props.turn);
-        let reinforcements = Reinforcements.find(this.props.turn, {reinforcements: playerreinforcements}, die1, die2);        
+        let reinforcements = Reinforcements.find(this.props.turn, {reinforcements: playerreinforcements}, die1, die2);
         
         let current = this.props[this.props.player] || {};
 

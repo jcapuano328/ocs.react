@@ -28,6 +28,7 @@ module.exports = {
 	"uk": require('./uk.png'),
 	"usa": require('./usa.png'),
 
+	"special": require('./special.jpg'),
 	"tie": require('./tie.png'),
 	"burma": require('./burma.jpg'),
 	"dak": require('./dak.jpg'),
@@ -42,5 +43,6 @@ module.exports = {
 	"smolensk": require('./smolensk.png'),
 	"btr": require('./btr.jpg'),
 	"bg": require('./bg.jpg'),
-	"hr": require('./hr.jpg')
+	"hr": require('./hr.jpg'),
+	"ttw": require('./ttw.jpg')
 };

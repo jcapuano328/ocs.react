@@ -30,7 +30,7 @@ var AdminReinforcementsNoneView = React.createClass({
         let iconwidth = this.state.width;// || */96;
         let iconheight = this.state.height;// || */88;    
 
-        console.log('Admin Reinforcements None', this.props);
+        //console.log('Admin Reinforcements None', this.props);
         let player = this.props.player;//this.props.reinforcements[this.props.player];        
 
         return (            

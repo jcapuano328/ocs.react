@@ -42,16 +42,17 @@ var AdminWeatherView = React.createClass({
 		if (!Array.isArray(weathers)) {
 			weathers = [weathers];			
 		}
-		let currentwx = '';
+		let fullwx = '';
+        let lastwx = '';
 		weathers.forEach(wx => {
-			let wxres = Weather.find(this.props.turn, wx, die1, die2, die3, die4);
-			if (currentwx) {
-				currentwx += '\r\n';
+			lastwx = Weather.find(this.props.turn, wx, die1, die2, die3, die4, lastwx);
+			if (fullwx) {
+				fullwx += '\r\n';
 			}
-			currentwx += wxres;
+			fullwx += lastwx;
 		});
 		
-        this.props.setWeather(currentwx);        
+        this.props.setWeather(fullwx);        
     },
     render() {
         let dice = [];
@@ -67,10 +68,10 @@ var AdminWeatherView = React.createClass({
                 dice.push({num: 1, low: 1, high: wxdice.sides, color: diecolors[wxdicenumber+i], dotcolor: dotcolors[wxdicenumber+i]});
             }
             wxdicenumber += wxdice.number;
-		});
-        
+		});        
         let resultsflex = wxdicenumber > 3 ? 2 : 3;
         let diceflex = wxdicenumber > 3 ? 3 : 2;
+
         return (            
             <View style={{flex: 1.1, paddingTop: 2}}>
                 <Text style={{fontSize: Style.Font.medium(),fontWeight: 'bold',backgroundColor: 'silver', textAlign: 'left', paddingLeft:10}}>Weather</Text>

@@ -31,7 +31,7 @@ var TurnPlayerView = React.createClass({
         this.props.nextPlayer();        
     },    
     render() {
-        console.log(this.props);        
+        //console.log(this.props);        
         let width = this.state.width || 96;
         let height = this.state.height || 88;
         return (            
